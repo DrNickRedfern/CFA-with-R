@@ -11,7 +11,7 @@ This book includes interactive content for the user to explore, including embedd
 ### Citation
 To cite this book please use:
 
-Redfern, N. (2022) Computational Film Analysis with R (version 0.9.000). Get a DOI
+Redfern, N. (2022) *Computational Film Analysis with R* (version 0.9.000). Get a DOI
 
 ### License
 This work is licensed under a
