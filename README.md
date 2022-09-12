@@ -1,4 +1,4 @@
-# This is the repository for *Computational Film Analysis with R*
+# Welcome to *Computational Film Analysis with R*
 
 <!-- Add the cover image here -->
 
