@@ -14,8 +14,6 @@ To cite this book please use:
 Redfern, N. (2022) Computational Film Analysis with R (version 0.9.000). Get a DOI
 
 ### License
-Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
-
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
 
