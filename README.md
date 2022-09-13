@@ -1,6 +1,8 @@
 # Welcome to *Computational Film Analysis with R*
 
-<!-- Add the cover image here -->
+<p align="center">
+<img src="Images/cover.png" alt="Computational Film Analysis with R" width="200">
+</p>
 
 This book is intended to be a first course in the application of computational methods to questions of form and style in the cinema using the R programming language. It aimed at those who have no previous experience of computational film analysis and no prior knowledge of statistics, data science or programming with R is required or assumed. Each chapter discusses the underlying methodological concepts of a range of approaches for analysing sound, colour, editing, shot types, and lexical texts of motion pictures in depth and demonstrates their implementation in R so that after reading this book researchers will be able to design and execute their own computational film analysis research projects.
 
