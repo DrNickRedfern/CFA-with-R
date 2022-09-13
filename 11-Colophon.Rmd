@@ -16,7 +16,7 @@ change_log <- read_csv(here("Data", "CFA_change_log.csv"))
 knitr::kable(head(change_log))
 ```
 
-The full change log for this book is available at [https://github.com/DrNickRedfern/CFA-with-R](https://github.com/DrNickRedfern/CFA-with-R)
+The full change log for this book is available [here](https://github.com/DrNickRedfern/CFA-with-R/blob/main/Data/CFA_change_log.csv).
 
 ## Source {.unnumbered}
 
