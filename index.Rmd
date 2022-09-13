@@ -10,6 +10,7 @@ output:
       base: https://github.com/DrNickRedfern/CFA-with-R
       branch: main
     includes:
+      in_header: google_tag.html
       before_body: modal_div.html
       after_body: modal_script.html
     pandoc_args: --lua-filter=multiple-bibliographies.lua
