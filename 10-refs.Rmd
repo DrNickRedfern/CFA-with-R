@@ -1,0 +1,18 @@
+# References
+
+```{css, echo = FALSE}
+/* All elements with class="csl-entry" ------------------------
+Using the apa.csl file with bookdown does not add the correct spacing after each bibliography, making it difficult to read the text. Changing entry-spacing in the csl file does not seem to work and so it is necessary to adjust the bottom margin of cls-entry class by css.
+*/
+.csl-entry {
+  margin-bottom: 10px;
+}
+```
+
+## Works cited 
+::: {#refs_research}
+:::
+
+## R Packages
+::: {#refs_packages}
+:::

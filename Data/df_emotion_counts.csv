@@ -1,0 +1,961 @@
+genre,film,emotion_type,count
+Action,Aquaman,Anger,113
+Action,Avengers Age of Ultron,Anger,132
+Action,Avengers Endgame,Anger,155
+Action,Avengers Infinity War,Anger,173
+Action,Batman v Superman Dawn of Justice,Anger,157
+Action,Black Panther,Anger,127
+Action,Captain America Civil War,Anger,150
+Action,Captain Marvel,Anger,111
+Action,Deadpool,Anger,153
+Action,Deadpool 2,Anger,190
+Action,Doctor Strange,Anger,112
+Action,Furious Seven,Anger,128
+Action,Guardians of the Galaxy Vol 2,Anger,162
+Action,Jurassic World,Anger,70
+Action,Jurassic World Fallen Kingdom,Anger,68
+Action,Spider-Man Far from Home,Anger,151
+Action,Spider-Man Homecoming,Anger,162
+Action,Suicide Squad,Anger,186
+Action,Thor Ragnarok,Anger,176
+Action,Wonder Woman,Anger,115
+Drama,A Star is Born,Anger,98
+Drama,Arrival,Anger,62
+Drama,Bohemian Rhapsody,Anger,137
+Drama,Cinderella,Anger,52
+Drama,Creed,Anger,217
+Drama,Creed II,Anger,169
+Drama,Downton Abbey,Anger,99
+Drama,Fifty Shades Darker,Anger,49
+Drama,Fifty Shades Freed,Anger,102
+Drama,Fifty Shades of Grey,Anger,48
+Drama,Ford v Ferrari,Anger,167
+Drama,Hidden Figures,Anger,96
+Drama,Hustlers,Anger,140
+Drama,Knives Out,Anger,246
+Drama,Little Women,Anger,119
+Drama,Murder On The Orient Express,Anger,160
+Drama,Straight Outta Compton,Anger,512
+Drama,Sully,Anger,83
+Drama,The Mule,Anger,104
+Drama,Wonder,Anger,57
+Horror,A Quiet Place,Anger,3
+Horror,Alien Covenant,Anger,79
+Horror,Annabelle 2 Creation,Anger,33
+Horror,Annabelle Comes Home,Anger,51
+Horror,Dont Breathe,Anger,55
+Horror,Escape Room,Anger,159
+Horror,Get Out,Anger,97
+Horror,Goosebumps,Anger,84
+Horror,Halloween,Anger,106
+Horror,Insidious the Last Key,Anger,43
+Horror,It,Anger,161
+Horror,It Chapter Two,Anger,148
+Horror,Lights Out,Anger,39
+Horror,Scary Stories to Tell in the Dark,Anger,87
+Horror,Split,Anger,94
+Horror,The Conjuring 2,Anger,92
+Horror,The First Purge,Anger,191
+Horror,The Nun,Anger,68
+Horror,The Purge Election Year,Anger,134
+Horror,The Visit,Anger,92
+Action,Aquaman,Anger negated,9
+Action,Avengers Age of Ultron,Anger negated,15
+Action,Avengers Endgame,Anger negated,19
+Action,Avengers Infinity War,Anger negated,13
+Action,Batman v Superman Dawn of Justice,Anger negated,19
+Action,Black Panther,Anger negated,14
+Action,Captain America Civil War,Anger negated,15
+Action,Captain Marvel,Anger negated,15
+Action,Deadpool,Anger negated,16
+Action,Deadpool 2,Anger negated,22
+Action,Doctor Strange,Anger negated,13
+Action,Furious Seven,Anger negated,14
+Action,Guardians of the Galaxy Vol 2,Anger negated,13
+Action,Jurassic World,Anger negated,7
+Action,Jurassic World Fallen Kingdom,Anger negated,10
+Action,Spider-Man Far from Home,Anger negated,10
+Action,Spider-Man Homecoming,Anger negated,10
+Action,Suicide Squad,Anger negated,23
+Action,Thor Ragnarok,Anger negated,27
+Action,Wonder Woman,Anger negated,33
+Drama,A Star is Born,Anger negated,23
+Drama,Arrival,Anger negated,5
+Drama,Bohemian Rhapsody,Anger negated,15
+Drama,Cinderella,Anger negated,10
+Drama,Creed,Anger negated,29
+Drama,Creed II,Anger negated,17
+Drama,Downton Abbey,Anger negated,27
+Drama,Fifty Shades Darker,Anger negated,8
+Drama,Fifty Shades Freed,Anger negated,4
+Drama,Fifty Shades of Grey,Anger negated,6
+Drama,Ford v Ferrari,Anger negated,16
+Drama,Hidden Figures,Anger negated,16
+Drama,Hustlers,Anger negated,21
+Drama,Knives Out,Anger negated,33
+Drama,Little Women,Anger negated,25
+Drama,Murder On The Orient Express,Anger negated,26
+Drama,Straight Outta Compton,Anger negated,74
+Drama,Sully,Anger negated,2
+Drama,The Mule,Anger negated,27
+Drama,Wonder,Anger negated,7
+Horror,A Quiet Place,Anger negated,0
+Horror,Alien Covenant,Anger negated,12
+Horror,Annabelle 2 Creation,Anger negated,2
+Horror,Annabelle Comes Home,Anger negated,14
+Horror,Dont Breathe,Anger negated,10
+Horror,Escape Room,Anger negated,9
+Horror,Get Out,Anger negated,17
+Horror,Goosebumps,Anger negated,9
+Horror,Halloween,Anger negated,11
+Horror,Insidious the Last Key,Anger negated,11
+Horror,It,Anger negated,16
+Horror,It Chapter Two,Anger negated,13
+Horror,Lights Out,Anger negated,7
+Horror,Scary Stories to Tell in the Dark,Anger negated,11
+Horror,Split,Anger negated,17
+Horror,The Conjuring 2,Anger negated,13
+Horror,The First Purge,Anger negated,16
+Horror,The Nun,Anger negated,9
+Horror,The Purge Election Year,Anger negated,13
+Horror,The Visit,Anger negated,13
+Action,Aquaman,Anticipation,144
+Action,Avengers Age of Ultron,Anticipation,225
+Action,Avengers Endgame,Anticipation,309
+Action,Avengers Infinity War,Anticipation,245
+Action,Batman v Superman Dawn of Justice,Anticipation,200
+Action,Black Panther,Anticipation,147
+Action,Captain America Civil War,Anticipation,218
+Action,Captain Marvel,Anticipation,126
+Action,Deadpool,Anticipation,230
+Action,Deadpool 2,Anticipation,278
+Action,Doctor Strange,Anticipation,160
+Action,Furious Seven,Anticipation,195
+Action,Guardians of the Galaxy Vol 2,Anticipation,171
+Action,Jurassic World,Anticipation,172
+Action,Jurassic World Fallen Kingdom,Anticipation,161
+Action,Spider-Man Far from Home,Anticipation,295
+Action,Spider-Man Homecoming,Anticipation,290
+Action,Suicide Squad,Anticipation,161
+Action,Thor Ragnarok,Anticipation,252
+Action,Wonder Woman,Anticipation,212
+Drama,A Star is Born,Anticipation,303
+Drama,Arrival,Anticipation,123
+Drama,Bohemian Rhapsody,Anticipation,258
+Drama,Cinderella,Anticipation,204
+Drama,Creed,Anticipation,329
+Drama,Creed II,Anticipation,151
+Drama,Downton Abbey,Anticipation,296
+Drama,Fifty Shades Darker,Anticipation,210
+Drama,Fifty Shades Freed,Anticipation,159
+Drama,Fifty Shades of Grey,Anticipation,172
+Drama,Ford v Ferrari,Anticipation,277
+Drama,Hidden Figures,Anticipation,291
+Drama,Hustlers,Anticipation,282
+Drama,Knives Out,Anticipation,310
+Drama,Little Women,Anticipation,322
+Drama,Murder On The Orient Express,Anticipation,216
+Drama,Straight Outta Compton,Anticipation,381
+Drama,Sully,Anticipation,187
+Drama,The Mule,Anticipation,216
+Drama,Wonder,Anticipation,216
+Horror,A Quiet Place,Anticipation,10
+Horror,Alien Covenant,Anticipation,172
+Horror,Annabelle 2 Creation,Anticipation,96
+Horror,Annabelle Comes Home,Anticipation,131
+Horror,Dont Breathe,Anticipation,64
+Horror,Escape Room,Anticipation,224
+Horror,Get Out,Anticipation,152
+Horror,Goosebumps,Anticipation,198
+Horror,Halloween,Anticipation,201
+Horror,Insidious the Last Key,Anticipation,89
+Horror,It,Anticipation,151
+Horror,It Chapter Two,Anticipation,252
+Horror,Lights Out,Anticipation,74
+Horror,Scary Stories to Tell in the Dark,Anticipation,101
+Horror,Split,Anticipation,133
+Horror,The Conjuring 2,Anticipation,148
+Horror,The First Purge,Anticipation,161
+Horror,The Nun,Anticipation,138
+Horror,The Purge Election Year,Anticipation,159
+Horror,The Visit,Anticipation,160
+Action,Aquaman,Anticipation negated,16
+Action,Avengers Age of Ultron,Anticipation negated,35
+Action,Avengers Endgame,Anticipation negated,33
+Action,Avengers Infinity War,Anticipation negated,26
+Action,Batman v Superman Dawn of Justice,Anticipation negated,20
+Action,Black Panther,Anticipation negated,26
+Action,Captain America Civil War,Anticipation negated,24
+Action,Captain Marvel,Anticipation negated,14
+Action,Deadpool,Anticipation negated,17
+Action,Deadpool 2,Anticipation negated,25
+Action,Doctor Strange,Anticipation negated,22
+Action,Furious Seven,Anticipation negated,19
+Action,Guardians of the Galaxy Vol 2,Anticipation negated,16
+Action,Jurassic World,Anticipation negated,18
+Action,Jurassic World Fallen Kingdom,Anticipation negated,10
+Action,Spider-Man Far from Home,Anticipation negated,30
+Action,Spider-Man Homecoming,Anticipation negated,27
+Action,Suicide Squad,Anticipation negated,17
+Action,Thor Ragnarok,Anticipation negated,14
+Action,Wonder Woman,Anticipation negated,30
+Drama,A Star is Born,Anticipation negated,39
+Drama,Arrival,Anticipation negated,14
+Drama,Bohemian Rhapsody,Anticipation negated,31
+Drama,Cinderella,Anticipation negated,16
+Drama,Creed,Anticipation negated,29
+Drama,Creed II,Anticipation negated,21
+Drama,Downton Abbey,Anticipation negated,44
+Drama,Fifty Shades Darker,Anticipation negated,24
+Drama,Fifty Shades Freed,Anticipation negated,17
+Drama,Fifty Shades of Grey,Anticipation negated,11
+Drama,Ford v Ferrari,Anticipation negated,27
+Drama,Hidden Figures,Anticipation negated,23
+Drama,Hustlers,Anticipation negated,31
+Drama,Knives Out,Anticipation negated,30
+Drama,Little Women,Anticipation negated,59
+Drama,Murder On The Orient Express,Anticipation negated,15
+Drama,Straight Outta Compton,Anticipation negated,36
+Drama,Sully,Anticipation negated,21
+Drama,The Mule,Anticipation negated,18
+Drama,Wonder,Anticipation negated,21
+Horror,A Quiet Place,Anticipation negated,4
+Horror,Alien Covenant,Anticipation negated,19
+Horror,Annabelle 2 Creation,Anticipation negated,8
+Horror,Annabelle Comes Home,Anticipation negated,15
+Horror,Dont Breathe,Anticipation negated,10
+Horror,Escape Room,Anticipation negated,16
+Horror,Get Out,Anticipation negated,11
+Horror,Goosebumps,Anticipation negated,30
+Horror,Halloween,Anticipation negated,13
+Horror,Insidious the Last Key,Anticipation negated,6
+Horror,It,Anticipation negated,13
+Horror,It Chapter Two,Anticipation negated,15
+Horror,Lights Out,Anticipation negated,10
+Horror,Scary Stories to Tell in the Dark,Anticipation negated,12
+Horror,Split,Anticipation negated,16
+Horror,The Conjuring 2,Anticipation negated,12
+Horror,The First Purge,Anticipation negated,20
+Horror,The Nun,Anticipation negated,8
+Horror,The Purge Election Year,Anticipation negated,10
+Horror,The Visit,Anticipation negated,16
+Action,Aquaman,Disgust,87
+Action,Avengers Age of Ultron,Disgust,79
+Action,Avengers Endgame,Disgust,101
+Action,Avengers Infinity War,Disgust,106
+Action,Batman v Superman Dawn of Justice,Disgust,101
+Action,Black Panther,Disgust,62
+Action,Captain America Civil War,Disgust,76
+Action,Captain Marvel,Disgust,50
+Action,Deadpool,Disgust,117
+Action,Deadpool 2,Disgust,138
+Action,Doctor Strange,Disgust,62
+Action,Furious Seven,Disgust,78
+Action,Guardians of the Galaxy Vol 2,Disgust,122
+Action,Jurassic World,Disgust,64
+Action,Jurassic World Fallen Kingdom,Disgust,49
+Action,Spider-Man Far from Home,Disgust,110
+Action,Spider-Man Homecoming,Disgust,159
+Action,Suicide Squad,Disgust,138
+Action,Thor Ragnarok,Disgust,164
+Action,Wonder Woman,Disgust,74
+Drama,A Star is Born,Disgust,94
+Drama,Arrival,Disgust,30
+Drama,Bohemian Rhapsody,Disgust,106
+Drama,Cinderella,Disgust,59
+Drama,Creed,Disgust,84
+Drama,Creed II,Disgust,53
+Drama,Downton Abbey,Disgust,96
+Drama,Fifty Shades Darker,Disgust,31
+Drama,Fifty Shades Freed,Disgust,55
+Drama,Fifty Shades of Grey,Disgust,30
+Drama,Ford v Ferrari,Disgust,140
+Drama,Hidden Figures,Disgust,70
+Drama,Hustlers,Disgust,92
+Drama,Knives Out,Disgust,139
+Drama,Little Women,Disgust,118
+Drama,Murder On The Orient Express,Disgust,109
+Drama,Straight Outta Compton,Disgust,388
+Drama,Sully,Disgust,43
+Drama,The Mule,Disgust,66
+Drama,Wonder,Disgust,69
+Horror,A Quiet Place,Disgust,4
+Horror,Alien Covenant,Disgust,60
+Horror,Annabelle 2 Creation,Disgust,35
+Horror,Annabelle Comes Home,Disgust,47
+Horror,Dont Breathe,Disgust,33
+Horror,Escape Room,Disgust,126
+Horror,Get Out,Disgust,89
+Horror,Goosebumps,Disgust,65
+Horror,Halloween,Disgust,97
+Horror,Insidious the Last Key,Disgust,29
+Horror,It,Disgust,166
+Horror,It Chapter Two,Disgust,139
+Horror,Lights Out,Disgust,25
+Horror,Scary Stories to Tell in the Dark,Disgust,82
+Horror,Split,Disgust,65
+Horror,The Conjuring 2,Disgust,67
+Horror,The First Purge,Disgust,113
+Horror,The Nun,Disgust,67
+Horror,The Purge Election Year,Disgust,104
+Horror,The Visit,Disgust,78
+Action,Aquaman,Disgust negated,8
+Action,Avengers Age of Ultron,Disgust negated,7
+Action,Avengers Endgame,Disgust negated,11
+Action,Avengers Infinity War,Disgust negated,8
+Action,Batman v Superman Dawn of Justice,Disgust negated,12
+Action,Black Panther,Disgust negated,4
+Action,Captain America Civil War,Disgust negated,9
+Action,Captain Marvel,Disgust negated,3
+Action,Deadpool,Disgust negated,12
+Action,Deadpool 2,Disgust negated,17
+Action,Doctor Strange,Disgust negated,4
+Action,Furious Seven,Disgust negated,7
+Action,Guardians of the Galaxy Vol 2,Disgust negated,14
+Action,Jurassic World,Disgust negated,4
+Action,Jurassic World Fallen Kingdom,Disgust negated,5
+Action,Spider-Man Far from Home,Disgust negated,10
+Action,Spider-Man Homecoming,Disgust negated,8
+Action,Suicide Squad,Disgust negated,13
+Action,Thor Ragnarok,Disgust negated,9
+Action,Wonder Woman,Disgust negated,8
+Drama,A Star is Born,Disgust negated,17
+Drama,Arrival,Disgust negated,4
+Drama,Bohemian Rhapsody,Disgust negated,10
+Drama,Cinderella,Disgust negated,6
+Drama,Creed,Disgust negated,16
+Drama,Creed II,Disgust negated,10
+Drama,Downton Abbey,Disgust negated,14
+Drama,Fifty Shades Darker,Disgust negated,8
+Drama,Fifty Shades Freed,Disgust negated,5
+Drama,Fifty Shades of Grey,Disgust negated,5
+Drama,Ford v Ferrari,Disgust negated,11
+Drama,Hidden Figures,Disgust negated,12
+Drama,Hustlers,Disgust negated,10
+Drama,Knives Out,Disgust negated,15
+Drama,Little Women,Disgust negated,20
+Drama,Murder On The Orient Express,Disgust negated,14
+Drama,Straight Outta Compton,Disgust negated,57
+Drama,Sully,Disgust negated,1
+Drama,The Mule,Disgust negated,15
+Drama,Wonder,Disgust negated,9
+Horror,A Quiet Place,Disgust negated,0
+Horror,Alien Covenant,Disgust negated,8
+Horror,Annabelle 2 Creation,Disgust negated,3
+Horror,Annabelle Comes Home,Disgust negated,10
+Horror,Dont Breathe,Disgust negated,2
+Horror,Escape Room,Disgust negated,7
+Horror,Get Out,Disgust negated,13
+Horror,Goosebumps,Disgust negated,8
+Horror,Halloween,Disgust negated,4
+Horror,Insidious the Last Key,Disgust negated,3
+Horror,It,Disgust negated,15
+Horror,It Chapter Two,Disgust negated,13
+Horror,Lights Out,Disgust negated,2
+Horror,Scary Stories to Tell in the Dark,Disgust negated,7
+Horror,Split,Disgust negated,6
+Horror,The Conjuring 2,Disgust negated,8
+Horror,The First Purge,Disgust negated,11
+Horror,The Nun,Disgust negated,4
+Horror,The Purge Election Year,Disgust negated,8
+Horror,The Visit,Disgust negated,13
+Action,Aquaman,Fear,154
+Action,Avengers Age of Ultron,Fear,175
+Action,Avengers Endgame,Fear,171
+Action,Avengers Infinity War,Fear,168
+Action,Batman v Superman Dawn of Justice,Fear,242
+Action,Black Panther,Fear,164
+Action,Captain America Civil War,Fear,204
+Action,Captain Marvel,Fear,152
+Action,Deadpool,Fear,158
+Action,Deadpool 2,Fear,233
+Action,Doctor Strange,Fear,152
+Action,Furious Seven,Fear,155
+Action,Guardians of the Galaxy Vol 2,Fear,177
+Action,Jurassic World,Fear,137
+Action,Jurassic World Fallen Kingdom,Fear,132
+Action,Spider-Man Far from Home,Fear,239
+Action,Spider-Man Homecoming,Fear,248
+Action,Suicide Squad,Fear,239
+Action,Thor Ragnarok,Fear,235
+Action,Wonder Woman,Fear,222
+Drama,A Star is Born,Fear,138
+Drama,Arrival,Fear,103
+Drama,Bohemian Rhapsody,Fear,126
+Drama,Cinderella,Fear,79
+Drama,Creed,Fear,187
+Drama,Creed II,Fear,181
+Drama,Downton Abbey,Fear,129
+Drama,Fifty Shades Darker,Fear,88
+Drama,Fifty Shades Freed,Fear,108
+Drama,Fifty Shades of Grey,Fear,99
+Drama,Ford v Ferrari,Fear,167
+Drama,Hidden Figures,Fear,122
+Drama,Hustlers,Fear,167
+Drama,Knives Out,Fear,299
+Drama,Little Women,Fear,123
+Drama,Murder On The Orient Express,Fear,224
+Drama,Straight Outta Compton,Fear,355
+Drama,Sully,Fear,122
+Drama,The Mule,Fear,98
+Drama,Wonder,Fear,121
+Horror,A Quiet Place,Fear,1
+Horror,Alien Covenant,Fear,89
+Horror,Annabelle 2 Creation,Fear,58
+Horror,Annabelle Comes Home,Fear,70
+Horror,Dont Breathe,Fear,48
+Horror,Escape Room,Fear,170
+Horror,Get Out,Fear,95
+Horror,Goosebumps,Fear,143
+Horror,Halloween,Fear,191
+Horror,Insidious the Last Key,Fear,70
+Horror,It,Fear,227
+Horror,It Chapter Two,Fear,158
+Horror,Lights Out,Fear,44
+Horror,Scary Stories to Tell in the Dark,Fear,110
+Horror,Split,Fear,124
+Horror,The Conjuring 2,Fear,175
+Horror,The First Purge,Fear,173
+Horror,The Nun,Fear,108
+Horror,The Purge Election Year,Fear,274
+Horror,The Visit,Fear,112
+Action,Aquaman,Fear negated,17
+Action,Avengers Age of Ultron,Fear negated,32
+Action,Avengers Endgame,Fear negated,26
+Action,Avengers Infinity War,Fear negated,15
+Action,Batman v Superman Dawn of Justice,Fear negated,25
+Action,Black Panther,Fear negated,22
+Action,Captain America Civil War,Fear negated,30
+Action,Captain Marvel,Fear negated,22
+Action,Deadpool,Fear negated,12
+Action,Deadpool 2,Fear negated,42
+Action,Doctor Strange,Fear negated,15
+Action,Furious Seven,Fear negated,15
+Action,Guardians of the Galaxy Vol 2,Fear negated,17
+Action,Jurassic World,Fear negated,16
+Action,Jurassic World Fallen Kingdom,Fear negated,12
+Action,Spider-Man Far from Home,Fear negated,32
+Action,Spider-Man Homecoming,Fear negated,23
+Action,Suicide Squad,Fear negated,28
+Action,Thor Ragnarok,Fear negated,30
+Action,Wonder Woman,Fear negated,24
+Drama,A Star is Born,Fear negated,24
+Drama,Arrival,Fear negated,15
+Drama,Bohemian Rhapsody,Fear negated,14
+Drama,Cinderella,Fear negated,13
+Drama,Creed,Fear negated,28
+Drama,Creed II,Fear negated,22
+Drama,Downton Abbey,Fear negated,30
+Drama,Fifty Shades Darker,Fear negated,12
+Drama,Fifty Shades Freed,Fear negated,7
+Drama,Fifty Shades of Grey,Fear negated,8
+Drama,Ford v Ferrari,Fear negated,13
+Drama,Hidden Figures,Fear negated,21
+Drama,Hustlers,Fear negated,21
+Drama,Knives Out,Fear negated,25
+Drama,Little Women,Fear negated,27
+Drama,Murder On The Orient Express,Fear negated,38
+Drama,Straight Outta Compton,Fear negated,29
+Drama,Sully,Fear negated,11
+Drama,The Mule,Fear negated,26
+Drama,Wonder,Fear negated,19
+Horror,A Quiet Place,Fear negated,3
+Horror,Alien Covenant,Fear negated,13
+Horror,Annabelle 2 Creation,Fear negated,6
+Horror,Annabelle Comes Home,Fear negated,15
+Horror,Dont Breathe,Fear negated,14
+Horror,Escape Room,Fear negated,15
+Horror,Get Out,Fear negated,16
+Horror,Goosebumps,Fear negated,19
+Horror,Halloween,Fear negated,12
+Horror,Insidious the Last Key,Fear negated,16
+Horror,It,Fear negated,22
+Horror,It Chapter Two,Fear negated,15
+Horror,Lights Out,Fear negated,8
+Horror,Scary Stories to Tell in the Dark,Fear negated,15
+Horror,Split,Fear negated,21
+Horror,The Conjuring 2,Fear negated,13
+Horror,The First Purge,Fear negated,21
+Horror,The Nun,Fear negated,11
+Horror,The Purge Election Year,Fear negated,15
+Horror,The Visit,Fear negated,11
+Action,Aquaman,Joy,111
+Action,Avengers Age of Ultron,Joy,168
+Action,Avengers Endgame,Joy,205
+Action,Avengers Infinity War,Joy,164
+Action,Batman v Superman Dawn of Justice,Joy,188
+Action,Black Panther,Joy,127
+Action,Captain America Civil War,Joy,149
+Action,Captain Marvel,Joy,129
+Action,Deadpool,Joy,213
+Action,Deadpool 2,Joy,248
+Action,Doctor Strange,Joy,109
+Action,Furious Seven,Joy,154
+Action,Guardians of the Galaxy Vol 2,Joy,157
+Action,Jurassic World,Joy,124
+Action,Jurassic World Fallen Kingdom,Joy,131
+Action,Spider-Man Far from Home,Joy,224
+Action,Spider-Man Homecoming,Joy,218
+Action,Suicide Squad,Joy,162
+Action,Thor Ragnarok,Joy,196
+Action,Wonder Woman,Joy,213
+Drama,A Star is Born,Joy,289
+Drama,Arrival,Joy,66
+Drama,Bohemian Rhapsody,Joy,299
+Drama,Cinderella,Joy,252
+Drama,Creed,Joy,257
+Drama,Creed II,Joy,143
+Drama,Downton Abbey,Joy,254
+Drama,Fifty Shades Darker,Joy,189
+Drama,Fifty Shades Freed,Joy,162
+Drama,Fifty Shades of Grey,Joy,158
+Drama,Ford v Ferrari,Joy,191
+Drama,Hidden Figures,Joy,254
+Drama,Hustlers,Joy,325
+Drama,Knives Out,Joy,209
+Drama,Little Women,Joy,372
+Drama,Murder On The Orient Express,Joy,198
+Drama,Straight Outta Compton,Joy,302
+Drama,Sully,Joy,116
+Drama,The Mule,Joy,197
+Drama,Wonder,Joy,211
+Horror,A Quiet Place,Joy,17
+Horror,Alien Covenant,Joy,129
+Horror,Annabelle 2 Creation,Joy,121
+Horror,Annabelle Comes Home,Joy,124
+Horror,Dont Breathe,Joy,68
+Horror,Escape Room,Joy,146
+Horror,Get Out,Joy,123
+Horror,Goosebumps,Joy,136
+Horror,Halloween,Joy,181
+Horror,Insidious the Last Key,Joy,78
+Horror,It,Joy,136
+Horror,It Chapter Two,Joy,210
+Horror,Lights Out,Joy,62
+Horror,Scary Stories to Tell in the Dark,Joy,82
+Horror,Split,Joy,108
+Horror,The Conjuring 2,Joy,115
+Horror,The First Purge,Joy,117
+Horror,The Nun,Joy,91
+Horror,The Purge Election Year,Joy,155
+Horror,The Visit,Joy,140
+Action,Aquaman,Joy negated,10
+Action,Avengers Age of Ultron,Joy negated,22
+Action,Avengers Endgame,Joy negated,10
+Action,Avengers Infinity War,Joy negated,16
+Action,Batman v Superman Dawn of Justice,Joy negated,14
+Action,Black Panther,Joy negated,15
+Action,Captain America Civil War,Joy negated,11
+Action,Captain Marvel,Joy negated,10
+Action,Deadpool,Joy negated,17
+Action,Deadpool 2,Joy negated,24
+Action,Doctor Strange,Joy negated,11
+Action,Furious Seven,Joy negated,8
+Action,Guardians of the Galaxy Vol 2,Joy negated,27
+Action,Jurassic World,Joy negated,9
+Action,Jurassic World Fallen Kingdom,Joy negated,6
+Action,Spider-Man Far from Home,Joy negated,14
+Action,Spider-Man Homecoming,Joy negated,15
+Action,Suicide Squad,Joy negated,17
+Action,Thor Ragnarok,Joy negated,5
+Action,Wonder Woman,Joy negated,21
+Drama,A Star is Born,Joy negated,36
+Drama,Arrival,Joy negated,2
+Drama,Bohemian Rhapsody,Joy negated,17
+Drama,Cinderella,Joy negated,18
+Drama,Creed,Joy negated,16
+Drama,Creed II,Joy negated,12
+Drama,Downton Abbey,Joy negated,30
+Drama,Fifty Shades Darker,Joy negated,10
+Drama,Fifty Shades Freed,Joy negated,13
+Drama,Fifty Shades of Grey,Joy negated,8
+Drama,Ford v Ferrari,Joy negated,14
+Drama,Hidden Figures,Joy negated,18
+Drama,Hustlers,Joy negated,26
+Drama,Knives Out,Joy negated,18
+Drama,Little Women,Joy negated,60
+Drama,Murder On The Orient Express,Joy negated,14
+Drama,Straight Outta Compton,Joy negated,26
+Drama,Sully,Joy negated,7
+Drama,The Mule,Joy negated,14
+Drama,Wonder,Joy negated,17
+Horror,A Quiet Place,Joy negated,2
+Horror,Alien Covenant,Joy negated,10
+Horror,Annabelle 2 Creation,Joy negated,11
+Horror,Annabelle Comes Home,Joy negated,19
+Horror,Dont Breathe,Joy negated,9
+Horror,Escape Room,Joy negated,10
+Horror,Get Out,Joy negated,9
+Horror,Goosebumps,Joy negated,18
+Horror,Halloween,Joy negated,8
+Horror,Insidious the Last Key,Joy negated,8
+Horror,It,Joy negated,9
+Horror,It Chapter Two,Joy negated,15
+Horror,Lights Out,Joy negated,7
+Horror,Scary Stories to Tell in the Dark,Joy negated,8
+Horror,Split,Joy negated,12
+Horror,The Conjuring 2,Joy negated,14
+Horror,The First Purge,Joy negated,8
+Horror,The Nun,Joy negated,8
+Horror,The Purge Election Year,Joy negated,11
+Horror,The Visit,Joy negated,14
+Action,Aquaman,Sadness,110
+Action,Avengers Age of Ultron,Sadness,130
+Action,Avengers Endgame,Sadness,152
+Action,Avengers Infinity War,Sadness,151
+Action,Batman v Superman Dawn of Justice,Sadness,157
+Action,Black Panther,Sadness,115
+Action,Captain America Civil War,Sadness,134
+Action,Captain Marvel,Sadness,100
+Action,Deadpool,Sadness,141
+Action,Deadpool 2,Sadness,187
+Action,Doctor Strange,Sadness,124
+Action,Furious Seven,Sadness,115
+Action,Guardians of the Galaxy Vol 2,Sadness,147
+Action,Jurassic World,Sadness,99
+Action,Jurassic World Fallen Kingdom,Sadness,90
+Action,Spider-Man Far from Home,Sadness,156
+Action,Spider-Man Homecoming,Sadness,152
+Action,Suicide Squad,Sadness,157
+Action,Thor Ragnarok,Sadness,160
+Action,Wonder Woman,Sadness,126
+Drama,A Star is Born,Sadness,145
+Drama,Arrival,Sadness,52
+Drama,Bohemian Rhapsody,Sadness,151
+Drama,Cinderella,Sadness,112
+Drama,Creed,Sadness,141
+Drama,Creed II,Sadness,93
+Drama,Downton Abbey,Sadness,117
+Drama,Fifty Shades Darker,Sadness,64
+Drama,Fifty Shades Freed,Sadness,80
+Drama,Fifty Shades of Grey,Sadness,61
+Drama,Ford v Ferrari,Sadness,134
+Drama,Hidden Figures,Sadness,97
+Drama,Hustlers,Sadness,122
+Drama,Knives Out,Sadness,182
+Drama,Little Women,Sadness,157
+Drama,Murder On The Orient Express,Sadness,194
+Drama,Straight Outta Compton,Sadness,241
+Drama,Sully,Sadness,120
+Drama,The Mule,Sadness,104
+Drama,Wonder,Sadness,72
+Horror,A Quiet Place,Sadness,6
+Horror,Alien Covenant,Sadness,97
+Horror,Annabelle 2 Creation,Sadness,65
+Horror,Annabelle Comes Home,Sadness,69
+Horror,Dont Breathe,Sadness,40
+Horror,Escape Room,Sadness,115
+Horror,Get Out,Sadness,87
+Horror,Goosebumps,Sadness,76
+Horror,Halloween,Sadness,136
+Horror,Insidious the Last Key,Sadness,60
+Horror,It,Sadness,149
+Horror,It Chapter Two,Sadness,167
+Horror,Lights Out,Sadness,52
+Horror,Scary Stories to Tell in the Dark,Sadness,71
+Horror,Split,Sadness,97
+Horror,The Conjuring 2,Sadness,107
+Horror,The First Purge,Sadness,111
+Horror,The Nun,Sadness,89
+Horror,The Purge Election Year,Sadness,141
+Horror,The Visit,Sadness,98
+Action,Aquaman,Sadness negated,15
+Action,Avengers Age of Ultron,Sadness negated,20
+Action,Avengers Endgame,Sadness negated,16
+Action,Avengers Infinity War,Sadness negated,14
+Action,Batman v Superman Dawn of Justice,Sadness negated,13
+Action,Black Panther,Sadness negated,14
+Action,Captain America Civil War,Sadness negated,24
+Action,Captain Marvel,Sadness negated,10
+Action,Deadpool,Sadness negated,13
+Action,Deadpool 2,Sadness negated,33
+Action,Doctor Strange,Sadness negated,7
+Action,Furious Seven,Sadness negated,18
+Action,Guardians of the Galaxy Vol 2,Sadness negated,19
+Action,Jurassic World,Sadness negated,12
+Action,Jurassic World Fallen Kingdom,Sadness negated,14
+Action,Spider-Man Far from Home,Sadness negated,22
+Action,Spider-Man Homecoming,Sadness negated,16
+Action,Suicide Squad,Sadness negated,18
+Action,Thor Ragnarok,Sadness negated,21
+Action,Wonder Woman,Sadness negated,13
+Drama,A Star is Born,Sadness negated,37
+Drama,Arrival,Sadness negated,12
+Drama,Bohemian Rhapsody,Sadness negated,18
+Drama,Cinderella,Sadness negated,17
+Drama,Creed,Sadness negated,23
+Drama,Creed II,Sadness negated,14
+Drama,Downton Abbey,Sadness negated,29
+Drama,Fifty Shades Darker,Sadness negated,9
+Drama,Fifty Shades Freed,Sadness negated,11
+Drama,Fifty Shades of Grey,Sadness negated,6
+Drama,Ford v Ferrari,Sadness negated,14
+Drama,Hidden Figures,Sadness negated,26
+Drama,Hustlers,Sadness negated,19
+Drama,Knives Out,Sadness negated,21
+Drama,Little Women,Sadness negated,35
+Drama,Murder On The Orient Express,Sadness negated,30
+Drama,Straight Outta Compton,Sadness negated,29
+Drama,Sully,Sadness negated,7
+Drama,The Mule,Sadness negated,25
+Drama,Wonder,Sadness negated,13
+Horror,A Quiet Place,Sadness negated,4
+Horror,Alien Covenant,Sadness negated,12
+Horror,Annabelle 2 Creation,Sadness negated,5
+Horror,Annabelle Comes Home,Sadness negated,14
+Horror,Dont Breathe,Sadness negated,7
+Horror,Escape Room,Sadness negated,9
+Horror,Get Out,Sadness negated,16
+Horror,Goosebumps,Sadness negated,16
+Horror,Halloween,Sadness negated,15
+Horror,Insidious the Last Key,Sadness negated,8
+Horror,It,Sadness negated,17
+Horror,It Chapter Two,Sadness negated,19
+Horror,Lights Out,Sadness negated,8
+Horror,Scary Stories to Tell in the Dark,Sadness negated,21
+Horror,Split,Sadness negated,17
+Horror,The Conjuring 2,Sadness negated,16
+Horror,The First Purge,Sadness negated,8
+Horror,The Nun,Sadness negated,9
+Horror,The Purge Election Year,Sadness negated,13
+Horror,The Visit,Sadness negated,11
+Action,Aquaman,Surprise,48
+Action,Avengers Age of Ultron,Surprise,93
+Action,Avengers Endgame,Surprise,125
+Action,Avengers Infinity War,Surprise,87
+Action,Batman v Superman Dawn of Justice,Surprise,100
+Action,Black Panther,Surprise,73
+Action,Captain America Civil War,Surprise,108
+Action,Captain Marvel,Surprise,87
+Action,Deadpool,Surprise,125
+Action,Deadpool 2,Surprise,146
+Action,Doctor Strange,Surprise,81
+Action,Furious Seven,Surprise,83
+Action,Guardians of the Galaxy Vol 2,Surprise,71
+Action,Jurassic World,Surprise,59
+Action,Jurassic World Fallen Kingdom,Surprise,69
+Action,Spider-Man Far from Home,Surprise,120
+Action,Spider-Man Homecoming,Surprise,128
+Action,Suicide Squad,Surprise,87
+Action,Thor Ragnarok,Surprise,99
+Action,Wonder Woman,Surprise,83
+Drama,A Star is Born,Surprise,108
+Drama,Arrival,Surprise,56
+Drama,Bohemian Rhapsody,Surprise,165
+Drama,Cinderella,Surprise,132
+Drama,Creed,Surprise,192
+Drama,Creed II,Surprise,102
+Drama,Downton Abbey,Surprise,163
+Drama,Fifty Shades Darker,Surprise,92
+Drama,Fifty Shades Freed,Surprise,84
+Drama,Fifty Shades of Grey,Surprise,71
+Drama,Ford v Ferrari,Surprise,119
+Drama,Hidden Figures,Surprise,128
+Drama,Hustlers,Surprise,138
+Drama,Knives Out,Surprise,138
+Drama,Little Women,Surprise,171
+Drama,Murder On The Orient Express,Surprise,123
+Drama,Straight Outta Compton,Surprise,221
+Drama,Sully,Surprise,103
+Drama,The Mule,Surprise,114
+Drama,Wonder,Surprise,140
+Horror,A Quiet Place,Surprise,2
+Horror,Alien Covenant,Surprise,60
+Horror,Annabelle 2 Creation,Surprise,50
+Horror,Annabelle Comes Home,Surprise,66
+Horror,Dont Breathe,Surprise,34
+Horror,Escape Room,Surprise,73
+Horror,Get Out,Surprise,60
+Horror,Goosebumps,Surprise,67
+Horror,Halloween,Surprise,101
+Horror,Insidious the Last Key,Surprise,46
+Horror,It,Surprise,77
+Horror,It Chapter Two,Surprise,139
+Horror,Lights Out,Surprise,24
+Horror,Scary Stories to Tell in the Dark,Surprise,45
+Horror,Split,Surprise,83
+Horror,The Conjuring 2,Surprise,71
+Horror,The First Purge,Surprise,90
+Horror,The Nun,Surprise,36
+Horror,The Purge Election Year,Surprise,85
+Horror,The Visit,Surprise,199
+Action,Aquaman,Surprise negated,8
+Action,Avengers Age of Ultron,Surprise negated,10
+Action,Avengers Endgame,Surprise negated,11
+Action,Avengers Infinity War,Surprise negated,7
+Action,Batman v Superman Dawn of Justice,Surprise negated,12
+Action,Black Panther,Surprise negated,14
+Action,Captain America Civil War,Surprise negated,11
+Action,Captain Marvel,Surprise negated,8
+Action,Deadpool,Surprise negated,10
+Action,Deadpool 2,Surprise negated,21
+Action,Doctor Strange,Surprise negated,7
+Action,Furious Seven,Surprise negated,6
+Action,Guardians of the Galaxy Vol 2,Surprise negated,15
+Action,Jurassic World,Surprise negated,5
+Action,Jurassic World Fallen Kingdom,Surprise negated,9
+Action,Spider-Man Far from Home,Surprise negated,13
+Action,Spider-Man Homecoming,Surprise negated,15
+Action,Suicide Squad,Surprise negated,11
+Action,Thor Ragnarok,Surprise negated,9
+Action,Wonder Woman,Surprise negated,13
+Drama,A Star is Born,Surprise negated,22
+Drama,Arrival,Surprise negated,8
+Drama,Bohemian Rhapsody,Surprise negated,12
+Drama,Cinderella,Surprise negated,5
+Drama,Creed,Surprise negated,14
+Drama,Creed II,Surprise negated,14
+Drama,Downton Abbey,Surprise negated,19
+Drama,Fifty Shades Darker,Surprise negated,10
+Drama,Fifty Shades Freed,Surprise negated,7
+Drama,Fifty Shades of Grey,Surprise negated,4
+Drama,Ford v Ferrari,Surprise negated,13
+Drama,Hidden Figures,Surprise negated,10
+Drama,Hustlers,Surprise negated,19
+Drama,Knives Out,Surprise negated,25
+Drama,Little Women,Surprise negated,28
+Drama,Murder On The Orient Express,Surprise negated,11
+Drama,Straight Outta Compton,Surprise negated,20
+Drama,Sully,Surprise negated,12
+Drama,The Mule,Surprise negated,8
+Drama,Wonder,Surprise negated,9
+Horror,A Quiet Place,Surprise negated,0
+Horror,Alien Covenant,Surprise negated,14
+Horror,Annabelle 2 Creation,Surprise negated,7
+Horror,Annabelle Comes Home,Surprise negated,6
+Horror,Dont Breathe,Surprise negated,5
+Horror,Escape Room,Surprise negated,11
+Horror,Get Out,Surprise negated,8
+Horror,Goosebumps,Surprise negated,11
+Horror,Halloween,Surprise negated,4
+Horror,Insidious the Last Key,Surprise negated,3
+Horror,It,Surprise negated,6
+Horror,It Chapter Two,Surprise negated,14
+Horror,Lights Out,Surprise negated,6
+Horror,Scary Stories to Tell in the Dark,Surprise negated,15
+Horror,Split,Surprise negated,7
+Horror,The Conjuring 2,Surprise negated,17
+Horror,The First Purge,Surprise negated,12
+Horror,The Nun,Surprise negated,6
+Horror,The Purge Election Year,Surprise negated,14
+Horror,The Visit,Surprise negated,9
+Action,Aquaman,Trust,205
+Action,Avengers Age of Ultron,Trust,291
+Action,Avengers Endgame,Trust,275
+Action,Avengers Infinity War,Trust,244
+Action,Batman v Superman Dawn of Justice,Trust,302
+Action,Black Panther,Trust,245
+Action,Captain America Civil War,Trust,250
+Action,Captain Marvel,Trust,202
+Action,Deadpool,Trust,224
+Action,Deadpool 2,Trust,240
+Action,Doctor Strange,Trust,199
+Action,Furious Seven,Trust,204
+Action,Guardians of the Galaxy Vol 2,Trust,198
+Action,Jurassic World,Trust,201
+Action,Jurassic World Fallen Kingdom,Trust,209
+Action,Spider-Man Far from Home,Trust,303
+Action,Spider-Man Homecoming,Trust,344
+Action,Suicide Squad,Trust,212
+Action,Thor Ragnarok,Trust,269
+Action,Wonder Woman,Trust,286
+Drama,A Star is Born,Trust,361
+Drama,Arrival,Trust,186
+Drama,Bohemian Rhapsody,Trust,264
+Drama,Cinderella,Trust,290
+Drama,Creed,Trust,311
+Drama,Creed II,Trust,156
+Drama,Downton Abbey,Trust,358
+Drama,Fifty Shades Darker,Trust,198
+Drama,Fifty Shades Freed,Trust,177
+Drama,Fifty Shades of Grey,Trust,176
+Drama,Ford v Ferrari,Trust,286
+Drama,Hidden Figures,Trust,427
+Drama,Hustlers,Trust,304
+Drama,Knives Out,Trust,353
+Drama,Little Women,Trust,378
+Drama,Murder On The Orient Express,Trust,345
+Drama,Straight Outta Compton,Trust,487
+Drama,Sully,Trust,210
+Drama,The Mule,Trust,255
+Drama,Wonder,Trust,240
+Horror,A Quiet Place,Trust,18
+Horror,Alien Covenant,Trust,208
+Horror,Annabelle 2 Creation,Trust,112
+Horror,Annabelle Comes Home,Trust,98
+Horror,Dont Breathe,Trust,64
+Horror,Escape Room,Trust,165
+Horror,Get Out,Trust,150
+Horror,Goosebumps,Trust,172
+Horror,Halloween,Trust,222
+Horror,Insidious the Last Key,Trust,87
+Horror,It,Trust,94
+Horror,It Chapter Two,Trust,202
+Horror,Lights Out,Trust,84
+Horror,Scary Stories to Tell in the Dark,Trust,102
+Horror,Split,Trust,135
+Horror,The Conjuring 2,Trust,179
+Horror,The First Purge,Trust,175
+Horror,The Nun,Trust,199
+Horror,The Purge Election Year,Trust,214
+Horror,The Visit,Trust,158
+Action,Aquaman,Trust negated,17
+Action,Avengers Age of Ultron,Trust negated,34
+Action,Avengers Endgame,Trust negated,15
+Action,Avengers Infinity War,Trust negated,21
+Action,Batman v Superman Dawn of Justice,Trust negated,30
+Action,Black Panther,Trust negated,28
+Action,Captain America Civil War,Trust negated,30
+Action,Captain Marvel,Trust negated,19
+Action,Deadpool,Trust negated,22
+Action,Deadpool 2,Trust negated,32
+Action,Doctor Strange,Trust negated,18
+Action,Furious Seven,Trust negated,7
+Action,Guardians of the Galaxy Vol 2,Trust negated,20
+Action,Jurassic World,Trust negated,16
+Action,Jurassic World Fallen Kingdom,Trust negated,8
+Action,Spider-Man Far from Home,Trust negated,30
+Action,Spider-Man Homecoming,Trust negated,23
+Action,Suicide Squad,Trust negated,24
+Action,Thor Ragnarok,Trust negated,16
+Action,Wonder Woman,Trust negated,35
+Drama,A Star is Born,Trust negated,36
+Drama,Arrival,Trust negated,12
+Drama,Bohemian Rhapsody,Trust negated,21
+Drama,Cinderella,Trust negated,26
+Drama,Creed,Trust negated,20
+Drama,Creed II,Trust negated,19
+Drama,Downton Abbey,Trust negated,39
+Drama,Fifty Shades Darker,Trust negated,13
+Drama,Fifty Shades Freed,Trust negated,13
+Drama,Fifty Shades of Grey,Trust negated,10
+Drama,Ford v Ferrari,Trust negated,23
+Drama,Hidden Figures,Trust negated,32
+Drama,Hustlers,Trust negated,28
+Drama,Knives Out,Trust negated,33
+Drama,Little Women,Trust negated,68
+Drama,Murder On The Orient Express,Trust negated,27
+Drama,Straight Outta Compton,Trust negated,33
+Drama,Sully,Trust negated,10
+Drama,The Mule,Trust negated,17
+Drama,Wonder,Trust negated,23
+Horror,A Quiet Place,Trust negated,1
+Horror,Alien Covenant,Trust negated,11
+Horror,Annabelle 2 Creation,Trust negated,7
+Horror,Annabelle Comes Home,Trust negated,17
+Horror,Dont Breathe,Trust negated,11
+Horror,Escape Room,Trust negated,9
+Horror,Get Out,Trust negated,15
+Horror,Goosebumps,Trust negated,24
+Horror,Halloween,Trust negated,12
+Horror,Insidious the Last Key,Trust negated,6
+Horror,It,Trust negated,16
+Horror,It Chapter Two,Trust negated,40
+Horror,Lights Out,Trust negated,13
+Horror,Scary Stories to Tell in the Dark,Trust negated,19
+Horror,Split,Trust negated,13
+Horror,The Conjuring 2,Trust negated,21
+Horror,The First Purge,Trust negated,19
+Horror,The Nun,Trust negated,17
+Horror,The Purge Election Year,Trust negated,16
+Horror,The Visit,Trust negated,17

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>5 Analysing film colour | Computational Film Analysis with R</title>
+<meta name="author" content="Nick Redfern">
+<meta name="description" content="Like sound design, colour shapes our experience of the cinema in many different ways. Different genres are associated with different colour schemes and with different levels of brightness and...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="5 Analysing film colour | Computational Film Analysis with R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/cover.png">
+<meta property="og:description" content="Like sound design, colour shapes our experience of the cinema in many different ways. Different genres are associated with different colour schemes and with different levels of brightness and...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5 Analysing film colour | Computational Film Analysis with R">
+<meta name="twitter:description" content="Like sound design, colour shapes our experience of the cinema in many different ways. Different genres are associated with different colour schemes and with different levels of brightness and...">
+<meta name="twitter:image" content="/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.23/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.11.3/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-fixedcolumns-1.11.3/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 2em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="cfa_book.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Film Analysis with R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="" href="CFA.html"><span class="header-section-number">2</span> Computational film analysis</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">3</span> Tools</a></li>
+<li><a class="" href="audio.html"><span class="header-section-number">4</span> Analysing film audio</a></li>
+<li><a class="active" href="colour.html"><span class="header-section-number">5</span> Analysing film colour</a></li>
+<li><a class="" href="editingI.html"><span class="header-section-number">6</span> Analysing film editing I</a></li>
+<li><a class="" href="editingII.html"><span class="header-section-number">7</span> Analysing film editing II</a></li>
+<li><a class="" href="categorical.html"><span class="header-section-number">8</span> Analysing shot data</a></li>
+<li><a class="" href="texts.html"><span class="header-section-number">9</span> Analysing lexical texts</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">10</span> References</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="colophon.html">Colophon</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DrNickRedfern/CFA-with-R">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!-- Modal --><div id="myModal" class="modal">
+   <img class="modal-content" id="img01"><div id="caption"></div>
+</div>
+<div id="colour" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5</span> Analysing film colour<a class="anchor" aria-label="anchor" href="#colour"><i class="fas fa-link"></i></a>
+</h1>
+<p>Like sound design, colour shapes our experience of the cinema in many different ways. Different genres are associated with different colour schemes and with different levels of brightness and saturation <span class="citation">(<a href="references.html#ref-chen2012ccui" role="doc-biblioref">I.-P. Chen et al., 2012</a>; <a href="references.html#ref-redfern2021cpiu" role="doc-biblioref">Redfern, 2021a</a>)</span> so that we can identify a genre the its use of warm and cool colours, the level of the lightness of the image, and the level of saturation <span class="citation">(<a href="references.html#ref-bellantoni2005iips" role="doc-biblioref">Bellantoni, 2005</a>)</span>. Colours within a film carry meanings determined by the local economy of the individual text, associated with narratively significant objects, characters, locations, and themes, that nonetheless exist within the culturally codified of meanings colour shared by audiences belonging to a particular culture. Colour acts as a unifying factor, fusing together different aspects of film style including production design, costume design, lighting, cinematography, and post-production colour processing to create a coherent world for the viewer <span class="citation">(<a href="references.html#ref-rotem2003tsro" role="doc-biblioref">Rotem, 2003</a>)</span>. Changes in the dominant colour of a film often mark changes in mood, location, and the evolution of characters. Colour organises our attention as viewer, separating the foreground and background and drawing our attention to what is most important within a frame. Colour sets the mood of a film, conveying emotional information about the internal lives of characters and the state of the on-screen world while also eliciting emotional repsonses from the viewer, influencing both what we feel and the intensity of those emotions <span class="citation">(<a href="references.html#ref-detenber2021tiof" role="doc-biblioref">Detenber et al., 2021</a>)</span>.</p>
+<p>In this chapter we will cover how to use R to analyse colour in motion pictures. We will learn how to sample frames from a film using the av package to pass commands to FFmpeg; how to calculate the average colour and colourfulness of a frame; how to create a colour palette for a film using cluster analysis; and how to analyse at the temporal structure of colours in a film using movie barcodes.</p>
+<div id="colour-models-and-spaces" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Colour models and spaces<a class="anchor" aria-label="anchor" href="#colour-models-and-spaces"><i class="fas fa-link"></i></a>
+</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Color_model">colour model</a> is a mathematical model describing the ways a colour can be represented as an ordered, immutable list of numbers or <a href="https://en.wikipedia.org/wiki/Tuple">tuple</a>.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Color_space">colour space</a> is a geometrical model that maps a colour model onto to actual colours to define the range of colours capable of being represented as determined by its <a href="https://en.wikipedia.org/wiki/Gamut">gamut</a> (the range of a colour space’s chromaticity), <a href="https://en.wikipedia.org/wiki/Gamma_correction">gamma</a> (the non-linear distribution of luminance values), and <a href="https://en.wikipedia.org/wiki/White_point">whitepoint</a> (a standard illuminant that defines the colour temperature of white within a colour space).</p>
+<p>In this chapter we will work with three colour models and colour spaces: RGB, L*a*b*, and LCH(ab).</p>
+<div id="rgb" class="section level3" number="5.1.1">
+<h3>
+<span class="header-section-number">5.1.1</span> RGB<a class="anchor" aria-label="anchor" href="#rgb"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/RGB_color_model">RGB colour model</a> (Figure <a href="colour.html#fig:colour-spaces-gif-rgb">5.1</a>) is an additive colour model in which colours are defined by the chromaticity of red, green, and blue primaries. Colours are specified as a tuple of RGB values with one number for each colour channel, with each channel represented on a scale of <span class="math inline">\([0, 1]\)</span> or <span class="math inline">\([0, 255]\)</span>. For example, red has the maximum amount of red light but no green or blue light is given by the tuple <span class="math inline">\((1, 0, 0)\)</span> or <span class="math inline">\((255, 0, 0)\)</span>, whereas magenta has the maximum amount of red and blue light but no green and is specified as <span class="math inline">\((1, 0, 1)\)</span> or <span class="math inline">\((255, 0, 255)\)</span>. When all the values in an RGB tuple are equal then the specified colour is achromatic, ranging from black <span class="math inline">\((0, 0, 0)\)</span> to white (<span class="math inline">\((1, 1, 1)\)</span> or <span class="math inline">\((255, 255, 255)\)</span>), with greys lying between these extremes. For example, middle grey is <span class="math inline">\((0.5, 0.5, 0.5)\)</span> or <span class="math inline">\((128, 128, 128)\)</span>.</p>
+<p>The different scales used to represent RGB colours are equivalent and it is easy to convert between them by multiplying or dividing by 255. There is no standard way to represent RGB colours in R. Some packages use the <span class="math inline">\([0, 1]\)</span> scale while others us <span class="math inline">\([0, 255]\)</span>. For consistency, we will use the latter here because this is how RGB colours are expressed in image and video processing software.</p>
+<p>RGB colours can also be specified using hex codes by converting the tuple of decimal numbers to <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal</a> format. This is typically how numbers are represented in R when plotting. Each channel is described by a two character hex code in the range <span class="math inline">\([00, FF]\)</span> and respects the ordering of the RGB tuple to form a <a href="https://en.wikipedia.org/wiki/Web_colors#Hex_triplet">hex triplet</a>: <span class="math inline">\(\#RRGGBB\)</span>. Thus, the hex code for red is <span class="math inline">\(\#FF0000\)</span> and the hex code for mid-gray is <span class="math inline">\(\#808080\)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-spaces-gif-rgb"></span>
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/18-bit_RGB_Cube.gif" alt="The RGB colour space (18-bit) (CC-BY-SA 4.0:    Kjerish)"><p class="caption">
+Figure 5.1: The RGB colour space (18-bit) (CC-BY-SA 4.0: Kjerish)
+</p>
+</div>
+<p>RGB is the most common colour model used for devices that project light, and so is the default colour space for televisions and computer monitors. Colour spaces using the RGB colour model include <a href="https://en.wikipedia.org/wiki/SRGB">sRGB</a>, which is the colour space of the world wide web; <a href="https://en.wikipedia.org/wiki/Rec._709">Rec.709</a>, the colour space used by high definition television; and <a href="https://en.wikipedia.org/wiki/Rec._2020">Rec.2020</a>, which is the colour space used by ultra-high definition television.</p>
+<p>RGB is not a <a href="https://programmingdesignsystems.com/color/perceptually-uniform-color-spaces/">perceptually uniform</a> colour model – that is, the distances between two colours is <em>not</em> proportional to the <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a> between them and so differences in the RGB values do not reflect the differences that we perceive between colours. We will use RGB colour values in our project to display colours on screen, but when performing calculations or plotting the distribution of colours we will use perceptually uniform colour spaces.</p>
+</div>
+<div id="cielab" class="section level3" number="5.1.2">
+<h3>
+<span class="header-section-number">5.1.2</span> CIELAB<a class="anchor" aria-label="anchor" href="#cielab"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/CIELAB_color_space">CIELAB colour model</a> or L*a*b* is a perceptually uniform colour space defined by three attributes:</p>
+<ul>
+<li>Lightness (L*): the perceptual lightness of a colour in the range <span class="math inline">\([0\%, 100\%]\)</span>
+</li>
+<li>a*: the chromaticity of a colour on the green (-a*) – red(+a*) axis</li>
+<li>b*: the chromaticity of a colour on the blue (-b*) – yellow (+b*) axis</li>
+</ul>
+<p>Achromaticity occurs when a* = b* = 0, ranging from black (L* = 0%) to white (L* = 100%), with greys lying between these limits. Figure <a href="colour.html#fig:colour-spaces-plot-lab">5.2</a> plots swatches from the CIELAB colour space for a range of lightness values.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-spaces-plot-lab"></span>
+<img src="_main_files/figure-html/colour-spaces-plot-lab-1.png" alt="Swatches from the CIELAB colour space for a range of lightness values." width="90%"><p class="caption">
+Figure 5.2: Swatches from the CIELAB colour space for a range of lightness values.
+</p>
+</div>
+<p>The range of a* and b* is theoretically unlimited, though typically is clamped to the range <span class="math inline">\([-128, 127]\)</span>. Note that this is <em>not</em> true for the <a href="https://colorspace.r-forge.r-project.org">colorspace</a> package, which clamps the range to <span class="math inline">\([-100, 100]\)</span>. Converting between colour spaces should be done with the same package in a project to avoid errors resulting from different ways of representing colours. For example, converting RGB colours to CIELAB using the colorspace package and then converting back to RGB with the farver package will <em>not</em> reproduce the original RGB colours because these packages express the ranges of a* and b* differently. Either package can be used for the purposes of analysis, but it is best to use only one package for colour conversion in a project. In this chapter we will use the farver package.</p>
+</div>
+<div id="lchab" class="section level3" number="5.1.3">
+<h3>
+<span class="header-section-number">5.1.3</span> LCH(ab)<a class="anchor" aria-label="anchor" href="#lchab"><i class="fas fa-link"></i></a>
+</h3>
+<p>The L*a*b* colour space is perceptually uniform but it is not intuitive. LCH(ab) is a <a href="https://en.wikipedia.org/wiki/CIELAB_color_space#Cylindrical_model">polar representation</a> of the L*a*b* colour space that is much easier to understand. LCH(ab) has three colour attributes:</p>
+<ul>
+<li>Lightness (L): this is identical to the L* value defined for the L*a*b* colour space above</li>
+<li>Chroma (C): the saturation of a colour measured as the distance from the achromatic axis in the range <span class="math inline">\([0\%, 100\%]\)</span>
+</li>
+<li>Hue (H): the basic colour represented as the angle on a colour wheel, where red = 0°, yellow = 90°, green = 180°, and blue = 270°.</li>
+</ul>
+<p>Achromatic colours occur when C = 0%, and vary with lightness, from black (L = 0%) to white (L = 100%), with arbitrary values for hues. Figure <a href="colour.html#fig:colour-spaces-plot-lch">5.3</a> plots slices of the LCH(ab) colour space for a range of lightness values.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-spaces-plot-lch"></span>
+<img src="_main_files/figure-html/colour-spaces-plot-lch-1.png" alt="The LCH(ab) colour space sliced at a range of lightness values" width="90%"><p class="caption">
+Figure 5.3: The LCH(ab) colour space sliced at a range of lightness values
+</p>
+</div>
+<p>We can calculate the <a href="https://en.wikipedia.org/wiki/Colorfulness#CIELUV_and_CIELAB"><em>saturation</em></a> of a colour from its lightness and its chroma:</p>
+<p><span class="math display">\[
+S_{ab} = 100 \times \frac{C_{ab}}{\sqrt{C_{ab}^{2} + L_{ab}^{2}}} ,
+\]</span></p>
+<p>where saturation represents the proportion of pure chromatic colour in the total colour experience.</p>
+</div>
+</div>
+<div id="set-up-the-project" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Set up the project<a class="anchor" aria-label="anchor" href="#set-up-the-project"><i class="fas fa-link"></i></a>
+</h2>
+<div id="create-the-project-folder" class="section level3" number="5.2.1">
+<h3>
+<span class="header-section-number">5.2.1</span> Create the project folder<a class="anchor" aria-label="anchor" href="#create-the-project-folder"><i class="fas fa-link"></i></a>
+</h3>
+<p>The first tasks are to create a project in RStudio with a new folder called <code>Colour</code> that will be the working directory for this chapter and will contain the associated <code>.rproj</code> file. Once this step is completed, we can run the script <code>projects_folders.R</code> we created in Chapter <a href="tools.html#tools">3</a> to create the folder structure required for the project.</p>
+<p>We will create some additional folders during the course of the project.</p>
+</div>
+<div id="packages-2" class="section level3" number="5.2.2">
+<h3>
+<span class="header-section-number">5.2.2</span> Packages<a class="anchor" aria-label="anchor" href="#packages-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this chapter we will use the packages listed in Table <a href="colour.html#tab:colour-project-package-list">5.1</a>.</p>
+<div class="inline-table"><table class="table table-striped" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:colour-project-package-list">Table 5.1: </span>Packages for analysing colour data.
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+Package
+</th>
+<th style="text-align:left;">
+Application
+</th>
+<th style="text-align:left;">
+Reference
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+av
+</td>
+<td style="text-align:left;">
+Perform operations on video files
+</td>
+<td style="text-align:left;">
+<span class="citation">Ooms (<a href="references.html#ref-R-av" role="doc-biblioref">2022</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+devtools
+</td>
+<td style="text-align:left;">
+Load functions directly from GitHub
+</td>
+<td style="text-align:left;">
+<span class="citation">Wickham et al. (<a href="references.html#ref-R-devtools" role="doc-biblioref">2021</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+farver
+</td>
+<td style="text-align:left;">
+Convert between different colour spaces
+</td>
+<td style="text-align:left;">
+<span class="citation">Pedersen et al. (<a href="references.html#ref-R-farver" role="doc-biblioref">2021</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fpc
+</td>
+<td style="text-align:left;">
+Perform cluster analysis
+</td>
+<td style="text-align:left;">
+<span class="citation">Hennig (<a href="references.html#ref-R-fpc" role="doc-biblioref">2020</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ggpubr
+</td>
+<td style="text-align:left;">
+Combine plots into a single figure
+</td>
+<td style="text-align:left;">
+<span class="citation">Kassambara (<a href="references.html#ref-R-ggpubr" role="doc-biblioref">2020</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+here
+</td>
+<td style="text-align:left;">
+Use relative paths to access data and save outputs
+</td>
+<td style="text-align:left;">
+<span class="citation">K. Müller (<a href="references.html#ref-R-here" role="doc-biblioref">2020</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+imager
+</td>
+<td style="text-align:left;">
+Image loading and data extraction
+</td>
+<td style="text-align:left;">
+<span class="citation">Barthelme (<a href="references.html#ref-R-imager" role="doc-biblioref">2022</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pacman
+</td>
+<td style="text-align:left;">
+Installs and loads R packages
+</td>
+<td style="text-align:left;">
+<span class="citation">T. Rinker &amp; Kurkiewicz (<a href="references.html#ref-R-pacman" role="doc-biblioref">2019</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tidyverse
+</td>
+<td style="text-align:left;">
+Data wrangling and visualisation
+</td>
+<td style="text-align:left;">
+<span class="citation">Wickham et al. (<a href="references.html#ref-wickham2019wttt" role="doc-biblioref">2019</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+treemapify
+</td>
+<td style="text-align:left;">
+Data visualisation using treemaps
+</td>
+<td style="text-align:left;">
+<span class="citation">Wilkins (<a href="references.html#ref-R-treemapify" role="doc-biblioref">2021</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+viridis
+</td>
+<td style="text-align:left;">
+Accessible colour palettes
+</td>
+<td style="text-align:left;">
+<span class="citation">Garnier (<a href="references.html#ref-R-viridis" role="doc-biblioref">2021</a>)</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="fuelled" class="section level3" number="5.2.3">
+<h3>
+<span class="header-section-number">5.2.3</span> <em>Fuelled</em><a class="anchor" aria-label="anchor" href="#fuelled"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this chapter our data set will be <em>Fuelled</em> (Video <a href="colour.html#vid51">5.1</a>), a short animated film created by students at Sheridan College, Ontario, that premiered on YouTube in December 2021.</p>
+<p>The film tells the story of Cathy, a cat widowed when a dog murders her husband, and who sets out to find the killer. When her car runs out of fuel in a forest and she finds that she has also run out of money, Cathy resorts to stealing from a gas station, leading her to assault the attendant leading to an explosion that destroys the gas station. Realising that she has become like the killer she is chasing, Cathy calls 911 and waits.</p>
+<hr>
+<span id="vid51"></span>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uVzT6D-yhZg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+<blockquote>
+</blockquote></iframe>
+</center>
+
+<p class="caption">
+Video 5.1: <em>Fuelled</em> (2021) © KilledtheCat Productions. ☝️
+</p>
+<hr>
+<p>We can download this film from YouTube and place it in our <code>Data</code> folder. Using <code><a href="https://docs.ropensci.org/av/reference/info.html">av::av_media_info()</a></code> we can get a summary of the video file, including the duration of the film in seconds and information about width, height, number of frames, and the frame rate of the video and sampling and bit rates and the number of audio samples of the audio, as well as the video and audio codecs.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load the here and av packages</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">av</span>, <span class="va">here</span><span class="op">)</span>
+
+<span class="co"># Get a summary of the video file fuelled.mp4</span>
+<span class="fu">av_media_info</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"fuelled.mp4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## $duration</span>
+<span class="co">## [1] 542.6735</span>
+<span class="co">## </span>
+<span class="co">## $video</span>
+<span class="co">##   width height codec frames framerate  format</span>
+<span class="co">## 1  1280    536  h264  13024        24 yuv420p</span>
+<span class="co">## </span>
+<span class="co">## $audio</span>
+<span class="co">##   channels sample_rate codec frames bitrate layout</span>
+<span class="co">## 1        2       44100   aac  23371  128004 stereo</span></code></pre></div>
+<div id="sample-and-reduce" class="section level4" number="5.2.3.1">
+<h4>
+<span class="header-section-number">5.2.3.1</span> Sample and reduce<a class="anchor" aria-label="anchor" href="#sample-and-reduce"><i class="fas fa-link"></i></a>
+</h4>
+<p>Each frame of <em>Fuelled</em> is made up of 1280 by 536 pixels, with each pixel comprised of the three channels of the RGB colour space. Therefore, to represent the complete colour information of a single frame we will need <span class="math inline">\(3 \times 1280 \times 536 = 2,058,240\)</span> numbers. With a frame rate of 24 frames-per-second and a running time of 542.6735 seconds, there are a total of 13024 frames. To completely represent the colour information in <em>Fuelled</em> requires <span class="math inline">\(2,058,240 \times 13,024 = 26,806,517,760\)</span> data points. A data set comprising almost 27 billion data points is too large for analysis – and this represents a <em>very small</em> dataset (how many data points would be needed for a for a two-hour long 4K Ultra HD film at 60fps?). Furthermore, much of this data will be redundant as frames in the same scene will be very similar to one another.</p>
+<p>All analyses of film colour are therefore based on the same two-stage process of in order to reduce the amount of data to a manageable level and to eliminate redundant data. First, frames are <em>sampled</em> from the film, selecting either every <em>n</em>-th frame or <em>n</em> frames per second. The second stage is to <em>reduce</em> the colour data in each sampled frame to a small set of values or a single value that represents the frame, such as the average colour of a frame, its colourfulness, or any of its colour attributes (such as lightness, chroma, saturation, etc.).</p>
+<p>For example, <a href="https://moviebarcode.tumblr.com">movie barcodes</a> are a popular way of representing colour information in a film and are constructed by selecting a set of frames from a film before either reducing that frame to a single pixels width or smoothing the data by averaging the colours within each of the selected frames. We will represent colour information in <em>Fuelled</em> as a <a href="colour.html#barcode">barcode</a>.</p>
+<p>Other methods employed in computational analyses of film colour, including cinemetrics, z-projections, palettes, treemaps, Color_dT plots (see <span class="citation">Flueckiger &amp; Halter (<a href="references.html#ref-flueckiger2020maat" role="doc-biblioref">2020</a>)</span> for an overview), all apply some version of the sample-and-reduce approach.</p>
+<p>From the <em>Fuelled</em> <code>.mp4</code> file we want to extract a large enough number of frames that our sample will be representative of the film without oversampling redundant information that will only serve to slow down our processing of the data.</p>
+<p>The function <code><a href="https://docs.ropensci.org/av/reference/av_video_images.html">av::av_video_images()</a></code> splits a video file into frames, with the number of frames sampled controlled by the <code>fps</code> argument. A sampling rate of <span class="math inline">\(\frac{1}{1}=1\)</span> will return one frame-per-second. Increasing the numerator will increase the sample rate – a sampling rate <span class="math inline">\(\frac{2}{1}=2\)</span> will sample two frames every second; whereas a increasing the denominator will reduce the sampling rate – a sampling rate of <span class="math inline">\(\frac{1}{2}=0.5\)</span> will sample one frame very two seconds. Sampling <em>Fuelled</em> at a rate of two frames-per-second will give us a data set of 1085 frames to analyse.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">av_video_images</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"fuelled.mp4"</span><span class="op">)</span>, destdir <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Frames"</span><span class="op">)</span>, 
+                format <span class="op">=</span> <span class="st">"jpg"</span>, fps <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<p>We can create a folder to store the frames within our <code>Data</code> folder directly within the call to <code>av_video_images()</code>. Sampled frames can be either <code>.jpg</code> or <code>.png</code> files, with the latter returning lossless images with larger file sizes.</p>
+<hr>
+<details><summary style="font-size:16px; font-weight: bold;">
+👈 Click here to find out how to collect colour data using the chromaR package
+</summary><div class="rmdimportant">
+<h3 style="margin-top: -5px;">
+Collecting data using chromaR
+</h3>
+<p>
+As part of the chromaR toolkit for analysing colour in motion
+pictures, Tommaso Buonocore has provided a <a href="https://www.mathworks.com/products/matlab.html">MATLAB</a> script
+that will create a <code>.csv</code> file containing the average colour
+in the sRGB colour space of <em>every</em> frame of video file. You can
+access the script (videoProcessing.m) on the GitHub repository for <a href="https://github.com/detsutut/chroma">chromaR</a>.
+</p>
+<p>
+In order to run this script you will need to have access to MATLAB,
+which is much quicker than performing the same process of sampling
+frames and calculating the average colour in R. However, MATLAB is
+paid-for software and is <em>not</em> cheap.
+</p>
+<p>
+For those who do not have access to MATLAB or cannot afford to
+purchase it, I have produced an alternative version of Buonocore’s
+MATLAB script that will run in <a href="https://www.gnu.org/software/octave/index">Octave</a>, a
+freely-available open-source alternative to MATLAB. You can find this
+script and the instructions for using it on my GitHub repository: <a href="https://github.com/DrNickRedfern/VideoProcessingOctave">VideoProcessingOctave</a>.
+</p>
+<p>
+The <code>.csv</code> file containing the RGB values of each frame
+created from this script can be used for colour analysis in chromaR or
+by the methods illustrated here instead of creating a data frame by
+sampling and processing frames from a film.
+</p>
+</div>
+</details><hr>
+</div>
+</div>
+</div>
+<div id="analysing-fuelled" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Analysing <em>Fuelled</em><a class="anchor" aria-label="anchor" href="#analysing-fuelled"><i class="fas fa-link"></i></a>
+</h2>
+<div id="the-average-colour-of-a-frame" class="section level3" number="5.3.1">
+<h3>
+<span class="header-section-number">5.3.1</span> The average colour of a frame<a class="anchor" aria-label="anchor" href="#the-average-colour-of-a-frame"><i class="fas fa-link"></i></a>
+</h3>
+<p>One of the most common ways of reducing the colour data of an frame is to calculate the average colour, which is defined as the tuple of the average values of the individual attributes of a colour space. That is, to find the average colour of a frame in the CIELAB colour space we need to calculate the average of the L*, a*, and b* attributes separately and form the tuple to from those averages. Typically, the average used is the mean, but the median and mode can also be used to determine the average colour of a frame <span class="citation">(<a href="references.html#ref-plutino2021mbas" role="doc-biblioref">Plutino et al., 2021</a>)</span>.</p>
+<p>First, we will get a list of all the images in the frames folder using the <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code> function. We want to include all the <code>.jpg</code> files so we set <code>pattern = "*.jpg$</code>, where <code>*</code> is a wildcard that will ignore the part of the filename before the extension <code>.jpg</code> and by adding <code>$</code> after the extension we tell R to find the pattern <code>jpg</code> at the <em>end</em> of the string that is the filename of the image.</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get list of jpg files in the Frames directory</span>
+<span class="va">images</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Frames"</span><span class="op">)</span>, pattern <span class="op">=</span> <span class="st">"*.jpg$"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">images</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## [1] "image_000001.jpg" "image_000002.jpg" "image_000003.jpg" "image_000004.jpg"</span>
+<span class="co">## [5] "image_000005.jpg" "image_000006.jpg"</span></code></pre></div>
+<p>To do this we will loop over all the frames sampled from <em>Fuelled</em> and extract the red, green, and blue colour channels of each image. The RGB values are multiplied by 255 for scaling. We will then convert these colour values using <code><a href="https://farver.data-imaginist.com/reference/convert_colour.html">farver::convert_colour()</a></code> to the CIELAB colour space and get the mean value of each parameter (<span class="math inline">\(\widehat{L^{*}}\)</span>, <span class="math inline">\(\widehat{a^{*}}\)</span>, <span class="math inline">\(\widehat{b^{*}}\)</span>). Next, we convert the tuple of the mean colour in CIELAB to the LCH(ab) colour space and to RGB for plotting. It is important to remember that names in R are case-sensitive, and so we will name colour attributes in the CIELAB and LCH(ab) colour spaces using UPPERCASE letters and we will name the RGB attributes using lowercase letters. This will help us to avoid confusing the b* attribute in L*a*b* colour space with the blue channel of the RGB colour space, which will be named <code>B</code> and <code>b</code> respectively. <code><a href="https://farver.data-imaginist.com/reference/convert_colour.html">farver::convert_colour()</a></code> gives all attributes in all colour spaces lowercase names by default, so that b* and blue are both represented by <code>b</code>, and without taking this into account we would overwrite the b* attribute with the blue channel when we do the final conversion to RGB and lose some key data.</p>
+<p>In this loop we will also do a couple of other tasks. We will calculate the time of each frame so that we can analyse how colour evolves over time. We will also calculate the saturation of a frame from its chroma (C) and lightness (L), taking care to ensure that the saturation is set to 0 for achromatic colours (i.e., when C = 0%) and avoiding <code>NA</code> values in the data frame. This is easily done using <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">dplyr::if_else</a></code>, which will check to see if C = 0 (NB: note that this requires double equal signs <code>==</code> to represent the logical version of <code>is equal to</code>) and return 0 when this condition is <code>TRUE</code> and calculate the saturation from C and L when it is <code>FALSE</code>. We will also tidy up as we go, using the function <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> to remove objects from the workspace once they are no longer required so that we don’t have large objects hanging around when they are not needed.</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load the tidyverse and farver packages</span>
+<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">farver</span><span class="op">)</span>
+
+<span class="co"># Create an empty data frame to store the result of each frame</span>
+<span class="va">df_average_colours</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Set frame to zero; frame is used as an index and to calculate the time of a frame</span>
+<span class="va">frame</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">images</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="co"># Increment frame each time the loop starts</span>
+  <span class="va">frame</span> <span class="op">&lt;-</span> <span class="va">frame</span> <span class="op">+</span> <span class="fl">1</span>
+  
+  <span class="co"># Grab the name of each image to use as an identifier and drop the file extension</span>
+  <span class="va">frame_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">".jpg$"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="co"># Calculate the time of the frame</span>
+  <span class="va">time</span> <span class="op">&lt;-</span> <span class="va">frame</span> <span class="op">*</span> <span class="fl">0.5</span>
+  
+  <span class="co"># Load the i-th frame using imager::load.image()</span>
+  <span class="va">im</span> <span class="op">&lt;-</span> <span class="fu">load.image</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Frames"</span>, <span class="va">i</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="co"># Separate R, G, B channels and gather as a data frame</span>
+  <span class="va">rgb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu">R</span><span class="op">(</span><span class="va">im</span><span class="op">)</span>, <span class="fu">G</span><span class="op">(</span><span class="va">im</span><span class="op">)</span>, <span class="fu">B</span><span class="op">(</span><span class="va">im</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">as.data.frame</span> <span class="op">%&gt;%</span> 
+    <span class="fu">rename</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, g <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">mutate</span><span class="op">(</span>r <span class="op">=</span> <span class="va">r</span> <span class="op">*</span> <span class="fl">255</span>, g <span class="op">=</span> <span class="va">g</span> <span class="op">*</span> <span class="fl">255</span>, b <span class="op">=</span> <span class="va">b</span> <span class="op">*</span> <span class="fl">255</span><span class="op">)</span> <span class="co"># multiply by 255 to scale correctly</span>
+  
+  <span class="co"># Remove the image from the workspace once we've collected the colour data</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">im</span><span class="op">)</span>
+  
+  <span class="co"># Convert to RGB to CIELAB colour space using farver::convert_colour()</span>
+  <span class="va">lab</span> <span class="op">&lt;-</span> <span class="fu">convert_colour</span><span class="op">(</span><span class="va">rgb</span>, from <span class="op">=</span> <span class="st">"rgb"</span>, to <span class="op">=</span> <span class="st">"lab"</span><span class="op">)</span>
+  <span class="co"># Remove the rgb data frame as we no longer need it</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">rgb</span><span class="op">)</span>
+  
+  <span class="co"># Calculate the mean values of each attribute in the L*a*b* colour space</span>
+  <span class="va">pix_lab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>L <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lab</span><span class="op">$</span><span class="va">l</span><span class="op">)</span>, 
+                        A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lab</span><span class="op">$</span><span class="va">a</span><span class="op">)</span>, 
+                        B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">lab</span><span class="op">$</span><span class="va">b</span><span class="op">)</span><span class="op">)</span>
+  <span class="co"># Remove the lab data frame as we no longer need it</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">lab</span><span class="op">)</span>
+  
+  <span class="co"># Convert to LCH(ab) colour space using farver::convert_colour()</span>
+  <span class="va">pix_lch</span> <span class="op">&lt;-</span> <span class="fu">convert_colour</span><span class="op">(</span><span class="va">pix_lab</span>, from <span class="op">=</span> <span class="st">"lab"</span>, to <span class="op">=</span> <span class="st">"lch"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">rename</span><span class="op">(</span>L <span class="op">=</span> <span class="va">l</span>, C <span class="op">=</span> <span class="va">c</span>, H <span class="op">=</span> <span class="va">h</span><span class="op">)</span> <span class="co"># using uppercase letters for consistency</span>
+  
+  <span class="co"># Calculate the saturation from the chroma and lightness:</span>
+  <span class="co"># if a colour is achromatic (i.e. C = 0) then the saturation is also 0 - </span>
+  <span class="co"># this avoids NA values in the data frame</span>
+  <span class="va">pix_lch</span> <span class="op">&lt;-</span> <span class="va">pix_lch</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>S <span class="op">=</span> <span class="fu">if_else</span><span class="op">(</span><span class="va">C</span> <span class="op">==</span> <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">*</span><span class="op">(</span><span class="va">C</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">C</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">L</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="co"># Drop the L parameter from pxi_lch because it is the same as the L parameter in pix_lab</span>
+  <span class="va">pix_lch</span> <span class="op">&lt;-</span> <span class="va">pix_lch</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">C</span>, <span class="va">H</span>, <span class="va">S</span><span class="op">)</span>
+  
+  <span class="co"># Convert the mean CIELAB values to RGB using farver::convert_colour() for plotting -</span>
+  <span class="co"># the RGB values will be identified by lowercase letters</span>
+  <span class="va">pix_rgb</span> <span class="op">&lt;-</span> <span class="fu">convert_colour</span><span class="op">(</span><span class="va">pix_lab</span>, from <span class="op">=</span> <span class="st">"lab"</span>, to <span class="op">=</span> <span class="st">"rgb"</span><span class="op">)</span>
+  
+  <span class="co"># Collect all the results for a frame</span>
+  <span class="va">pix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">frame</span>, <span class="va">frame_id</span>, <span class="va">time</span>, <span class="va">pix_lab</span>, <span class="va">pix_lch</span>, <span class="va">pix_rgb</span><span class="op">)</span>
+  
+  <span class="co"># Add the results to the data frame for export</span>
+  <span class="va">df_average_colours</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind.data.frame</a></span><span class="op">(</span><span class="va">df_average_colours</span>, <span class="va">pix</span><span class="op">)</span>
+
+<span class="op">}</span></code></pre></div>
+<p>Table <a href="colour.html#tab:colour-table-average">5.2</a> displays the average colour for outputted by the <code>for</code> loop selected frames.</p>
+<div id="htmlwidget-0189b6dd01ff0f3ae8ed" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0189b6dd01ff0f3ae8ed">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[101,102,103,104,105,106,107,108,109,110],["image_000101","image_000102","image_000103","image_000104","image_000105","image_000106","image_000107","image_000108","image_000109","image_000110"],["50.5","51.0","51.5","52.0","52.5","53.0","53.5","54.0","54.5","55.0"],["22.79","22.70","22.78","22.78","22.78","22.78","12.96","12.97","12.97","12.97"],["20.92","20.86","20.91","20.90","20.90","20.89","10.88","10.89","10.93","10.96"],["-32.15","-32.07","-32.12","-32.12","-32.12","-32.12","-18.87","-18.88","-18.91","-18.93"],["38.36","38.25","38.33","38.33","38.32","38.31","21.78","21.80","21.84","21.87"],["303.06","303.05","303.05","303.05","303.05","303.05","299.97","299.98","300.03","300.06"],["85.98","86.00","85.96","85.96","85.96","85.95","85.95","85.94","85.99","86.01"],["56.81","56.61","56.81","56.80","56.80","56.80","33.45","33.49","33.51","33.55"],["45.30","45.15","45.31","45.30","45.31","45.31","29.46","29.49","29.46","29.46"],["102.73","102.40","102.69","102.68","102.68","102.68","59.68","59.73","59.77","59.81"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>frame<\/th>\n      <th>frame_id<\/th>\n      <th>time<\/th>\n      <th>L<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>H<\/th>\n      <th>S<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"scrollCollapse":true,"paging":false,"autoWidth":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":0},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"className":"dt-center","targets":1}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'10pt'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'10pt'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'10pt'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'10pt'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
+<caption>
+<span id="tab:colour-table-average">Table 5.2: </span>Average colour in selected frames from <em>Fuelled</em>. ☝
+</caption>
+</table></div>
+<hr>
+<details><summary style="font-size:16px; font-weight: bold;">
+👈 Click here to learn about vectorisation in R
+</summary><div class="rmdimportant">
+<h3 style="margin-top: -5px;">
+Vectorisation
+</h3>
+<p>
+R functions are <em>vectorised</em> and will operate on all elements
+in a vector without requiring an explicit <code>for</code> loop to apply
+a function to elements in a vector one at a time.
+</p>
+<p>
+For example, when we convert the colour values of RGB colours from
+the <span class="math inline"><span class="math inline">\([0, 1]\)</span></span> scale to <span class="math inline"><span class="math inline">\([0, 255]\)</span></span> we multiply the red colour
+channel <code>RED</code> by 255 and every individual value in that
+vector is multiplied by 255.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/a6092ae449ae0673c8122781fdb3e221.js"></script><p>
+We can also add together two vectors of equal length
+<em>elementwise</em>, with the first element of the vector
+<code>X</code> added to the first element of the vector <code>Y</code>,
+the second element of <code>X</code> added to the second element of
+<code>Y</code>, and so on.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/db8410547fdeb9c5aa84e5c563fa16ad.js"></script><p>
+Other fundamental operations in R are vectorised, including
+subtraction, division, logical tests, and matrix operations.
+</p>
+<p>
+Vectorisation makes code easy to read and efficient to run.
+</p>
+</div>
+</details><hr>
+<p>To visualise the distribution of the average frame colours in the L*a*b* colour space we can plot the a* and b* attributes (Figure <a href="colour.html#fig:colour-average-plot-lab">5.4</a>.A). A limitation of Figure <a href="colour.html#fig:colour-average-plot-lab">5.4</a>.A is that data points may overlap, especially for where a* = b* = 0, making it difficult to see the distribution of colours in a film. To overcome this, we can plot the density of data points using <code><a href="https://ggplot2.tidyverse.org/reference/geom_density_2d.html">ggplot2::geom_density_2d_filled()</a></code> (Figure <a href="colour.html#fig:colour-average-plot-lab">5.4</a>.B).</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">ggpubr</span>, <span class="va">viridis</span><span class="op">)</span>
+
+<span class="co"># Create the plot</span>
+<span class="va">lab_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_average_colours</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">A</span>, y <span class="op">=</span> <span class="va">B</span>, colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Green - Red (a*)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Blue - Yellow (b*)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_colour_identity</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">lab_plot_2d</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_average_colours</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_density_2d_filled</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">A</span>, y <span class="op">=</span> <span class="va">B</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Green - Red (a*)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Blue - Yellow (b*)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Combine the plots into a single figure</span>
+<span class="va">lab_figure</span> <span class="op">&lt;-</span> <span class="fu">ggarrange</span><span class="op">(</span><span class="va">lab_plot</span>, <span class="va">lab_plot_2d</span>, nrow <span class="op">=</span> <span class="fl">2</span>, align <span class="op">=</span> <span class="st">"v"</span>, labels <span class="op">=</span> <span class="st">"AUTO"</span><span class="op">)</span>
+
+<span class="co"># Call the figure</span>
+<span class="va">lab_figure</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-average-plot-lab"></span>
+<img src="_main_files/figure-html/colour-average-plot-lab-1.png" alt="The (A) distribution and (B) density of the average colour of 1085 frames sampled from *Fuelled* in L\*a\*b\* colour space." width="90%"><p class="caption">
+Figure 5.4: The (A) distribution and (B) density of the average colour of 1085 frames sampled from <em>Fuelled</em> in L*a*b* colour space.
+</p>
+</div>
+<p>Figure <a href="colour.html#fig:colour-average-plot-lch">5.5</a> plots the same data in the LCH(ab) colour space, using <code>coord_polar()</code> to plot the hue values as an angle of the colour wheel.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the average colour of a frame using hue and chroma</span>
+<span class="va">lch_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_average_colours</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">H</span>, y <span class="op">=</span> <span class="va">C</span>, colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">scale_colour_identity</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">coord_polar</span><span class="op">(</span>theta <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">360</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">330</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Chroma (%)"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">theme</span><span class="op">(</span>axis.title.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Plot chroma against lightness</span>
+<span class="va">chroma_light_plot</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_average_colours</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">C</span>, y <span class="op">=</span> <span class="va">L</span>, colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">scale_colour_identity</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Chroma (%)"</span>,  
+       y <span class="op">=</span> <span class="st">"Lightness (%)"</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Combine the plots into a single figure</span>
+<span class="va">lch_figure</span> <span class="op">&lt;-</span> <span class="fu">ggarrange</span><span class="op">(</span><span class="va">lch_plot</span>, <span class="va">chroma_light_plot</span>, 
+                        ncol <span class="op">=</span> <span class="fl">2</span>, align <span class="op">=</span> <span class="st">"h"</span>, labels <span class="op">=</span> <span class="st">"AUTO"</span><span class="op">)</span>
+
+<span class="co"># Call the figure</span>
+<span class="va">lch_figure</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-average-plot-lch"></span>
+<img src="_main_files/figure-html/colour-average-plot-lch-1.png" alt="(A) Polar representation of hue and chroma and (B) chroma and lightness of average frame colour for 1085 frames sampled from *Fuelled*." width="90%"><p class="caption">
+Figure 5.5: (A) Polar representation of hue and chroma and (B) chroma and lightness of average frame colour for 1085 frames sampled from <em>Fuelled</em>.
+</p>
+</div>
+<p>Plotting the average colours of the sampled frames, we see that <em>Fuelled</em> uses a colour palette characterised by two features. First, we see a dominant axis from dark grayish cyans to moderate reds, passing through achromatic colours at the origin and dark desaturated reds. The cyans and desaturated reds are the average colours of the frames are used for the gas station and the forest, respectively. The moderate reds with higher chroma and lightness are used exclusively for the flashback sequences in which Cathy remembers being with her husband. Second, there are two groups of pixels perpendicular to the main axis comprising yellow and orange hues, associated with the explosion at the gas station, and very dark blues, used for the forest at night when Cathy runs out of fuel. Clearly, the students who made this film selected the colours carefully and purposefully when making this film, using complementary colours across two axes for a tetradic palette.</p>
+<p>It is also clear from the polar version which colours are missing from the palette, with no pixels in the lime green (H = 120°) and blue (H = 240°) regions. The chroma of the frames is limited and there is a strong relationship between chroma and lightness.</p>
+</div>
+<div id="colourfulness" class="section level3" number="5.3.2">
+<h3>
+<span class="header-section-number">5.3.2</span> Colourfulness<a class="anchor" aria-label="anchor" href="#colourfulness"><i class="fas fa-link"></i></a>
+</h3>
+<p><em>Colourfulness</em> is an attribute of our visual sensation of colour and refers to the perceived intensity of a colour <span class="citation">(<a href="references.html#ref-fairchild2013camx" role="doc-biblioref">Fairchild, 2013</a>: 90-96)</span>. The colourfulness of an image is dependent on the range and vividness of colours in an image, increasing with increasing illumination unless an image is very bright, and describes the degree to which an observer perceives a colour to be more or less chromatic <span class="citation">(<a href="references.html#ref-zerman2019ceci" role="doc-biblioref">Zerman et al., 2019</a>)</span>. Although colourfulness cannot be measured because it is a part of a perceiver’s experience, it can be quantified using low-level attributes of colour spaces that correlate to categories on psychometric scales.</p>
+<p><span class="citation">Hasler &amp; Suesstrunk (<a href="references.html#ref-hasler2003mcin" role="doc-biblioref">2003</a>)</span> define a simple colourfulness metric, <span class="math inline">\(M_{3}\)</span>, that is a linear combination of the mean and standard deviation of the distribution of pixels in an opponent sRGB colour space defined by <span class="math inline">\(rg=R-G\)</span> and <span class="math inline">\(yb=0.5(R+G)-B\)</span>. The <span class="math inline">\(M_{3}\)</span> metric is then calculated as</p>
+<p><span class="math display">\[
+M_{3}=\sigma_{rgyb}+0.3\mu_{rgyb}\ ,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\sigma_{rgyb}=\sqrt{\sigma_{rg}^2+\sigma_{yb}^2}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\mu_{rgyb}=\sqrt{\mu_{rg}^2+\mu_{yb}^2}\ .
+\]</span></p>
+<p>The interpretation of the metric is based on a category scaling experiment in which subjects rated the colourfulness attributes of images, with the following values of the M3 metric assigned to colourfulness attributes:</p>
+<ul>
+<li>not colourful = 0</li>
+<li>slightly colourful = 15</li>
+<li>moderately colourful = 33</li>
+<li>averagely colourful = 45</li>
+<li>quite colourful = 59</li>
+<li>highly colourful = 82</li>
+<li>extremely colourful = 109</li>
+</ul>
+<p>The <span class="math inline">\(M_{3}\)</span> metric showed a 95% correlation with the subjective experience of colourfulness of subjects participating in the experiment.</p>
+<p>Rather than create a new function to calculate the colourfulness of a frame we can import a function I have already created directly from GitHub using the devtools package. Note that in order to source a function from GitHub it is necessary to access the <code>raw</code> version of the file.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Source the function from GitHub - requires the devtools package to be installed</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/source_url.html">source_url</a></span><span class="op">(</span><span class="st">"https://github.com/DrNickRedfern/HSM3/blob/master/HSM3.R?raw=TRUE"</span><span class="op">)</span></code></pre></div>
+<p>You can find the code for the <code>HSM3()</code> function on the <a href="https://github.com/DrNickRedfern/HSM3">HSM3</a> repository. We can write another loop similar to the one we used to get the average colour of each frame.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create an empty data frame to store the results</span>
+<span class="va">df_M3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Loop</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">images</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">frame_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">".jpg$"</span>, <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/basename.html">basename</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">im</span> <span class="op">&lt;-</span> <span class="fu">load.image</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Frames"</span>, <span class="va">i</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="co"># Apply the HSM3 to get the colourfulness of an image</span>
+  <span class="va">M3</span> <span class="op">&lt;-</span> <span class="fu">HSM3</span><span class="op">(</span><span class="va">im</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">im</span><span class="op">)</span>
+  
+  <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">frame_id</span>, <span class="va">M3</span><span class="op">)</span>
+  <span class="va">df_M3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind.data.frame</a></span><span class="op">(</span><span class="va">df_M3</span>, <span class="va">res</span><span class="op">)</span>
+  
+<span class="op">}</span>
+
+<span class="va">df_M3</span> <span class="op">&lt;-</span> <span class="va">df_M3</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>frame <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_M3</span><span class="op">$</span><span class="va">M3</span><span class="op">)</span>,
+                    time <span class="op">=</span> <span class="va">frame</span> <span class="op">*</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">relocate</span><span class="op">(</span><span class="va">frame</span>, .before <span class="op">=</span> <span class="st">"frame_id"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">relocate</span><span class="op">(</span><span class="va">time</span>, .after <span class="op">=</span> <span class="st">"frame_id"</span><span class="op">)</span>
+
+<span class="co"># Add the RGB values of the average frame colour from df_average_colours for plotting</span>
+<span class="va">df_M3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">df_M3</span>, <span class="va">df_average_colours</span><span class="op">[</span><span class="fl">10</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<p>Figure <a href="colour.html#fig:colour-colourfulness-plot-M3">5.6</a> plots the colourfulness of the sampled frames.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_M3</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_path</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">M3</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"grey40"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">M3</span><span class="op">)</span>, 
+             colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">df_M3</span><span class="op">$</span><span class="va">r</span>, <span class="va">df_M3</span><span class="op">$</span><span class="va">g</span>, <span class="va">df_M3</span><span class="op">$</span><span class="va">b</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_smooth</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">M3</span><span class="op">)</span>, 
+              method <span class="op">=</span> <span class="st">"loess"</span>, span <span class="op">=</span> <span class="fl">0.2</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Time (s)"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">542.6735</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">500</span>, <span class="fl">50</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Colourfulness"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">130</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">33</span>, <span class="fl">45</span>, <span class="fl">59</span>, <span class="fl">82</span>, <span class="fl">109</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>,
+        panel.grid.minor.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-colourfulness-plot-M3"></span>
+<img src="_main_files/figure-html/colour-colourfulness-plot-M3-1.png" alt="The temporal evolution of Colourfulness in *Fuelled*." width="90%"><p class="caption">
+Figure 5.6: The temporal evolution of Colourfulness in <em>Fuelled</em>.
+</p>
+</div>
+<p>From Figure <a href="colour.html#fig:colour-colourfulness-plot-M3">5.6</a> we can see that there is still a lot of redundancy in the data and we can reduce by the number of frames further by eliminating sampled frames that are similar to previous frames. One strategy by which we could achieve this is to calculate the difference in colourfulness between consecutive frames and keep only those frames when the difference is above a threshold, but this will only keep frames separated by large differences in the <span class="math inline">\(M_{3}\)</span> metric. A better strategy is to calculate the difference for frames from a reference frame until a threshold is reached and then use that frame as a new reference frame against which subsequent frames are compared. This will retain more data because it takes into account changes in colourfulness that may arise from gradual transitions, such as the scale of shot changing due to camera movements or zooms in or out, while also retaining the sharp differences in colourfulness that occur with cuts between scenes and locations.</p>
+<p>To achieve this goal we can create a function called <code>frame_picker()</code> which will store the colourfulness of the first frame of the sample and then compare that frame against each subsequent frame until an <a href="https://en.wikipedia.org/wiki/Absolute_difference">absolute difference</a> exceeding a pre-specified threshold (<code>t</code>) is reached and then add that frame to the reduced data set. The process then starts again comparing frames against the new reference frame until the threshold is reached and the data for a third frame is added to the reduced data set and that third frame becomes the new reference frame, and so on, until all the frames in the sample have been processed.</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">frame_picker</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">t</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>  <span class="co"># Number of frames in the sample</span>
+  <span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span>; <span class="va">j</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span>  <span class="co"># Set initial values for frames to be compared</span>
+  
+  <span class="co"># Create a data frame - </span>
+  <span class="co"># the first value is the colourfulness of the first frame</span>
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">i</span>, <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+  
+  <span class="co"># Loop over </span>
+  <span class="kw">while</span><span class="op">(</span><span class="va">j</span> <span class="op">&lt;=</span> <span class="va">n</span><span class="op">)</span><span class="op">{</span>
+    <span class="co"># Check if the absolute difference between frames is greater than the threshold</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">-</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span> <span class="op">&gt;</span> <span class="va">t</span><span class="op">)</span><span class="op">{</span>
+      <span class="va">df_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">j</span>, <span class="va">x</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span>
+      <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">j</span>  <span class="co"># Update the reference frame</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+      <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span>
+      <span class="va">df_a</span> <span class="op">&lt;-</span> <span class="cn">NULL</span><span class="op">}</span> 
+    <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">df_a</span><span class="op">)</span>
+    <span class="va">j</span> <span class="op">&lt;-</span> <span class="va">j</span> <span class="op">+</span> <span class="fl">1</span>  <span class="co"># Increment j</span>
+  <span class="op">}</span>
+  
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<hr>
+<details><summary style="font-size:16px; font-weight: bold;">
+👈 Click here to learn about control flow in R
+</summary><div class="rmdimportant">
+<h3 style="margin-top: -5px;">
+Control flow
+</h3>
+<p>
+Control statements are expressions that control the flow of a block
+of code based on the conditions provided in the statements, and include
+logical tests (<code>if()</code>, <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>) and loops
+(<code>for()</code>, <code>while()</code>).
+</p>
+<p>
+In R, conditions in control statements are placed within parentheses
+<code>()</code> and code to be executed when a condition is satisfied is
+placed within braces <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>.
+</p>
+<h4 style="margin-top: -5px;">
+Logical tests
+</h4>
+<p>
+An <code>if</code> statement will execute a block of code only if a
+condition is satisfied. If the condition is not satisfied, the block of
+code is not run.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/a7b78d83556e166c0f7ef44a15e0a53f.js"></script><p>
+An <code>ifelse</code> statement will execute one block of code if a
+condition is satisfied and execute a different block of code if the
+condition is not satisfied. Multiple conditions can be applied by adding
+<code>elseif</code> statements to the flow.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/085ed7b804b743abc8d68a0db210a6ee.js"></script><p>
+The dplyr package has the function <code>if_else()</code>, which has
+stricter conditions than R’s base <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code> function and
+checks if the <code>TRUE</code> and <code>FALSE</code> conditions have
+the same type. The <code>if_else()</code> function can be faster to
+execute.
+</p>
+<h4 style="margin-top: -5px;">
+Loops
+</h4>
+<p>
+A <code>for</code> loop iterates over a list of elements, applying a
+block of code to each element. <code>for</code> loops can be nested
+within one another to loop over multiple lists of elements.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/6055e05140d30ed90da63011719deaa5.js"></script><p>
+A <code>while</code> loop iterates over a list of elements applying a
+block of code to each element until a condition is no longer met and the
+loop stops.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/19d563c05772c052f32ee204b976d9c7.js"></script><p>
+When constructing loops it is important to determine which parts of
+code need to be inside the loop (i.e., with the braces <code><a href="https://rdrr.io/r/base/Paren.html">{}</a></code>)
+and which parts need to be outside the loop. For example, if we need to
+store the outcome of each pass of the loop then it is necessary to
+create a data structure <em>outside</em> the loop so that is not created
+anew each time the loop runs, thereby losing the data produced by
+previous passes.
+</p>
+<p>
+In the <code>for</code> loop to calculate the colourfulness of the
+frames we sampled from <em>Fuelled</em>, we created the data frame
+<code>df_M3</code> as an empty data frame outside the loop and wrote the
+results of each pass of the loop by adding a new row to
+<code>df_M3</code> using <code><a href="https://rdrr.io/r/base/cbind.html">rbind.data.frame()</a></code>. The results
+for <em>every</em> frame will persist when the loop exits. The objects
+<code>frame_id</code>, <code>im</code>, <code>M3</code>, and
+<code>res</code> are created within the loop and are overwritten with
+every pass of the loop. The final values of these objects will relate to
+the last image processed when the loop exits.
+</p>
+</div>
+</details><hr>
+<p>Applying the <code>frame_picker()</code> function to our sample of 1085 frames from <em>Fuelled</em> with a threshold of <code>t = 4</code> gives is a reduced sample of 191 frames (Table <a href="colour.html#tab:colour-colourfulness-table-picked">5.3</a>).</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Pick frames with  threshold of 4</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">frame_picker</span><span class="op">(</span><span class="va">df_M3</span><span class="op">$</span><span class="va">M3</span>, <span class="fl">4</span><span class="op">)</span>
+
+<span class="co"># Filter in only those frames from the data frame df_M3 that were picked</span>
+<span class="va">df_M3_reduced</span> <span class="op">&lt;-</span> <span class="va">df_M3</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">frame</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">res</span><span class="op">)</span></code></pre></div>
+<div style="width:80%; height:auto; margin: auto;">
+<div id="htmlwidget-a711ef486440036ae7a5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a711ef486440036ae7a5">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[1,8,35,41,48,59,63,64,65,66,67,70,76,78,82,83,98,109,122,133,142,145,154,158,159,164,170,177,186,192,210,211,217,222,228,236,247,254,258,261,265,271,275,280,282,285,288,294,298,304,310,321,324,334,363,368,377,378,379,382,383,385,386,387,389,390,391,393,412,415,418,423,431,433,435,440,450,452,461,468,479,488,489,490,495,498,499,505,509,515,519,521,522,526,527,530,533,534,535,537,538,539,540,543,544,545,546,548,550,551,552,553,564,594,603,609,610,611,612,614,615,616,617,618,619,620,621,622,623,646,653,654,660,661,662,665,666,667,668,673,675,677,684,688,689,690,692,696,700,703,719,726,733,741,742,748,754,758,762,767,773,792,802,829,834,836,837,841,842,843,844,847,856,876,894,896,902,911,915,920,945,967,969,972,978,984,994,1008,1028,1060,1077],["image_000001","image_000008","image_000035","image_000041","image_000048","image_000059","image_000063","image_000064","image_000065","image_000066","image_000067","image_000070","image_000076","image_000078","image_000082","image_000083","image_000098","image_000109","image_000122","image_000133","image_000142","image_000145","image_000154","image_000158","image_000159","image_000164","image_000170","image_000177","image_000186","image_000192","image_000210","image_000211","image_000217","image_000222","image_000228","image_000236","image_000247","image_000254","image_000258","image_000261","image_000265","image_000271","image_000275","image_000280","image_000282","image_000285","image_000288","image_000294","image_000298","image_000304","image_000310","image_000321","image_000324","image_000334","image_000363","image_000368","image_000377","image_000378","image_000379","image_000382","image_000383","image_000385","image_000386","image_000387","image_000389","image_000390","image_000391","image_000393","image_000412","image_000415","image_000418","image_000423","image_000431","image_000433","image_000435","image_000440","image_000450","image_000452","image_000461","image_000468","image_000479","image_000488","image_000489","image_000490","image_000495","image_000498","image_000499","image_000505","image_000509","image_000515","image_000519","image_000521","image_000522","image_000526","image_000527","image_000530","image_000533","image_000534","image_000535","image_000537","image_000538","image_000539","image_000540","image_000543","image_000544","image_000545","image_000546","image_000548","image_000550","image_000551","image_000552","image_000553","image_000564","image_000594","image_000603","image_000609","image_000610","image_000611","image_000612","image_000614","image_000615","image_000616","image_000617","image_000618","image_000619","image_000620","image_000621","image_000622","image_000623","image_000646","image_000653","image_000654","image_000660","image_000661","image_000662","image_000665","image_000666","image_000667","image_000668","image_000673","image_000675","image_000677","image_000684","image_000688","image_000689","image_000690","image_000692","image_000696","image_000700","image_000703","image_000719","image_000726","image_000733","image_000741","image_000742","image_000748","image_000754","image_000758","image_000762","image_000767","image_000773","image_000792","image_000802","image_000829","image_000834","image_000836","image_000837","image_000841","image_000842","image_000843","image_000844","image_000847","image_000856","image_000876","image_000894","image_000896","image_000902","image_000911","image_000915","image_000920","image_000945","image_000967","image_000969","image_000972","image_000978","image_000984","image_000994","image_001008","image_001028","image_001060","image_001077"],["0.5","4.0","17.5","20.5","24.0","29.5","31.5","32.0","32.5","33.0","33.5","35.0","38.0","39.0","41.0","41.5","49.0","54.5","61.0","66.5","71.0","72.5","77.0","79.0","79.5","82.0","85.0","88.5","93.0","96.0","105.0","105.5","108.5","111.0","114.0","118.0","123.5","127.0","129.0","130.5","132.5","135.5","137.5","140.0","141.0","142.5","144.0","147.0","149.0","152.0","155.0","160.5","162.0","167.0","181.5","184.0","188.5","189.0","189.5","191.0","191.5","192.5","193.0","193.5","194.5","195.0","195.5","196.5","206.0","207.5","209.0","211.5","215.5","216.5","217.5","220.0","225.0","226.0","230.5","234.0","239.5","244.0","244.5","245.0","247.5","249.0","249.5","252.5","254.5","257.5","259.5","260.5","261.0","263.0","263.5","265.0","266.5","267.0","267.5","268.5","269.0","269.5","270.0","271.5","272.0","272.5","273.0","274.0","275.0","275.5","276.0","276.5","282.0","297.0","301.5","304.5","305.0","305.5","306.0","307.0","307.5","308.0","308.5","309.0","309.5","310.0","310.5","311.0","311.5","323.0","326.5","327.0","330.0","330.5","331.0","332.5","333.0","333.5","334.0","336.5","337.5","338.5","342.0","344.0","344.5","345.0","346.0","348.0","350.0","351.5","359.5","363.0","366.5","370.5","371.0","374.0","377.0","379.0","381.0","383.5","386.5","396.0","401.0","414.5","417.0","418.0","418.5","420.5","421.0","421.5","422.0","423.5","428.0","438.0","447.0","448.0","451.0","455.5","457.5","460.0","472.5","483.5","484.5","486.0","489.0","492.0","497.0","504.0","514.0","530.0","538.5"],["57.70","63.62","69.83","57.59","0.08","34.67","25.87","20.10","25.91","20.28","34.45","38.95","45.03","49.36","44.77","39.40","30.20","34.21","40.94","47.68","53.61","42.81","37.05","43.96","29.56","38.85","32.79","38.94","29.53","48.73","65.11","72.56","42.51","57.24","23.59","41.60","25.23","30.29","77.88","72.89","36.96","50.62","60.73","55.47","51.15","32.78","52.16","36.87","66.33","37.66","32.41","56.40","36.88","53.76","46.19","40.64","34.52","43.38","53.12","42.98","56.92","40.20","35.30","42.05","31.87","26.95","44.24","65.60","44.02","53.00","43.98","25.64","18.91","30.27","44.13","56.91","43.67","48.25","64.51","60.21","40.34","0.00","7.04","54.64","0.00","76.89","101.90","0.00","56.15","31.27","43.81","37.54","56.09","34.95","27.01","18.73","34.06","87.75","36.98","56.79","70.75","77.96","69.93","65.34","54.89","43.19","30.34","25.94","20.96","14.91","8.47","1.15","73.70","29.27","4.09","36.79","77.47","85.44","3.68","64.42","127.11","84.87","78.30","87.22","80.01","86.38","81.66","88.16","121.22","125.30","120.93","71.48","67.39","74.26","90.39","61.91","52.60","61.75","86.80","67.47","62.96","67.27","77.77","85.97","74.74","56.90","42.96","75.25","50.71","75.51","98.27","93.77","39.56","49.86","41.38","55.51","44.61","59.07","52.77","85.54","40.39","29.39","66.76","43.62","80.59","69.65","79.87","73.85","68.22","76.33","49.28","69.46","33.01","69.40","73.58","77.68","68.82","41.79","37.72","53.47","58.41","54.31","50.30","46.12","40.82","35.32","30.63","26.43","22.36","18.25","0.00"],["76.15","115.40","191.33","128.28","0.01","26.68","19.63","18.73","19.65","18.85","28.11","30.12","40.24","43.06","44.45","43.28","56.84","33.51","47.66","33.85","42.14","51.02","25.02","41.27","15.37","27.66","28.12","29.53","31.97","33.69","174.29","197.10","164.81","198.29","25.62","38.74","35.90","42.05","90.66","101.90","83.55","34.92","57.42","59.60","62.09","43.17","37.08","48.49","59.21","48.57","54.81","54.26","71.03","81.34","61.18","50.93","47.38","61.57","73.96","60.22","45.96","55.50","51.12","50.45","34.14","54.31","46.03","203.71","64.49","44.72","58.66","53.81","51.99","28.25","58.69","42.00","48.80","63.56","188.39","207.93","46.68","0.00","4.57","45.24","0.00","39.85","93.91","0.00","48.12","51.98","62.16","80.54","97.95","35.94","83.90","40.60","49.28","141.32","33.39","107.27","125.81","116.86","105.17","81.42","72.86","64.55","60.06","55.91","46.57","33.01","17.98","1.97","210.36","95.64","1.01","29.56","85.62","82.39","1.04","47.31","255.00","139.94","141.01","144.73","138.85","141.20","142.60","138.96","209.99","250.31","186.02","68.56","128.76","147.34","106.87","72.55","51.24","53.59","130.59","113.46","112.68","82.84","98.45","105.30","91.22","89.14","59.29","92.13","71.11","101.40","142.60","138.17","100.29","107.87","114.37","125.75","202.54","203.63","177.61","203.16","102.44","68.36","95.44","119.29","131.86","101.29","125.27","107.72","98.43","114.21","80.09","92.52","55.19","100.58","107.50","110.30","96.60","60.51","58.06","87.69","57.73","73.04","66.95","58.64","49.43","42.36","35.30","29.50","25.22","20.58","0.78"],["35.10","54.95","122.62","73.14","0.00","24.10","18.44","18.60","18.52","18.68","25.05","26.57","34.19","35.72","36.94","36.87","45.30","29.46","47.10","28.84","37.43","32.31","21.23","36.57","19.30","21.00","24.11","25.15","29.29","29.04","100.08","99.51","105.72","138.85","35.17","55.13","39.50","47.44","137.12","152.35","109.00","52.37","89.87","68.61","66.73","52.67","55.38","62.83","124.24","63.10","52.83","63.68","60.93","108.36","83.32","53.61","61.33","81.17","86.68","83.45","82.59","64.03","58.39","65.62","46.59","96.06","70.10","100.97","69.95","72.06","80.80","62.66","65.36","35.72","75.00","61.42","69.79","83.41","95.45","97.42","66.32","0.00","6.25","74.51","0.00","14.86","17.93","0.00","82.24","90.28","91.66","109.76","136.55","49.61","97.74","72.95","76.31","137.04","44.34","72.45","77.97","60.04","52.80","24.80","20.82","17.91","16.95","17.31","15.79","11.66","5.61","0.09","101.55","43.96","10.99","29.53","83.42","72.49","11.04","42.99","222.36","69.86","69.75","69.81","68.90","68.57","69.14","62.86","113.20","215.06","125.95","33.11","71.34","78.56","48.92","38.95","32.84","33.95","36.06","28.12","28.28","34.27","35.73","40.13","38.08","32.34","20.23","32.44","24.06","27.08","94.93","94.65","42.77","46.46","55.64","66.59","140.91","110.91","85.76","93.32","51.59","40.31","42.23","57.47","65.77","54.23","63.63","56.70","53.06","59.38","42.63","40.72","37.92","43.09","55.05","55.13","51.24","35.05","35.34","48.62","27.87","55.67","52.48","47.29","42.26","38.57","35.07","31.93","29.42","26.75","0.78"],["84.73","100.17","159.04","85.42","0.00","54.84","38.77","38.90","38.91","39.25","56.39","58.16","70.08","74.54","69.52","64.60","102.75","59.77","96.37","74.11","80.18","76.07","60.72","76.19","65.54","68.08","55.28","72.02","58.90","73.98","91.56","91.23","102.34","123.30","41.21","54.90","34.84","42.58","135.91","147.84","89.13","50.68","90.20","61.73","65.70","49.11","60.78","59.38","123.68","59.83","50.71","61.34","59.98","110.25","85.30","50.87","54.12","82.49","88.98","82.15","87.01","60.47","53.94","62.04","44.65","97.22","72.98","93.99","66.62","72.61","82.52","62.24","63.71","36.88","73.97","66.99","75.11","91.31","79.75","76.30","72.51","0.00","6.39","75.23","0.00","9.65","20.94","0.00","81.21","99.13","95.53","113.83","136.87","47.76","98.06","75.81","78.38","108.61","52.81","58.89","56.50","40.27","33.60","15.38","13.17","10.88","10.61","12.64","12.69","9.54","5.26","0.95","85.89","60.87","13.05","25.49","57.49","49.14","13.04","30.54","122.26","45.97","51.16","45.86","48.75","44.34","49.22","39.41","52.23","109.69","62.57","32.99","64.04","67.18","38.21","40.41","35.63","34.78","29.85","23.52","22.72","47.40","32.61","32.90","42.43","38.98","51.51","38.47","46.16","33.64","46.47","48.61","57.78","60.41","63.25","67.59","132.67","102.19","79.71","79.80","54.94","42.49","48.08","65.30","58.22","53.86","59.15","54.31","53.29","57.21","55.40","47.65","53.30","32.91","51.03","51.09","40.50","26.93","34.33","32.85","23.91","50.89","49.36","46.40","43.44","40.99","38.26","35.16","32.37","29.64","0.78"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>frame<\/th>\n      <th>frame_id<\/th>\n      <th>time<\/th>\n      <th>M3<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","autoWidth":true,"fixedColumns":false,"columnDefs":[{"className":"dt-right","targets":0},{"className":"dt-right","targets":[2,3,4,5,6]},{"className":"dt-center","targets":1}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
+<caption>
+<span id="tab:colour-colourfulness-table-picked">Table 5.3: </span>The colourfulness of picked frames from <em>Fuelled</em> using a threshold of t = 4. ☝
+</caption>
+</table></div>
+</div>
+<p>Plotting the reduced sample against time (Figure <a href="colour.html#fig:colour-colourfulness-plot-reduced">5.7</a>) we see that even when discarding 894 frames (82.4%) of the sample that the trends in the colourfulness over the course of the film remain largely intact. We can get a good idea of how colourfulness evolves of the course of <em>Fuelled</em> from these 191 frames representing just 1.5% of the total number of frames in the film.</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_M3_reduced</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_path</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">M3</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"grey40"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">M3</span><span class="op">)</span>, colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">df_M3_reduced</span><span class="op">$</span><span class="va">r</span>, <span class="va">df_M3_reduced</span><span class="op">$</span><span class="va">g</span>, <span class="va">df_M3_reduced</span><span class="op">$</span><span class="va">b</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_smooth</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">M3</span><span class="op">)</span>, 
+              method <span class="op">=</span> <span class="st">"loess"</span>, span <span class="op">=</span> <span class="fl">0.2</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Time (s)"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">542.6735</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">500</span>, <span class="fl">50</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Colourfulness"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">130</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">33</span>, <span class="fl">45</span>, <span class="fl">59</span>, <span class="fl">82</span>, <span class="fl">109</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>,
+        panel.grid.minor.y <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-colourfulness-plot-reduced"></span>
+<img src="_main_files/figure-html/colour-colourfulness-plot-reduced-1.png" alt="The temporal evolution of colourfulness in *Fuelled* using the reduced data set." width="90%"><p class="caption">
+Figure 5.7: The temporal evolution of colourfulness in <em>Fuelled</em> using the reduced data set.
+</p>
+</div>
+<p>Clearly the outcome of this process depends on the value of <code>t</code>. We can increase the number of frames picked by lowering the threshold or reduce the sample more drastically by increasing the value of <code>t</code>. The value of <code>t</code> used will depend on the data and what we wish to achieve with the analysis, and some experimentation will be necessary to find a good value. Research on <a href="https://en.wikipedia.org/wiki/Just-noticeable_difference">just noticeable differences</a> in colourfulness may inform the selection of a threshold <span class="citation">(<a href="references.html#ref-henry2002jndi" role="doc-biblioref">Henry, 2002</a>)</span>.</p>
+<p>The colourfulness of <em>Fuelled</em> increases over the course the film. Until the colourfulness peaks with the explosion at the gas station, which fills the screen with bright yellows, the <span class="math inline">\(M_{3}\)</span> metric typically lies between 15 (slightly colourful) and 82 (highly colourful). After the explosion, as the fire burns giving a yellow and orange background to shots, the range of the colourfulness has decreased to between 33 (moderately colourful) and 82. After Cathy calls 911, the camera pulls back filling the frame with the very dark blues of the forest at night as the credits roll. At this point the colourfulness of a frame slowly drops until the film ends.</p>
+</div>
+<div id="palette" class="section level3" number="5.3.3">
+<h3>
+<span class="header-section-number">5.3.3</span> Constructing a palette<a class="anchor" aria-label="anchor" href="#palette"><i class="fas fa-link"></i></a>
+</h3>
+<p>Cluster analysis of colour data is an unsupervised machine learning problem that partitions a set of <em>n</em> pixels into <em>k</em> groups, with each group being represented by the exemplar of its centroid. The collection of <em>k</em> centroids comprises the palette for a film.</p>
+<p>We can construct a palette using <a href="https://en.wikipedia.org/wiki/K-medoids">Partitioning About Medoids</a> (PAM), which is a <em>k</em>-medoids clustering algorithm, generating <em>k</em> clusters represented by their <a href="https://en.wikipedia.org/wiki/Medoid">medoids</a>. As a cluster exemplar, a medoid is restricted to being a member of the data set from which it is drawn. Other commonly used clustering methods, such as <a href="https://en.wikipedia.org/wiki/K-means_clustering"><em>k</em>-means clustering</a>, do not enforce this restriction on <a href="https://en.wikipedia.org/wiki/Centroid">centroids</a> and so the exemplar colour of a cluster may not, in fact, exist in the data set extracted from a film. However, a limitation of PAM is that is a much slower method of performing cluster analysis than <em>k</em>-means cluster analysis. This can be over come using the Clustering Large Applications (CLARA) algorithm <span class="citation">(<a href="references.html#ref-kaufman2009fgid" role="doc-biblioref">Kaufman &amp; Rousseeuw, 2009</a>)</span>, which draws multiple random samples of size <em>m</em> from a data set, applies PAM to each sample to find an optimal set of medoids based on some distance function (e.g. the Euclidean or <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan</a> distance), and keeps the clustering solution that has the smallest dissimilarity from the whole data set.</p>
+<p>We will implement PAM using the <code>pamk()</code> function from the fpc package, which will allow us to search across a range of possible values of <em>k</em> to find the optimal result.</p>
+<p>Clustering colour data is best performed using a perceptually uniform colour space and so we will use the CIELAB colour space. However, the attributes of the CIELAB colour space have different ranges (L* = <span class="math inline">\([0-100\%]\)</span>, a* = b* = <span class="math inline">\([-128, 127]\)</span>), and so we need to scale the data using the <a href="https://en.wikipedia.org/wiki/Standard_score"><em>z</em>-score transformation</a>, by subtracting the mean (<span class="math inline">\(\mu\)</span>) from each data point and dividing by the standard deviation (<span class="math inline">\(\sigma\)</span>):</p>
+<p><span class="math display">\[
+z = \frac{x - \mu}{\sigma} ,
+\]</span></p>
+<p>so that all the attributes have a mean of 0 and a standard deviation of 1. This is easily done using R’s <code><a href="https://rdrr.io/r/base/scale.html">scale()</a></code> function.</p>
+<p>Before we apply the scaling, we need to get the mean and standard deviation of each attribute as we will need these later to re-scale the results of the cluster analysis.</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get the mean and standard deviation of each attribute for re-scaling</span>
+<span class="va">L_mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">L</span><span class="op">)</span>; <span class="va">L_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">L</span><span class="op">)</span>
+<span class="va">A_mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">A</span><span class="op">)</span>; <span class="va">A_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">A</span><span class="op">)</span>
+<span class="va">B_mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">B</span><span class="op">)</span>; <span class="va">B_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">B</span><span class="op">)</span>
+
+<span class="co"># Select the L, A, and B columns and scale the data</span>
+<span class="va">df_lab_scaled</span> <span class="op">&lt;-</span> <span class="va">df_average_colours</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">L</span>, <span class="va">A</span>, <span class="va">B</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">scale</span></code></pre></div>
+<p>Next, we pass the scaled data to the <code>pamk()</code> function and set the arguments we wish to use for the cluster analysis.</p>
+<p>The <code>krange</code> argument sets the range of values of <em>k</em> across which PAM will search for an optimal result. Note that changing the range may change the outcome of the cluster analysis (i.e., <em>k</em> will only be optimal for those values of <em>k</em> considered by the algorithm). Plotting the density of the data points in the CIELAB colour space before deciding on the range for <em>k</em> is a good way to estimate a reasonable range of possible values. Based on the density plot in Figure <a href="colour.html#fig:colour-average-plot-lab">5.4</a>.B, there appears to be a relatively small number of clusters: there are at least five clusters and certainly no more than fifteen, so we will set that as our range of possible values for <em>k</em>. The optimal value of <em>k</em> is selected based on some criterion, which in this will be the <a href="https://en.wikipedia.org/wiki/Silhouette_(clustering)">average silhouette width</a> (<code>asw</code>).</p>
+<p>We’ve already scaled the data so we can set <code>scaling = FALSE</code>. We need to set <code>usepam = FALSE</code> for <code>pamk()</code> to employ the CLARA algorithm, and we will draw 100 samples of 200 data points each. The CIELAB colour space is perceptually uniform with the distance between colours proportional to the Euclidean distance between them, and so we will use the Euclidean distance as the distance metric.</p>
+<p>Once we’ve run the algorithm, we can access the number of clusters (<code>nc</code>) to get the optimal value of <em>k</em> returned.</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">fpc</span><span class="op">)</span>
+
+<span class="va">clara_res</span> <span class="op">&lt;-</span> <span class="fu">pamk</span><span class="op">(</span><span class="va">df_lab_scaled</span>, krange <span class="op">=</span> <span class="fl">5</span><span class="op">:</span><span class="fl">15</span>, criterion <span class="op">=</span> <span class="st">"asw"</span>, scaling <span class="op">=</span> <span class="cn">FALSE</span>,
+                  usepam <span class="op">=</span> <span class="cn">FALSE</span>, samples <span class="op">=</span> <span class="fl">100</span>, sampsize <span class="op">=</span> <span class="fl">200</span>, metric <span class="op">=</span> <span class="st">"euclidean"</span><span class="op">)</span>
+
+<span class="co"># Get the optimal number of clusters</span>
+<span class="va">clara_res</span><span class="op">$</span><span class="va">nc</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## [1] 9</span></code></pre></div>
+<p>The results of the cluster analysis show us that nine clusters is optimal and we can add a column to the original <code>df_average_colours</code> data frame with the assigned cluster for each data point.</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get the assigned cluster of each data point and add to the data frame</span>
+<span class="va">df_average_colours</span> <span class="op">&lt;-</span> <span class="va">df_average_colours</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>cluster <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Cluster "</span>,
+                                            <span class="va">clara_res</span><span class="op">$</span><span class="va">pamobject</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Figure <a href="colour.html#fig:colour-palette-plot-clusters">5.8</a> plots the individual clusters and shows that, overall, there is good discrimination between the average frame colours when applying the CLARA algorithm to partitioning our data.</p>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the individual clusters in the CIELAB colour space -</span>
+<span class="co"># note that it is necessary to set the colour command *outside* the </span>
+<span class="co"># aesthetics of the plot and and explicitly call them as columns </span>
+<span class="co"># from the data frame using the $ operator</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_average_colours</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">A</span>, y <span class="op">=</span> <span class="va">B</span>, group <span class="op">=</span> <span class="va">cluster</span><span class="op">)</span>, 
+             colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">r</span>, 
+                          <span class="va">df_average_colours</span><span class="op">$</span><span class="va">g</span>, 
+                          <span class="va">df_average_colours</span><span class="op">$</span><span class="va">b</span>, 
+                          maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">cluster</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Green - Red (a*)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Blue - Yellow (b*)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">guides</span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>strip.text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-palette-plot-clusters"></span>
+<img src="_main_files/figure-html/colour-palette-plot-clusters-1.png" alt="Clusters of average frame colours in *Fuelled* produced using *k*-mediods clustering" width="90%"><p class="caption">
+Figure 5.8: Clusters of average frame colours in <em>Fuelled</em> produced using <em>k</em>-mediods clustering
+</p>
+</div>
+<p>To construct a palette for <em>Fuelled</em>, we need to get the medoids and re-scale them by reversing the <em>z</em>-score transformation so that they now represent colours in the CIELAB colour space and convert these to RGB values for plotting. We also need to access the size of each cluster so that we can calculate the percentage of the 1085 sampled frames in each cluster.</p>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get the medoids of the optimal solution returned by CLARA</span>
+<span class="va">medoids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">clara_res</span><span class="op">$</span><span class="va">pamobject</span><span class="op">$</span><span class="va">medoids</span><span class="op">)</span>
+
+<span class="co"># Create a data frame including the number of data points in each cluster, </span>
+<span class="co"># the percentage of data points in each cluster (percent), </span>
+<span class="co"># and the re-scaled medoids in the CIELAB colour space</span>
+<span class="va">df_medoids_rescaled</span> <span class="op">&lt;-</span> <span class="va">medoids</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>cluster <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">9</span>,
+         <span class="co"># The number of data points in each cluster</span>
+         size <span class="op">=</span> <span class="va">clara_res</span><span class="op">$</span><span class="va">pamobject</span><span class="op">$</span><span class="va">clusinfo</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, 
+         <span class="co"># The percentage of data points in each cluster</span>
+         percent <span class="op">=</span> <span class="fl">100</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">size</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">size</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>, 
+         L <span class="op">=</span> <span class="op">(</span><span class="va">L</span> <span class="op">*</span> <span class="va">L_sd</span><span class="op">)</span> <span class="op">+</span> <span class="va">L_mu</span>,  <span class="co"># Re-scale the attributes using the mean and</span>
+         A <span class="op">=</span> <span class="op">(</span><span class="va">A</span> <span class="op">*</span> <span class="va">A_sd</span><span class="op">)</span> <span class="op">+</span> <span class="va">A_mu</span>,  <span class="co"># standard deviation values we collected earlier</span>
+         B <span class="op">=</span> <span class="op">(</span><span class="va">B</span> <span class="op">*</span> <span class="va">B_sd</span><span class="op">)</span> <span class="op">+</span> <span class="va">B_mu</span><span class="op">)</span>
+
+<span class="co"># Convert L*a*b* values to RGB for plotting and combine with the medoids_rescaled data frame</span>
+<span class="va">rgbPalette</span> <span class="op">&lt;-</span> <span class="fu">convert_colour</span><span class="op">(</span><span class="va">df_medoids_rescaled</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>,  from <span class="op">=</span> <span class="st">"lab"</span>, to <span class="op">=</span> <span class="st">"rgb"</span><span class="op">)</span>
+<span class="va">df_medoids_rescaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">df_medoids_rescaled</span>, <span class="va">rgbPalette</span><span class="op">)</span>
+
+<span class="va">df_medoids_rescaled</span> <span class="op">&lt;-</span> <span class="va">df_medoids_rescaled</span> <span class="op">%&gt;%</span>
+  <span class="fu">relocate</span><span class="op">(</span><span class="va">cluster</span>, .before <span class="op">=</span> <span class="va">L</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">relocate</span><span class="op">(</span><span class="va">size</span>, .before <span class="op">=</span> <span class="va">L</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu">relocate</span><span class="op">(</span><span class="va">percent</span>, .before <span class="op">=</span> <span class="va">L</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">percent</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-22a777c6a878c4fd22ff" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-22a777c6a878c4fd22ff">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[3,4,6,1,5,8,7,9,2],[220,168,165,154,117,115,67,46,33],["20.3","15.5","15.2","14.2","10.8","10.6","6.2","4.2","3.0"],["24.98","9.74","26.50","13.88","55.33","16.79","44.49","57.76","38.00"],["25.61","-1.58","-5.82","16.33","37.29","11.08","-9.00","17.11","31.84"],["8.09","-2.90","-0.80","-27.37","23.27","5.13","-3.99","43.08","-10.51"],["96.98","22.46","51.99","33.68","201.13","58.69","84.12","186.02","130.72"],["41.98","27.76","65.36","29.04","104.50","35.28","109.89","125.95","68.72"],["48.16","30.76","63.71","73.98","94.25","34.54","111.50","62.57","107.10"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>cluster<\/th>\n      <th>size<\/th>\n      <th>percent<\/th>\n      <th>L<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","autoWidth":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"className":"dt-center","targets":0}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'10pt'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
+<caption>
+<span id="tab:colour-colourfulness-table-medoids">Table 5.4: </span>The number of frames in <em>Fuelled</em> associated with each medoid after partioning about medoids (k = 9). ☝
+</caption>
+</table></div>
+<p>Using the treemapify package to extend the functionality of ggplot2, we can visualise the palette we have created as a treemap (Figure <a href="colour.html#fig:colour-palette-plot-treemap">5.9</a>), with the size of each tile proportional to the percentage of pixels in each cluster.</p>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">treemapify</span><span class="op">)</span>
+
+<span class="co"># Draw a treemap of the palette using treempify::geom_treemap()</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_medoids_rescaled</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_treemap</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>area <span class="op">=</span> <span class="va">percent</span><span class="op">)</span>, 
+               fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">df_medoids_rescaled</span><span class="op">$</span><span class="va">r</span>, <span class="va">df_medoids_rescaled</span><span class="op">$</span><span class="va">g</span>, 
+                          <span class="va">df_medoids_rescaled</span><span class="op">$</span><span class="va">b</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-palette-plot-treemap"></span>
+<img src="_main_files/figure-html/colour-palette-plot-treemap-1.png" alt="A treemap of the palette for *Fuelled*" width="90%"><p class="caption">
+Figure 5.9: A treemap of the palette for <em>Fuelled</em>
+</p>
+</div>
+<p>Cluster 2 comprises the dark moderate pink frames of the opening scene of the film, in which Cathy remembers her time with husband. Frames in cluster 1 are the very dark blues of shots in which Cathy’s car runs out of fuel. Clusters 3 and 8 are the dark saturated reds of the forest, while clusters 6 and 7 are the dark grayish cyans of the gas station. Cluster 9 includes those frames showing the explosion of the gas station. Cluster 5 are the moderate red frames sampled from shots in which Cathy remembers her life with her husband. Cluster 4 includes the blacks of frames used to separate scenes, such as when Cathy opens and closes her eyes, and the closing credits over shots of the forest at night.</p>
+</div>
+<div id="barcode" class="section level3" number="5.3.4">
+<h3>
+<span class="header-section-number">5.3.4</span> Barcode<a class="anchor" aria-label="anchor" href="#barcode"><i class="fas fa-link"></i></a>
+</h3>
+<p>As noted above, a movie barcode is a commonly used method by which the sample-and-reduce approach is implemented to provide a fingerprint of the chromatic structure of a film <span class="citation">(<a href="references.html#ref-Burghardt2018smae" role="doc-biblioref">Burghardt et al., 2018</a>)</span>. Movie barcodes have been used to compare different versions of a film and to assess the impact of the restoration practices on the colour of a film <span class="citation">(<a href="references.html#ref-plutino2021mbas" role="doc-biblioref">Plutino et al., 2021</a>; <a href="references.html#ref-stutz2021caoc" role="doc-biblioref">Stutz, 2021</a>)</span>. Because they arrange the colours in a film by time, they are useful for segmenting films and structural analysis <span class="citation">(<a href="references.html#ref-bhardwaj2020sosg" role="doc-biblioref">Bhardwaj, 2020</a>; <a href="references.html#ref-hohman2017avoi" role="doc-biblioref">Hohman et al., 2017</a>; <a href="references.html#ref-isola2015lvgf" role="doc-biblioref">Isola et al., 2015</a>)</span>.</p>
+<p>As a research method, movie barcodes have their limitations. While they are useful at the large scale to see the overall chromatic structure of a film, they do not support analysis at the micro-level because of a loss of granuality due to the averaging process <span class="citation">(<a href="references.html#ref-halter2019vava" role="doc-biblioref">Halter et al., 2019</a>)</span>. Barcodes are useful descriptive tools but lack explanatory power in and of themselves <span class="citation">(<a href="references.html#ref-kuhn2012lsva" role="doc-biblioref">Kuhn et al., 2012</a>)</span>.</p>
+<p>The following code uses the average frame colours we calculated earlier to create a barcode for <em>Fuelled</em> (Figure <a href="colour.html#fig:colour-barcode-plot-barcode">5.10</a>) using <code>geom_rect()</code>. As we sampled frames from the film at a rate of 2 fps we need to subtract the reciprocal of the sampling rate from the time stamps of each frame – i.e., <span class="math inline">\(\frac{1}{2} = 0.5\)</span> seconds – to set the minimum bound for each column in the plot: <code>xmin = time - 0.5</code>.</p>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Create the barcode plot</span>
+<span class="co"># Note that it is necessary to set the fill command *outside* the </span>
+<span class="co"># aesthetics of the plot and to explicitly call them as columns </span>
+<span class="co"># from the data frame using the $ operator</span>
+<span class="va">fuelled_barcode</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_average_colours</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_rect</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">time</span> <span class="op">-</span> <span class="fl">0.5</span>, xmax <span class="op">=</span> <span class="va">time</span>, ymin <span class="op">=</span> <span class="fl">0</span>, ymax <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, 
+                fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">r</span>, 
+                           <span class="va">df_average_colours</span><span class="op">$</span><span class="va">g</span>, 
+                           <span class="va">df_average_colours</span><span class="op">$</span><span class="va">b</span>, 
+                           maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="co"># don't display a legend</span>
+
+<span class="co"># Set the theme to theme_void to display only the barcode</span>
+<span class="va">fuelled_barcode</span> <span class="op">+</span> <span class="fu">theme_void</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-barcode-plot-barcode"></span>
+<img src="_main_files/figure-html/colour-barcode-plot-barcode-1.png" alt="The average colour of frames sampled from *Fuelled* represented as a barcode." width="90%"><p class="caption">
+Figure 5.10: The average colour of frames sampled from <em>Fuelled</em> represented as a barcode.
+</p>
+</div>
+<p>We can overlay the barcode with trendlines of different colour attributes in order to see how they evolve of the running time of a film, with the barcode providing a reference against which those attributes can be interpreted.</p>
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fuelled_barcode_lightness</span> <span class="op">&lt;-</span> <span class="va">fuelled_barcode</span> <span class="op">+</span>  
+  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">L</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"smooth"</span>, method <span class="op">=</span> <span class="st">"loess"</span>, 
+            span <span class="op">=</span> <span class="fl">0.30</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">time</span><span class="op">)</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">550</span>, <span class="fl">50</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span>,
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>, labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Lightness"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>margin <span class="op">=</span> <span class="fu">margin</span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">fuelled_barcode_chroma</span> <span class="op">&lt;-</span> <span class="va">fuelled_barcode</span> <span class="op">+</span>  
+  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">C</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"smooth"</span>, method <span class="op">=</span> <span class="st">"loess"</span>, 
+            span <span class="op">=</span> <span class="fl">0.30</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">time</span><span class="op">)</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">550</span>, <span class="fl">50</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span>,
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>, labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Chroma"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>margin <span class="op">=</span> <span class="fu">margin</span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">fuelled_barcode_saturation</span> <span class="op">&lt;-</span> <span class="va">fuelled_barcode</span> <span class="op">+</span>  
+  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">S</span><span class="op">)</span>, stat <span class="op">=</span> <span class="st">"smooth"</span>, method <span class="op">=</span> <span class="st">"loess"</span>, 
+            span <span class="op">=</span> <span class="fl">0.30</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"white"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Time (s)"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">df_average_colours</span><span class="op">$</span><span class="va">time</span><span class="op">)</span><span class="op">)</span>, 
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">550</span>, <span class="fl">50</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="cn">NULL</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span>,
+                     breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">25</span><span class="op">)</span>, labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"%"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Saturation"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>margin <span class="op">=</span> <span class="fu">margin</span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Combine into a single figure</span>
+<span class="va">fuelled_barcodes</span> <span class="op">&lt;-</span> <span class="fu">ggarrange</span><span class="op">(</span><span class="va">fuelled_barcode_lightness</span>, <span class="va">fuelled_barcode_chroma</span>,
+                              <span class="va">fuelled_barcode_saturation</span>,
+                              nrow <span class="op">=</span> <span class="fl">3</span>, align <span class="op">=</span> <span class="st">"v"</span><span class="op">)</span>
+
+<span class="co"># Call the figure</span>
+<span class="va">fuelled_barcodes</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:colour-barcode-plot-barcodes"></span>
+<img src="_main_files/figure-html/colour-barcode-plot-barcodes-1.png" alt="Colour attributes of *Fuelled* against time plotted over the movie barcode." width="90%"><p class="caption">
+Figure 5.11: Colour attributes of <em>Fuelled</em> against time plotted over the movie barcode.
+</p>
+</div>
+<p>Figure <a href="colour.html#fig:colour-barcode-plot-barcodes">5.11</a> plots loess trendlines for lightness, chroma, and saturation for <em>Fuelled</em> over the barcode of the average frame colours. Based on these trendlines we can segment the film into four sections. The first section runs from the start of the film (0.0s) to the point where Cathy realises she has no money to buy gas (80s). As the lightness drops and rises as we move from the aftermath of the murder to the forest and then into the flashback, the chroma remains constant and the saturation increases as the chroma comes to play a larger role in the colour experience of the viewer. From 80 seconds to 150s, when Cathy steals gas, the chroma and saturation drop while the lightness increases. During the third section, during the conflict with the gas station owner from 150s until the moment Cathy wakes up after the explosion of the gas station (300s), the lightness remains constant while the chroma and saturation increases. From 300 seconds, the lightness and chroma trendlines follow the same downward trend as Cathy sees the killer in herself. Consequently, the saturation does not begin to fall away at this point, peaking at 340s when we cut to the interior of the car and Cathy comes to recognise what she has become and remains constant until 450 seconds, when Cathy calls 911 to surrender herself to the police.</p>
+<p>Figure <a href="colour.html#fig:colour-barcode-plot-barcodes">5.11</a> challenges our sense of colour as a single object and shows that we need to consider each of the attributes of a film’s colour individually. Analysing the different components <em>Fuelled</em> we see that change points in the trendlines of the lightness and chroma tend to occur with narrative events. This is also true of the saturation when the lightness and chroma do not have the same trends and the saturation tracks the chroma. When lightness and chroma have the same trend in the final section of the film, the saturation peaks and drops away with changes in emotion as Cathy reassesses what her life has become.</p>
+</div>
+</div>
+<div id="summary-3" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Summary<a class="anchor" aria-label="anchor" href="#summary-3"><i class="fas fa-link"></i></a>
+</h2>
+<p>Colour is a rich source information about many different aspects of a film’s form and style, but before we proceed with any colour analysis it is necessary to reduce the data points we are working with to a manageable number. In this chapter we have applied a simple approach to the sample-and-reduce methodology used by digital humanists to explore colour in the cinema, sampling frames at even points from a film and calculating the average colour of those frames. This allowed us to construct a data set that was representative of <em>Fuelled</em> and to explore different attributes of this film’s use of colour. We have seen that by applying the <code>frame_picker()</code> function and cluster analysis to our data set we can get a good understanding of the colour in a film from a set of frames representing a small proportion of the total number of frames available and can describe the colours of a film using a small set of numbers.</p>
+
+</div>
+</div>
+<script>
+// Get the modal
+const modal = document.getElementById('myModal');
+const modalImg = document.getElementById("img01");
+const captionText = document.getElementById("caption");
+
+var img = document.querySelectorAll('.zooom');
+    
+for (var i=0; i<img.length; i++){
+    
+    img[i].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    modalImg.alt = this.alt;
+    captionText.innerHTML = this.alt;
+};
+     
+}
+
+// When the user clicks on <span> (x), close the modal
+modal.onclick = function() {
+    img01.className += " out";
+    setTimeout(function() {
+       modal.style.display = "none";
+       img01.className = "modal-content";
+     }, 400);
+    
+ };
+ </script><div class="chapter-nav">
+<div class="prev"><a href="audio.html"><span class="header-section-number">4</span> Analysing film audio</a></div>
+<div class="next"><a href="editingI.html"><span class="header-section-number">6</span> Analysing film editing I</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#colour"><span class="header-section-number">5</span> Analysing film colour</a></li>
+<li>
+<a class="nav-link" href="#colour-models-and-spaces"><span class="header-section-number">5.1</span> Colour models and spaces</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rgb"><span class="header-section-number">5.1.1</span> RGB</a></li>
+<li><a class="nav-link" href="#cielab"><span class="header-section-number">5.1.2</span> CIELAB</a></li>
+<li><a class="nav-link" href="#lchab"><span class="header-section-number">5.1.3</span> LCH(ab)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#set-up-the-project"><span class="header-section-number">5.2</span> Set up the project</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#create-the-project-folder"><span class="header-section-number">5.2.1</span> Create the project folder</a></li>
+<li><a class="nav-link" href="#packages-2"><span class="header-section-number">5.2.2</span> Packages</a></li>
+<li><a class="nav-link" href="#fuelled"><span class="header-section-number">5.2.3</span> Fuelled</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#analysing-fuelled"><span class="header-section-number">5.3</span> Analysing Fuelled</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-average-colour-of-a-frame"><span class="header-section-number">5.3.1</span> The average colour of a frame</a></li>
+<li><a class="nav-link" href="#colourfulness"><span class="header-section-number">5.3.2</span> Colourfulness</a></li>
+<li><a class="nav-link" href="#palette"><span class="header-section-number">5.3.3</span> Constructing a palette</a></li>
+<li><a class="nav-link" href="#barcode"><span class="header-section-number">5.3.4</span> Barcode</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#summary-3"><span class="header-section-number">5.4</span> Summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DrNickRedfern/CFA-with-R/blob/main/05-Colour.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DrNickRedfern/CFA-with-R/edit/main/05-Colour.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 13 September 2022.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

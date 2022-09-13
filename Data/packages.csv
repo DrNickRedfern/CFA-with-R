@@ -1,0 +1,64 @@
+chapter,Package,Application,Reference
+audio,tuneR,Import and process audio files,@R-tuneR
+audio,seewave,Analyse audio files,@R-seewave
+audio,tidyverse,Data wrangling and visualisation,@wickham2019wttt
+audio,here,Use relative paths to access data and save outputs,@R-here
+audio,av,Perform operations on video files,@R-av
+audio,viridis,Accessible colour palettes,@R-viridis
+audio,pacman,Installs and loads R packages,@R-pacman
+categorical,tidyverse,Data wrangling and visualisation,@wickham2019wttt
+categorical,here,Use relative paths to access data and save outputs,@R-here
+categorical,scales,Format scales when plotting,@R-scales
+categorical,pacman,Installs and loads R packages,@R-pacman
+categorical,ggpubr,Combine plots into a single figure,@R-ggpubr
+categorical,entropy,Calculate the entropy of discrete variables,@R-entropy
+categorical,viridis,Accessible colour palettes,@R-viridis
+categorical,circlize,Produce chord diagrams to visual state transitions,@R-circlize
+categorical,markovchain,Calculate transition matrices Markov chains,@spedicato2017dtmc
+categorical,FactoMineR,Perform multiple correspondence analysis on catgeorical data,@le2008fapf
+categorical,ggrepel,Format labels when plotting,@R-ggrepel
+categorical,plotly,Create interactive data visualisations,@R-plotly
+categorical,withr,Temporarily modify R's global state,@R-withr
+categorical,GDAtools,Plot the outcomes of multiple correspondence analysis,@R-GDAtools
+categorical,DescTools,Calcualte the mode of a categorical variable,@R-DescTools
+colour,pacman,Installs and loads R packages,@R-pacman
+colour,here,Use relative paths to access data and save outputs,@R-here
+colour,tidyverse,Data wrangling and visualisation,@wickham2019wttt
+colour,farver,Convert between different colour spaces,@R-farver
+colour,imager,Image loading and data extraction,@R-imager
+colour,devtools,Load functions directly from GitHub,@R-devtools
+colour,ggpubr,Combine plots into a single figure,@R-ggpubr
+colour,treemapify,Data visualisation using treemaps,@R-treemapify
+colour,av,Perform operations on video files,@R-av
+colour,fpc,Perform cluster analysis ,@R-fpc
+colour,viridis,Accessible colour palettes,@R-viridis
+editing_I,pacman,Installs and loads R packages,@R-pacman
+editing_I,here,Use relative paths to access data and save outputs,@R-here
+editing_I,tidyverse,Data wrangling and visualisation,@wickham2019wttt
+editing_I,ggpubr,Combine plots into a single figure,@R-ggpubr
+editing_I,robustbase,Calculate robust summary statistics,@R-robustbase
+editing_I,plotly,Create interactive data visualisations,@R-plotly
+editing_I,Hmisc,Calculate the Harrell-Davis quantile estimator,@R-Hmisc
+editing_I,ggridges,Visualise mutliple densities on a single axis,@R-ggridges
+editing_I,viridis,Accessible colour palettes,@R-viridis
+editing_II,tidyverse,Data wrangling and visualisation,@wickham2019wttt
+editing_II,here,Use relative paths to access data and save outputs,@R-here
+editing_II,ggpubr,Combine plots into a single figure,@R-ggpubr
+editing_II,FactoMineR,Perform multiple correspondence analysis on catgeorical data,@le2008fapf
+editing_II,factoextra,Visualise the results of geometrical data analysis,@R-factoextra
+editing_II,scales,Format scales when plotting,@R-scales
+editing_II,plotly,Create interactive data visualisations,@R-plotly
+editing_II,ggdendro,Visualise hiearchical clustering as a dendrogram,@R-ggdendro
+editing_II,pacman,Installs and loads R packages,@R-pacman
+texts,tidyverse,Data wrangling and visualisation,@wickham2019wttt
+texts,here,Use relative paths to access data and save outputs,@R-here
+texts,syuzhet,Sentiment analysis,@R-subtools
+texts,pacman,Installs and loads R packages,@R-pacman
+texts,srt,Load and format subtitle files,@R-srt
+texts,pheatmap,Visualise a correlation matrix and cluster analysis,@R-pheatmap
+texts,tidytext,Text analysis of data arranged in a tidy format,@slige2016ttma
+texts,sentimentr,Sentiment analysis,@R-sentimentr
+texts,fpc,Perform cluster analysis ,@R-fpc
+texts,lexicon,Sentiment lexicons,@R-lexicon
+texts,viridis,Accessible colour palettes,@R-viridis
+texts,R.utils,Capitalise text,@R-Rutils

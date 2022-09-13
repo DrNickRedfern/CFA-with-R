@@ -1,0 +1,26 @@
+1
+00:01:07,120 --> 00:01:08,440
+<i>Jules Verne once wrote,</i>
+
+2
+00:01:09,040 --> 00:01:11,999
+<i>"Put two ships in the open sea</i>
+
+3
+00:01:12,160 --> 00:01:14,550
+<i>without wind or tide,
+they will come together."</i>
+
+4
+00:01:37,200 --> 00:01:41,274
+<i>That's how my parents met.
+Like two ships destined for each other.</i>
+
+5
+00:01:45,640 --> 00:01:48,039
+<i>We are something
+else. Try Arthur Treacher...</i>
+
+6
+00:01:55,280 --> 00:01:56,280
+It's okay.

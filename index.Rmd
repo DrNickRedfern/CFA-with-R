@@ -1,0 +1,99 @@
+---
+title: "Computational Film Analysis with R"
+author: ["Nick Redfern"]
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+output: 
+  bookdown::bs4_book:
+    repo:
+      base: https://github.com/DrNickRedfern/CFA-with-R
+      branch: main
+    includes:
+      before_body: modal_div.html
+      after_body: modal_script.html
+    pandoc_args: --lua-filter=multiple-bibliographies.lua
+    css: "cfa_book.css"
+    theme:
+      primary: "#277F8E"
+cover-image: images/cover.png
+documentclass: book
+bibliography_research: references.bib
+bibliography_packages: packages.bib
+csl: apa_mod_nr.csl
+link-citations: true
+description: "An introduction to computational analysis of film form and film style with R"
+---
+
+```{r, echo = FALSE}
+options(Encoding = "UTF-8")
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+version <- "version 0.9.000"
+year <- 2022
+```
+
+# Welcome {.unnumbered}
+
+<br>
+
+::: row
+::: col-md-6
+**This is the website for *Computational Film Analysis with R*.** <br> <br> This book is intended to be a first course in the application of computational methods to questions of form and style in the cinema using the R programming language. It aimed at those who have no previous experience of computational film analysis and no prior knowledge of statistics, data science or programming with R is required or assumed. Each chapter discusses the underlying methodological concepts of a range of approaches for analysing sound, colour, editing, shot types, and lexical texts of motion pictures in depth and demonstrates their implementation in R so that after reading this book researchers will be able to design and execute their own computational film analysis research projects. <br> <br> This book includes **interactive content** for the user to explore, including embedded video files, interactive plots, tables, and visualisations. Interactive content is identified by `r emo::ji("point_up")` or `r emo::ji("point_left")`.
+:::
+
+::: col-md-6
+<center>
+
+![](images/cover.png){.cover width="310"}
+
+</center>
+:::
+:::
+
+## About the author {.unnumbered}
+
+My name is Nick Redfern and I have been teaching and researching about film since 2001. I have taught film, media, and television studies at Manchester Metropolitan University, the University of Central Lancashire, and Leeds Trinity University. My work on computational film analysis has been published in the *Journal of Japanese and Korean Cinema*, *Statistica*, the *Journal of Data Science*, *Post Script*, *Digital Scholarship in the Humanities*, *Umanistica Digitale*, *Sound, Music, and the Moving Image*, and *Acta Universitatis Sapientiae, Film and Media Studies*.. You can read more about computational film analysis on my blog <https://computationalfilmanalysis.wordpress.com>.
+
+<a href="https://orcid.org/0000-0002-7821-2404"> <img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID logo" width="16" height="16"/> https://orcid.org/0000-0002-7821-2404</a>
+
+## About this book {.unnumbered}
+
+### Citation {.unnumbered}
+
+To cite this book please use:
+
+- Redfern, Nick (`r year`) *Computational Film Analysis with R* (`r version`). Get a DOI
+
+### License {.unnumbered}
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+<p>
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a>
+
+</p>
+
+The code in this book is made available under an MIT license and is free for you to use in your own research or teaching provided this book is cited as the source.
+
+### Disclaimer {.unnumbered}
+
+This book features embedded video content for the purposes of education and research. No infringement of copyright is intended. The use of embedded video content should not be taken to imply that the producers in any way endorse the content of this book.
+
+## Acknowledgements {.unnumbered}
+
+### Publications {.unnumbered}
+
+This book draws on my research that has been previously published as
+
+- Redfern, N. (2013) Film style and narration in *Rashomon*, *Journal of Japanese and Korean Cinema* 5 (1–2): 21–36. [https://doi.org/10.1080/17564905.2013.10820070](https://doi.org/10.1080/17564905.2013.10820070)
+- Redfern, N. (2014) Comparing the shot length distributions of motion pictures using dominance statistics, *Empirical Studies of the Arts* 32 (2): 257–273. [https://doi.org/10.2190/EM.32.2.g](https://doi.org/10.2190/EM.32.2.g)
+- Redfern, N. (2014) [Quantitative Methods and the Study of Film](https://www.researchgate.net/publication/333641375_Quantitative_methods_and_the_study_of_film), University of Glasgow, 14-15 May 2014. 
+- Redfern, N. (2015) Exploratory data analysis and film form: the editing structure of *Friday the Thirteenth* (1980), *Post Script: Essays in Film and the Humanities* 34 (2-3): 71–83.
+- Redfern, N. (2015) The time contour plot: graphical analysis of a film soundtrack. Sound and the Screen, University of West London, 20 November 2015. [https://doi.org/10.5281/zenodo.6354341](https://doi.org/10.5281/zenodo.6354341)
+- Redfern, N. (2021) Colour palettes in US film trailers: a comparative analysis of movie barcodes, *Umanistica Digitale* 10: 251-270. [http://doi.org/10.6092/issn.2532-8816/12468](http://doi.org/10.6092/issn.2532-8816/12468)
+- Redfern, N. (2022) Computational Analysis of Film Audio, Manchester Metropolitan University, 28 April 2022. [http://doi.org/10.5281/zenodo.6472560](http://doi.org/10.5281/zenodo.6472560)
+- Redfern, N. (2022) Analysing motion picture cutting rates, *Wide Screen* 9 (1): 1-29.
+
+### Code {.unnumbered}
+This book uses css, html, and JavaScript from [CodeConvey](https://codeconvey.com/html-image-zoom-on-click/).

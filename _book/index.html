@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Welcome | Computational Film Analysis with R</title>
+<meta name="author" content="Nick Redfern">
+<meta name="description" content="An introduction to computational analysis of film form and film style with R">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="Welcome | Computational Film Analysis with R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/cover.png">
+<meta property="og:description" content="An introduction to computational analysis of film form and film style with R">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Welcome | Computational Film Analysis with R">
+<meta name="twitter:description" content="An introduction to computational analysis of film form and film style with R">
+<meta name="twitter:image" content="/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.23/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.11.3/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-fixedcolumns-1.11.3/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 2em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="cfa_book.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Film Analysis with R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="" href="CFA.html"><span class="header-section-number">2</span> Computational film analysis</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">3</span> Tools</a></li>
+<li><a class="" href="audio.html"><span class="header-section-number">4</span> Analysing film audio</a></li>
+<li><a class="" href="colour.html"><span class="header-section-number">5</span> Analysing film colour</a></li>
+<li><a class="" href="editingI.html"><span class="header-section-number">6</span> Analysing film editing I</a></li>
+<li><a class="" href="editingII.html"><span class="header-section-number">7</span> Analysing film editing II</a></li>
+<li><a class="" href="categorical.html"><span class="header-section-number">8</span> Analysing shot data</a></li>
+<li><a class="" href="texts.html"><span class="header-section-number">9</span> Analysing lexical texts</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">10</span> References</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="colophon.html">Colophon</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DrNickRedfern/CFA-with-R">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!-- Modal --><div id="myModal" class="modal">
+   <img class="modal-content" id="img01"><div id="caption"></div>
+</div>
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="welcome" class="section level1 unnumbered">
+<h1>Welcome<a class="anchor" aria-label="anchor" href="#welcome"><i class="fas fa-link"></i></a>
+</h1>
+<p><br></p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>This is the website for <em>Computational Film Analysis with R</em>.</strong> <br><br> This book is intended to be a first course in the application of computational methods to questions of form and style in the cinema using the R programming language. It aimed at those who have no previous experience of computational film analysis and no prior knowledge of statistics, data science or programming with R is required or assumed. Each chapter discusses the underlying methodological concepts of a range of approaches for analysing sound, colour, editing, shot types, and lexical texts of motion pictures in depth and demonstrates their implementation in R so that after reading this book researchers will be able to design and execute their own computational film analysis research projects. <br><br> This book includes <strong>interactive content</strong> for the user to explore, including embedded video files, interactive plots, tables, and visualisations. Interactive content is identified by ☝️ or 👈.</p>
+</div>
+<div class="col-md-6">
+<center>
+<div class="inline-figure"><img src="Images/cover.png" class="cover" width="310"></div>
+</center>
+</div>
+</div>
+<div id="about-the-author" class="section level2 unnumbered">
+<h2>About the author<a class="anchor" aria-label="anchor" href="#about-the-author"><i class="fas fa-link"></i></a>
+</h2>
+<p>My name is Nick Redfern and I have been teaching and researching about film since 2001. I have taught film, media, and television studies at Manchester Metropolitan University, the University of Central Lancashire, and Leeds Trinity University. My work on computational film analysis has been published in the <em>Journal of Japanese and Korean Cinema</em>, <em>Statistica</em>, the <em>Journal of Data Science</em>, <em>Post Script</em>, <em>Digital Scholarship in the Humanities</em>, <em>Umanistica Digitale</em>, <em>Sound, Music, and the Moving Image</em>, and <em>Acta Universitatis Sapientiae, Film and Media Studies</em>.. You can read more about computational film analysis on my blog <a href="https://computationalfilmanalysis.wordpress.com" class="uri">https://computationalfilmanalysis.wordpress.com</a>.</p>
+<p><a href="https://orcid.org/0000-0002-7821-2404"> <img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID logo" width="16" height="16"> https://orcid.org/0000-0002-7821-2404</a></p>
+</div>
+<div id="about-this-book" class="section level2 unnumbered">
+<h2>About this book<a class="anchor" aria-label="anchor" href="#about-this-book"><i class="fas fa-link"></i></a>
+</h2>
+<div id="citation" class="section level3 unnumbered">
+<h3>Citation<a class="anchor" aria-label="anchor" href="#citation"><i class="fas fa-link"></i></a>
+</h3>
+<p>To cite this book please use:</p>
+<ul>
+<li>Redfern, Nick (2022) <em>Computational Film Analysis with R</em> (version 0.9.000). Get a DOI</li>
+</ul>
+</div>
+<div id="license" class="section level3 unnumbered">
+<h3>License<a class="anchor" aria-label="anchor" href="#license"><i class="fas fa-link"></i></a>
+</h3>
+<p>This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<p>
+</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"></a></p>
+
+<p>The code in this book is made available under an MIT license and is free for you to use in your own research or teaching provided this book is cited as the source.</p>
+</div>
+<div id="disclaimer" class="section level3 unnumbered">
+<h3>Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"><i class="fas fa-link"></i></a>
+</h3>
+<p>This book features embedded video content for the purposes of education and research. No infringement of copyright is intended. The use of embedded video content should not be taken to imply that the producers in any way endorse the content of this book.</p>
+</div>
+</div>
+<div id="acknowledgements" class="section level2 unnumbered">
+<h2>Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"><i class="fas fa-link"></i></a>
+</h2>
+<div id="publications" class="section level3 unnumbered">
+<h3>Publications<a class="anchor" aria-label="anchor" href="#publications"><i class="fas fa-link"></i></a>
+</h3>
+<p>This book draws on my research that has been previously published as</p>
+<ul>
+<li>Redfern, N. (2013) Film style and narration in <em>Rashomon</em>, <em>Journal of Japanese and Korean Cinema</em> 5 (1–2): 21–36. <a href="https://doi.org/10.1080/17564905.2013.10820070">https://doi.org/10.1080/17564905.2013.10820070</a>
+</li>
+<li>Redfern, N. (2014) Comparing the shot length distributions of motion pictures using dominance statistics, <em>Empirical Studies of the Arts</em> 32 (2): 257–273. <a href="https://doi.org/10.2190/EM.32.2.g">https://doi.org/10.2190/EM.32.2.g</a>
+</li>
+<li>Redfern, N. (2014) <a href="https://www.researchgate.net/publication/333641375_Quantitative_methods_and_the_study_of_film">Quantitative Methods and the Study of Film</a>, University of Glasgow, 14-15 May 2014.</li>
+<li>Redfern, N. (2015) Exploratory data analysis and film form: the editing structure of <em>Friday the Thirteenth</em> (1980), <em>Post Script: Essays in Film and the Humanities</em> 34 (2-3): 71–83.</li>
+<li>Redfern, N. (2015) The time contour plot: graphical analysis of a film soundtrack. Sound and the Screen, University of West London, 20 November 2015. <a href="https://doi.org/10.5281/zenodo.6354341">https://doi.org/10.5281/zenodo.6354341</a>
+</li>
+<li>Redfern, N. (2021) Colour palettes in US film trailers: a comparative analysis of movie barcodes, <em>Umanistica Digitale</em> 10: 251-270. <a href="http://doi.org/10.6092/issn.2532-8816/12468">http://doi.org/10.6092/issn.2532-8816/12468</a>
+</li>
+<li>Redfern, N. (2022) Computational Analysis of Film Audio, Manchester Metropolitan University, 28 April 2022. <a href="http://doi.org/10.5281/zenodo.6472560">http://doi.org/10.5281/zenodo.6472560</a>
+</li>
+<li>Redfern, N. (2022) Analysing motion picture cutting rates, <em>Wide Screen</em> 9 (1): 1-29.</li>
+</ul>
+</div>
+<div id="code" class="section level3 unnumbered">
+<h3>Code<a class="anchor" aria-label="anchor" href="#code"><i class="fas fa-link"></i></a>
+</h3>
+<p>This book uses css, html, and JavaScript from <a href="https://codeconvey.com/html-image-zoom-on-click/">CodeConvey</a>.</p>
+
+</div>
+</div>
+</div>
+<script>
+// Get the modal
+const modal = document.getElementById('myModal');
+const modalImg = document.getElementById("img01");
+const captionText = document.getElementById("caption");
+
+var img = document.querySelectorAll('.zooom');
+    
+for (var i=0; i<img.length; i++){
+    
+    img[i].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    modalImg.alt = this.alt;
+    captionText.innerHTML = this.alt;
+};
+     
+}
+
+// When the user clicks on <span> (x), close the modal
+modal.onclick = function() {
+    img01.className += " out";
+    setTimeout(function() {
+       modal.style.display = "none";
+       img01.className = "modal-content";
+     }, 400);
+    
+ };
+ </script><div class="chapter-nav">
+<div class="empty"></div>
+<div class="next"><a href="preface.html"><span class="header-section-number">1</span> Preface</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#welcome">Welcome</a></li>
+<li><a class="nav-link" href="#about-the-author">About the author</a></li>
+<li>
+<a class="nav-link" href="#about-this-book">About this book</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#citation">Citation</a></li>
+<li><a class="nav-link" href="#license">License</a></li>
+<li><a class="nav-link" href="#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#acknowledgements">Acknowledgements</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#publications">Publications</a></li>
+<li><a class="nav-link" href="#code">Code</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DrNickRedfern/CFA-with-R/blob/main/index.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DrNickRedfern/CFA-with-R/edit/main/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 13 September 2022.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

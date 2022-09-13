@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 Analysing film audio | Computational Film Analysis with R</title>
+<meta name="author" content="Nick Redfern">
+<meta name="description" content="In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="4 Analysing film audio | Computational Film Analysis with R">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/cover.png">
+<meta property="og:description" content="In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 Analysing film audio | Computational Film Analysis with R">
+<meta name="twitter:description" content="In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of...">
+<meta name="twitter:image" content="/images/cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.23/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.11.3/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-fixedcolumns-1.11.3/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.0/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 2em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="cfa_book.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Computational Film Analysis with R</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="preface.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="" href="CFA.html"><span class="header-section-number">2</span> Computational film analysis</a></li>
+<li><a class="" href="tools.html"><span class="header-section-number">3</span> Tools</a></li>
+<li><a class="active" href="audio.html"><span class="header-section-number">4</span> Analysing film audio</a></li>
+<li><a class="" href="colour.html"><span class="header-section-number">5</span> Analysing film colour</a></li>
+<li><a class="" href="editingI.html"><span class="header-section-number">6</span> Analysing film editing I</a></li>
+<li><a class="" href="editingII.html"><span class="header-section-number">7</span> Analysing film editing II</a></li>
+<li><a class="" href="categorical.html"><span class="header-section-number">8</span> Analysing shot data</a></li>
+<li><a class="" href="texts.html"><span class="header-section-number">9</span> Analysing lexical texts</a></li>
+<li><a class="" href="references.html"><span class="header-section-number">10</span> References</a></li>
+<li class="book-part">Appendix</li>
+<li><a class="" href="colophon.html">Colophon</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/DrNickRedfern/CFA-with-R">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!-- Modal --><div id="myModal" class="modal">
+   <img class="modal-content" id="img01"><div id="caption"></div>
+</div>
+<div id="audio" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Analysing film audio<a class="anchor" aria-label="anchor" href="#audio"><i class="fas fa-link"></i></a>
+</h1>
+<p>In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of motion pictures in multiple ways. Soundtracks convey narrative information and emotions; define the mood of a film; shape the pace of action and the tempo of a film; contribute to the realism (or hyperrealism) of a movie; establish location and historical period; carrying thematic content across a film; and organise viewers’ direct experience of a film by smoothing out cuts between shots and enabling transitions between scenes, locations, and different times. Sound adds to the visual content of a scene, often drawing attention to what is important on the screen and can modify how we perceive what we are witnessing on the screen. Audio content is therefore a rich source of information about narrative structure, action, and emotion in motion pictures.</p>
+<p>Timmy Chih-Ting Chen describes <a href="https://en.wikipedia.org/wiki/Sound_design">sound design</a> as an analytic concept that</p>
+<blockquote>
+<p>helps us describe the aesthetic and stylistic construction of all elements of the soundtrack, attending to the sound mix comprising music, voice, sound effects, ambience, and silence in relation to the visual track. As the sonic counterpart to visual design, sound design draws audience’s attention to the neglected aural dimension of cinematic style <span class="citation">(<a href="references.html#ref-chen2016sdxx" role="doc-biblioref">T. C.-T. Chen, 2016</a>: 34)</span>.</p>
+</blockquote>
+<p>Computational analyses of film style have largely ignored the role of sound but there is a wide range of audio analysis tools that are freely available and that could be applied to understanding sound design in the cinema. In this chapter we will cover some methods for analysing sound in the cinema with R.</p>
+<div id="a-brief-digital-audio-primer" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> A (brief) digital audio primer<a class="anchor" aria-label="anchor" href="#a-brief-digital-audio-primer"><i class="fas fa-link"></i></a>
+</h2>
+<p>The vibrations produced by a violin string, your vocal cords, or a speaker cone move the air molecules surrounding them causing the air pressure to rise slightly. In turn, these molecules move the air molecules next to them, which then move the molecules next to them, and so on, propagating the pressure wave through the air. When these vibrations arrive at our aural receptors we experience the <a href="https://en.wikipedia.org/wiki/Longitudinal_wave#Sound_waves">pressure wave as sound</a>.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Waveform"><em>waveform</em></a> is the shape of the graph of the pressure wave comprising an audio signal. The <a href="https://en.wikipedia.org/wiki/Amplitude"><em>amplitude</em></a> of a waveform is the change in pressure from the peak of a wave to its trough. The <em>cycle</em> of a wave is the amount of time taken to go from one amplitude, all the way through a wave’s amplitude changes, to reach the same amplitude again and the <a href="https://en.wikipedia.org/wiki/Frequency"><em>frequency</em></a> of a wave is the number of cycles of a wave per second given in <a href="https://en.wikipedia.org/wiki/Hertz">Hertz</a> (Hz). In Figure <a href="audio.html#fig:audio-primer-plot-waveform">4.1</a>, the waveform goes through four complete cycles in a second and has a frequency of 4 Hz.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-primer-plot-waveform"></span>
+<img src="_main_files/figure-html/audio-primer-plot-waveform-1.png" alt="The waveform of an audio signal with a frequency of 4 Hertz." width="90%"><p class="caption">
+Figure 4.1: The waveform of an audio signal with a frequency of 4 Hertz.
+</p>
+</div>
+<p>A sound wave can be captured, stored on a medium, and reproduced. <a href="https://en.wikipedia.org/wiki/Analog_signal">Analog media</a> represent the waveform of a sound directly as a continuous voltage that its analogous to the sound wave, whereas <a href="https://en.wikipedia.org/wiki/Digital_signal">digital audio</a> is converted by an <a href="https://en.wikipedia.org/wiki/Analog-to-digital_converter">analog-to-digital converter</a> to be represented as discrete numbers (digits) in a computer readable form.</p>
+<p>In digital audio, the amplitude values of a sound’s waveform are captured at evenly spaced time points (Figure <a href="audio.html#fig:audio-primer-plot-digital">4.2</a>). The <a href="https://en.wikipedia.org/wiki/Sampling_(signal_processing)"><em>sampling rate</em></a> is the number of samples per second and is given in Hertz (Hz) or kilohertz (kHz). For film audio, the standard sampling rate is 48000 Hz or 48 kHz. The amplitude of the waveform in a single sample is represented by a number, with the amplitude rounded off to the nearest <a href="https://en.wikipedia.org/wiki/Integer">integer</a>. This process is called <a href="https://en.wikipedia.org/wiki/Quantization_(signal_processing)"><em>quantisation</em></a>. The range of numbers used to represent a sound is determined by its <a href="https://en.wikipedia.org/wiki/Audio_bit_depth"><em>bit depth</em></a>. For example, in 4-bit quantisation of an audio file there are sixteen possible values that can be used to represent the amplitude of a sample because <span class="math inline">\(2^{4}=16\)</span>. For 16-bit quantisation, there are <span class="math inline">\(2^{16} = 65536\)</span> possible values. Conventionally, the possible amplitude values are arranged symmetrically around zero. The <a href="https://en.wikipedia.org/wiki/Bit_rate"><em>bit rate</em></a> is the number of binary digits per second used to represent an audio signal measured in kilobits per second (kbps) and is equal to the product of the sampling rate, the exponent of the bit depth, and the number of <a href="https://www.wildlifeacoustics.com/resources/faqs/what-is-an-audio-channel">channels</a>. For example, a stereo signal with a sampling rate of 48000 Hz and a bit-depth of <span class="math inline">\(2^{16}\)</span> has a bit rate of 48000 × 16 × 2 = 1536000 or 1536 kpbs.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-primer-plot-digital"></span>
+<img src="_main_files/figure-html/audio-primer-plot-digital-1.png" alt="An analogue audio waveform, digitally sampled at 32 kHz with 4-bit quantisation." width="90%"><p class="caption">
+Figure 4.2: An analogue audio waveform, digitally sampled at 32 kHz with 4-bit quantisation.
+</p>
+</div>
+<p>Together the sampling rate, the bit depth, and the bit rate determine the quality of a digital audio recording: increasing either the sample rate or the bit depth will improve the quality of the sound, but this will also increase the size of the audio file. This has implications for the processing power required for analysis of film audio and I discuss the practical considerations involved in the selection of sample rates <a href="audio.html#samprate">below.</a> Throughout this chapter we will use audio with a bit depth of 16-bits, as this provides a good level of <a href="https://en.wikipedia.org/wiki/Dynamic_range#Audio">dynamic range</a> (96 dB) with manageable file sizes.</p>
+</div>
+<div id="setting-up-the-project" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Setting up the project<a class="anchor" aria-label="anchor" href="#setting-up-the-project"><i class="fas fa-link"></i></a>
+</h2>
+<div id="create-the-project" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Create the project<a class="anchor" aria-label="anchor" href="#create-the-project"><i class="fas fa-link"></i></a>
+</h3>
+<p>Having created a project in RStudio from a new directory using the <code>New project...</code> command in the <code>File</code> menu, we can run the script <code>projects_folders.R</code> we created in Chapter <a href="tools.html#tools">3</a> to create the folder structure required for the project.</p>
+</div>
+<div id="packages-1" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Packages<a class="anchor" aria-label="anchor" href="#packages-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>In this project we will use the packages listed in Table <a href="audio.html#tab:audio-packages-table-packages">4.1</a>.</p>
+<div class="inline-table"><table class="table table-striped" style="font-size: 14px; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:audio-packages-table-packages">Table 4.1: </span>Packages for analysing audio data.
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+Package
+</th>
+<th style="text-align:left;">
+Application
+</th>
+<th style="text-align:left;">
+Reference
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+av
+</td>
+<td style="text-align:left;">
+Perform operations on video files
+</td>
+<td style="text-align:left;">
+<span class="citation">Ooms (<a href="references.html#ref-R-av" role="doc-biblioref">2022</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+here
+</td>
+<td style="text-align:left;">
+Use relative paths to access data and save outputs
+</td>
+<td style="text-align:left;">
+<span class="citation">K. Müller (<a href="references.html#ref-R-here" role="doc-biblioref">2020</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pacman
+</td>
+<td style="text-align:left;">
+Installs and loads R packages
+</td>
+<td style="text-align:left;">
+<span class="citation">T. Rinker &amp; Kurkiewicz (<a href="references.html#ref-R-pacman" role="doc-biblioref">2019</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+seewave
+</td>
+<td style="text-align:left;">
+Analyse audio files
+</td>
+<td style="text-align:left;">
+<span class="citation">Sueur et al. (<a href="references.html#ref-R-seewave" role="doc-biblioref">2022</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tidyverse
+</td>
+<td style="text-align:left;">
+Data wrangling and visualisation
+</td>
+<td style="text-align:left;">
+<span class="citation">Wickham et al. (<a href="references.html#ref-wickham2019wttt" role="doc-biblioref">2019</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tuneR
+</td>
+<td style="text-align:left;">
+Import and process audio files
+</td>
+<td style="text-align:left;">
+<span class="citation">Ligges (<a href="references.html#ref-R-tuneR" role="doc-biblioref">2021</a>)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+viridis
+</td>
+<td style="text-align:left;">
+Accessible colour palettes
+</td>
+<td style="text-align:left;">
+<span class="citation">Garnier (<a href="references.html#ref-R-viridis" role="doc-biblioref">2021</a>)</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+<p>There are other packages that we could use to analyse audio files in R, including soundgen <span class="citation">(<a href="references.html#ref-anikin2019saos" role="doc-biblioref">Anikin, 2019</a>)</span> and warbleR <span class="citation">(<a href="references.html#ref-arayasalas2017warp" role="doc-biblioref">Araya‐Salas &amp; Smith‐Vidaurre, 2017</a>)</span>. Some of the functions in these packages make use of the seewave package, while adding new methods for acoustic analysis. warbleR is designed for working with multiple files and could be useful when working with data sets comprising a large number of audio files.</p>
+</div>
+<div id="data" class="section level3" number="4.2.3">
+<h3>
+<span class="header-section-number">4.2.3</span> Data<a class="anchor" aria-label="anchor" href="#data"><i class="fas fa-link"></i></a>
+</h3>
+<p>The <em>Insidious</em> franchise comprises four supernatural horror films released between 2011 and 2018. In this chapter, we will look at the trailers for <em>Insidious</em> (2011), <em>Insidious: Chapter 2</em> (2013), and <em>Insidious: Chapter 3</em> (2015). A fourth film in the franchise, <a href="https://en.wikipedia.org/wiki/Insidious:_The_Last_Key"><em>Insidious: The Last Key</em></a>, was released in 2018. I leave it as an exercise for the reader to analyse the soundtrack of this trailer to see how it compares to the results presented here.</p>
+<p>The first two films in the franchise focus on the Lamberts, a family haunted by malevolent spirits from an astral plane called “The Further”. In the first film, <a href="https://en.wikipedia.org/wiki/Insidious_(film)"><em>Insidious</em></a> (Video <a href="audio.html#vid41">4.1</a>), the son, Dalton, falls into a coma and begins travelling to “The Further” and becomes possessed by the same tortured soul who had possessed his father, Josh, as a young boy. With the help of demonologist Elise Rainier, Josh travels into “The Further” to rescue his son but the spirit of the evil woman who had possessed him as a child returns with him and drives him to kill Elise.</p>
+<hr>
+<span id="vid41"></span>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zuZnRUcoWos" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+</iframe>
+</center>
+<p class="caption">
+Video 4.1: The trailer for <em>Insidious</em> (2011) ☝️
+</p>
+<hr>
+<p>The second film in the franchise, <a href="https://en.wikipedia.org/wiki/Insidious:_Chapter_2"><em>Insidious: Chapter 2</em></a> (Video <a href="audio.html#vid42">4.2</a>), takes place after the events of the first film, with the police investigating the death of Elise and the Lambert family trying to defeat the ghosts seeking to harm them. This time, Dalton enters “The Further” to save his possessed father with the spirit of Elise, destroying the “Woman in White” who has haunted Josh throughout his life.</p>
+<hr>
+<span id="vid42"></span>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fBbi4NeebAk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+</iframe>
+</center>
+<p class="caption">
+Video 4.2: The trailer for <em>Insidious: Chapter 2</em> (2013) ☝️
+</p>
+<hr>
+<p>The third film in the franchise, <a href="https://en.wikipedia.org/wiki/Insidious:_Chapter_3"><em>Insidious: Chapter 3</em></a> (Video <a href="audio.html#vid43">4.3</a>), is a prequel set seven years before the events of the first two films and centers on teenager Quinn Brenner, who becomes possessed by the “Man Who Can’t Breathe” after trying to contact her dead mother in seance with Elise.</p>
+<hr>
+<span id="vid43"></span>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7DNXUvHm-S8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen data-external="1">
+</iframe>
+</center>
+<p class="caption">
+Video 4.3: The trailer for <em>Insidious: Chapter 3</em> (2015) ☝️
+</p>
+<hr>
+<p>Rather than repeat the process for each trailer, I will illustrate the processing of the audio for the trailer for <em>Insidious: Chapter 3</em> only and only include the ouputs for other trailers once we come to analysing their sound design.</p>
+<div id="extracting-the-audio" class="section level4" number="4.2.3.1">
+<h4>
+<span class="header-section-number">4.2.3.1</span> Extracting the audio<a class="anchor" aria-label="anchor" href="#extracting-the-audio"><i class="fas fa-link"></i></a>
+</h4>
+<p>Having downloaded the trailers as <code>.mp4</code> files from YouTube and placed them in our Data folder, we need to process them to remove any MPAA rating tag screens and to extract the soundtracks as an audio file. This can be done in a variety of ways, including using editing software to trim the video file and export the audio in the required format. Here we will use the av package, which functions as a wrapper for FFmpeg. We can get a summary of the <code>.mp4</code> file we downloaded from YouTube using <code><a href="https://docs.ropensci.org/av/reference/info.html">av::av_media_info()</a></code>.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span>, <span class="va">av</span><span class="op">)</span>
+
+<span class="fu">av_media_info</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.mp4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## $duration</span>
+<span class="co">## [1] 129.7763</span>
+<span class="co">## </span>
+<span class="co">## $video</span>
+<span class="co">##   width height codec frames framerate  format</span>
+<span class="co">## 1  1280    720  h264   3111  23.97602 yuv420p</span>
+<span class="co">## </span>
+<span class="co">## $audio</span>
+<span class="co">##   channels sample_rate codec frames bitrate layout</span>
+<span class="co">## 1        2       44100   aac   5589  125588 stereo</span></code></pre></div>
+<p>From the file info we see that this video file has a soundtrack with a sampling rate of 44.1 kHz, which is not the standard sampling rate for film audio but which is typical for YouTube videos. A version of the soundtrack with a sampling rate of 48 kHz can be downloaded from YouTube using <a href="https://youtube-dl.org">youtube-dl</a> as a <code>.webm</code> file, but here we will proceed with the version of the soundtrack that we have to hand. The impact of sampling rates on the analysis is discussed <a href="audio.html#samprate">below</a>.</p>
+<p>To extract the audio from the <code>.mp4</code> file we will use <code><a href="https://docs.ropensci.org/av/reference/encoding.html">av::av_audio_convert()</a></code> to create a <code>.wav</code> file that we will write to our Data folder. At the same time we will trim the first seven seconds of the trailer by setting <code>start_time = 7</code>. This section of the <code>.mp4</code> file comprises the <a href="https://screenrant.com/red-band-trailer-meaning-history/">MPAA green band</a> trailer tag screen followed by a black screen with no accompanying audio. Not all trailers will have a tag screen, while the duration of this screen will vary from trailer to trailer. A common practice is to put an announcement title at the beginning of a trailer, essentially trailing the trailer in the same video (see <a href="https://www.youtube.com/watch?v=iKCw-kqo3cs">here</a> for an example), while some YouTube channels will add additional promotional material after a trailer. It is important therefore to check how much material is to be trimmed from the top and tail of trailer before analysis.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">av_audio_convert</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.mp4"</span><span class="op">)</span>, 
+                 output <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span>, 
+                 start_time <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
+<p>One consequence of extracting the audio in this way is that the timings of the will be different from the original trailer on YouTube. This needs to be taken into account when associating events in the trailer with features we have identified through analysis.</p>
+</div>
+<div id="loading-and-pre-processing-an-audio-file" class="section level4" number="4.2.3.2">
+<h4>
+<span class="header-section-number">4.2.3.2</span> Loading and pre-processing an audio file<a class="anchor" aria-label="anchor" href="#loading-and-pre-processing-an-audio-file"><i class="fas fa-link"></i></a>
+</h4>
+<p>To load an audio file into R we use the tuneR package, which can load <code>.wav</code> and <code>.mp3</code> files using the <code><a href="https://rdrr.io/pkg/tuneR/man/readWave.html">tuneR::readWave()</a></code> and <code><a href="https://rdrr.io/pkg/tuneR/man/readMP3.html">tuneR::readMP3()</a></code> functions, respectively. Audio files loaded using tuneR in this way are <code>Wave-class</code> objects with <a href="https://www.r-bloggers.com/2020/10/attributes-in-r/">attributes</a> that can be accessed using the <code>@</code> operator. We can get a summary of the audio file by calling the object <code>audio</code> we created when we loaded the file. This confirms that the duration of the soundtrack is now seven seconds shorter than the original <code>.mp4</code> file.</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tuneR</span><span class="op">)</span>
+<span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">readWave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Get a summary of the audio object</span>
+<span class="va">audio</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## Wave Object</span>
+<span class="co">##  Number of Samples:      5415936</span>
+<span class="co">##  Duration (seconds):     122.81</span>
+<span class="co">##  Samplingrate (Hertz):   44100</span>
+<span class="co">##  Channels (Mono/Stereo): Stereo</span>
+<span class="co">##  PCM (integer format):   TRUE</span>
+<span class="co">##  Bit (8/16/24/32/64):    16 </span></code></pre></div>
+<p>At this stage, the audio we are working with is stereo. Moving forward, it will be easier to work with a mono audio object as we will have a single audio object to work with (see <a href="audio.html#monovstereo">below</a> for a discussion of using mono versus stereo). To convert a soundtrack from stereo to mono, we use the <code><a href="https://rdrr.io/pkg/tuneR/man/MonoStereo.html">tuneR::mono()</a></code> function, which lets us extract either the left or right channel or average the two channels. We will choose this latter option and set <code>which = "both"</code>. To check <code>audio</code> is now a mono <code>Wave</code> object we can access the <code>stereo</code> attribute, which now returns the value <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">mono</span><span class="op">(</span><span class="va">audio</span>, which <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span>
+
+<span class="co"># Check that audio is no longer a stereo object</span>
+<span class="va">audio</span><span class="op">@</span><span class="va">stereo</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## [1] FALSE</span></code></pre></div>
+<p>We can plot the audio file simply by calling R’s <code><a href="https://rdrr.io/r/base/plot.html">base::plot()</a></code> function directly on the wave object <code>audio</code>. We can also pass other arguments to change the plot’s appearance to be consistent with the style of plots produced by the ggplot2 package.</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Set the parameters of the plot</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">0.4</span>, <span class="fl">0</span><span class="op">)</span>,  <span class="co"># Set the position of the axis labels</span>
+    tcl <span class="op">=</span> <span class="op">-</span><span class="fl">0.25</span>,           <span class="co"># Set the length of the tick marks</span>
+    cex.axis <span class="op">=</span> <span class="fl">0.85</span>,       <span class="co"># Set the size of the axis labels</span>
+    col.axis <span class="op">=</span> <span class="st">"#444444"</span>,  <span class="co"># Set the colour of the axis</span>
+    mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>   <span class="co"># Set the margins of the plot space: bottom, left, top, right</span>
+
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">audio</span>, bty <span class="op">=</span> <span class="st">"n"</span>,  xaxt <span class="op">=</span> <span class="st">"n"</span>, yaxt <span class="op">=</span> <span class="st">"n"</span>, 
+     col <span class="op">=</span> <span class="st">"#277F8E"</span>, xlab <span class="op">=</span> <span class="st">"Time (s)"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="st">"plot"</span>, bty <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"#444444"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">0</span>, lwd.ticks <span class="op">=</span> <span class="fl">2</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">0.2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">0</span>, lwd.ticks <span class="op">=</span> <span class="fl">2</span>, las <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="st">"Amplitude"</span>, side <span class="op">=</span> <span class="fl">2</span>, line <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-load-plot-waveform"></span>
+<img src="Images/audio-load-plot-waveform.png" alt="The mono waveform of the soundtrack of the *Insidious: Chapter 3* trailer after trimming." width="90%"><p class="caption">
+Figure 4.3: The mono waveform of the soundtrack of the <em>Insidious: Chapter 3</em> trailer after trimming.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="visualising-the-soundtrack" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Visualising the soundtrack<a class="anchor" aria-label="anchor" href="#visualising-the-soundtrack"><i class="fas fa-link"></i></a>
+</h2>
+<p>While many structural features of a soundtrack are readily apparent in the plot of its waveform, such as the presence of quiet and loud sections or the abrupt onset of audio events it is much harder to describe the features of these sections and events at different scales. In this section we will create some visualisations of the trailer soundtracks that will show their dynamic structure more clearly.</p>
+<div id="the-spectrogram" class="section level3" number="4.3.1">
+<h3>
+<span class="header-section-number">4.3.1</span> The spectrogram<a class="anchor" aria-label="anchor" href="#the-spectrogram"><i class="fas fa-link"></i></a>
+</h3>
+<p>The next stage applies the <em>short-time Fourier transform</em> (<a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">STFT</a>) to the mono wave file to produce a 2D time-frequency representation of the signal called a <em>spectrogram</em>. See <span class="citation">Goodwin (<a href="references.html#ref-goodwin2008tssm" role="doc-biblioref">2008</a>)</span> and <span class="citation">M. Müller (<a href="references.html#ref-muller2015fomp" role="doc-biblioref">2015</a>: 40-57)</span> for detailed discussions of these methods and their mathematical underpinnings.</p>
+<p>Any audio signal can be represented as the sum of a series of <a href="https://en.wikipedia.org/wiki/Sine_wave">sine waves</a>. The <a href="https://en.wikipedia.org/wiki/Fourier_transform"><em>Fourier transform</em></a> is a mathematical function that decomposes a signal into its component sine waves at different frequencies, with the amplitude of each sine wave representing the amount of <a href="https://en.wikipedia.org/wiki/Sound_power">power</a> or <a href="https://en.wikipedia.org/wiki/Sound_energy">energy</a> present in the signal at that frequency. By analogy, the Fourier transform is to sound as a prism is to light, splitting the signal to reveal the spectrum of frequencies that make up a sound wave. This can be done no matter how complex the audio signal in which we are interested. A limitation of the Fourier transform is that assumes a signal is <a href="https://en.wikipedia.org/wiki/Stationary_process">stationary</a> –- that is, it assumes the statistical properties of a signal do not alter with time. Applying the Fourier transform to the soundtrack of a trailer will give us a spectrum representing the overall frequency content of the soundtrack averaged over the duration of the entire signal time but it will not tell us anything about how the soundtrack evolves over time. The STFT overcomes this limitation by dividing the signal into a series of <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Window.html">windows</a> and calculating the Fourier transform for each window. The result is a Fourier transform of the signal localised in time that depends on the <a href="https://en.wikipedia.org/wiki/Window_function">shape</a> (rectangle, Hanning, etc.), size (the number of samples within a window, which should be a power of 2), and the overlap of the windows of successive local Fourier transforms. In this example, the successive Fourier transforms are overlapped by 50% to produce a smoother spectrogram that more accurately reflects the structure of the continuous audio signal.</p>
+<p>Calculating the STFT of a signal will give us a <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">matrix</a>, in which columns are the time windows, the rows are the frequency bands, and the cell values are the amplitude of the signal in that time window for that band of frequencies. The STFT is visualised as a <a href="https://en.wikipedia.org/wiki/Spectrogram">spectrogram</a>. The spectrogram describes how the magnitudes of the individual frequencies (shown on the y-axis) comprising a signal vary over time (which is represented on the x-axis), with the amplitude of a signal in a time-frequency window indicated by colour.</p>
+<p>Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a> displays segments of two signals of one-second in duration with frequency components at 329.63 Hz and 493.88 Hz corresponding to the notes E4 and B4, respectively. The waveform of Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.A is a superposition of both frequencies, with both notes present throughout the duration of the signal. The waveform in Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.B has the same frequency components, but they are not present at the same time: this waveform shifts frequency from E4 to B4 after 0.5 seconds. Figures <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.C and D show the spectra of these waves with amplitude peaks at their component frequencies. From this example it is evident that a Fourier transform cannot distinguish between stationary and non-stationary signals; that is, it cannot see the difference between a stationary signal in which the statistical properties of the signal are consistent over time (Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.A) and a non-stationary signal with components at the same frequencies but whose statistical properties vary with time (Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.B).</p>
+<p>The spectrogram describes how the magnitudes of the individual frequencies comprising a signal vary over time. Time is displayed on the x-axis, frequency on the y-axis, and the amplitude of a given frequency band within a time window is represented as colour. Figures <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.E and F present the spectrograms and shows how the two signals have different temporal structures. The size of the window determines the temporal and frequency resolution of the spectrogram. The temporal resolution is equal to the size of the window divided by the sampling rate and the frequency resolution is the sampling rate divided by the window size. Overlapping the windows produces a smoother spectrogram and a more accurate representation of the continuous evolution of the frequencies of a signal.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-spectrogram-plot-demo"></span>
+<img src="Images/audio-spectrogram-plot-demo.png" alt="Segments of two sounds with the notes E4 (329.63 Hz) and B4 (493.88 Hz) arranged as a composite wave (A), with both notes played continuously for one second, and a sequential wave (B), changing pitch from E4 to B4 after 0.5 seconds. Despite the different waveforms of these sounds the periodograms for the composite wave (C) and the sequential wave (D) have the same power spectral density. These differences between the sounds are clear to see in the spectrograms: both notes are present for the duration of the composite wave (E), while the transition from the E4 note to B4 in the sequential wave halfway through the time window is clear to see (F)." width="90%"><p class="caption">
+Figure 4.4: Segments of two sounds with the notes E4 (329.63 Hz) and B4 (493.88 Hz) arranged as a composite wave (A), with both notes played continuously for one second, and a sequential wave (B), changing pitch from E4 to B4 after 0.5 seconds. Despite the different waveforms of these sounds the periodograms for the composite wave (C) and the sequential wave (D) have the same power spectral density. These differences between the sounds are clear to see in the spectrograms: both notes are present for the duration of the composite wave (E), while the transition from the E4 note to B4 in the sequential wave halfway through the time window is clear to see (F).
+</p>
+</div>
+<p>The temporal resolution of the STFT is equal to the window length (in this example, 2048) divided by the sampling rate: 2048/48000 = 0.0426 seconds per window. The frequency resolution is equal to the sampling rate divided by the window length: 48000/2048 = 23.44 Hz per band. It is clear that by reducing the window size we could improve the temporal resolution but only at the expense of poorer frequency resolution; and that increasing the window length will improve frequency resolution at the expense of temporal resolution. This is because time and frequency are a <a href="https://en.wikipedia.org/wiki/Conjugate_variables">conjugate variables</a> and are subject to an <a href="https://en.wikipedia.org/wiki/Uncertainty_principle">uncertainty principle</a>: it is not possible to localize both time and frequency with absolute precision. There exists a trade-off between time and frequency resolution that needs to be addressed during the design of the analysis in order to ensure the resulting spectrogram is a meaningful representation of a signal relative to what we want to discover about a film’s sound design.</p>
+<p>There are two ways of producing a spectrogram using the seewave package. The <code>spectro()</code> function uses R’s base plotting functions, whereas the <code>ggspectro()</code> function uses ggplot2. Each has its advantages. Using <code>spectro()</code> it is easier to plot the frequency axis of the spectrogram on a log scale in order to see more easily what is happening at lower frequencies. A limitation of this approach is that calculating the STFT this way introduces some matrix entries with a value of <code>-Inf</code> whenever the soundtrack encounters silence and these values will be transparent in the spectrogram. This can be avoided by exporting the audio directly from editing software or by processing the audio file using an audio editor (e.g., <a href="https://www.audacityteam.org">Audacity</a> or <a href="https://www.wavosaur.com">Wavosaur</a>) and then loading the file plotting the spectrogram using the same code demonstrated here.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">seewave</span>, <span class="va">viridis</span><span class="op">)</span>
+
+<span class="fu">spectro</span><span class="op">(</span><span class="va">audio</span>,
+        f <span class="op">=</span> <span class="va">audio</span><span class="op">@</span><span class="va">samp.rate</span>,           <span class="co"># the sampling rate</span>
+        wl <span class="op">=</span> <span class="fl">2048</span>,                     <span class="co"># window length in samples</span>
+        wn <span class="op">=</span> <span class="st">"hanning"</span>,                <span class="co"># the shape of the window</span>
+        ovlp <span class="op">=</span> <span class="fl">50</span>,                     <span class="co"># overlap of the windows</span>
+        norm <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># amplitude is normalised to 0.0 dB</span>
+        fastdisp <span class="op">=</span> <span class="cn">TRUE</span>,               <span class="co"># draws the plot quicker</span>
+        flog <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># plot frequencies on a log scale</span>
+        collevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">200</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,  <span class="co"># the range of the amplitude scale</span>
+        palette <span class="op">=</span> <span class="va">viridis</span>,             <span class="co"># colour palette selection</span>
+        axisX <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>                 <span class="co"># suppress the x-axis</span>
+
+<span class="co"># Label the x-axis every 20 seconds from 0 to 120 seconds</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-spectrogram-plot-spectroinclude"></span>
+<img src="Images/audio-spectrogram-plot-spectro.png" alt="The spectrogram of the soundtrack of the trailer for *Insidious: Chapter 3* using `seewave::spectro()`. The frequency axis is plotted on a log-scale." width="90%"><p class="caption">
+Figure 4.5: The spectrogram of the soundtrack of the trailer for <em>Insidious: Chapter 3</em> using <code><a href="https://rdrr.io/pkg/seewave/man/spectro.html">seewave::spectro()</a></code>. The frequency axis is plotted on a log-scale.
+</p>
+</div>
+<p>Using <code>ggspectro()</code> we can take advantage of ggplot2’s wide range of commands to customise the appearance of a plot that, as a <code>ggplot()</code> object, can be combined with other plots to create single figures. The <code>ggspectro()</code> function replaces the <code>ggplot()</code> function when creating a plot with ggplot2, but all other ggplot2 commands remain the same. The seewave <a href="https://www.rdocumentation.org/packages/seewave/versions/2.2.0/topics/ggspectro">documentation</a> for <code>ggspectro()</code> includes examples that rely on the <code>geom_tile()</code> function to draw the spectrogram, but <code>geom_raster()</code> is quicker and uses less memory to produce a better quality image.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
+
+<span class="fu">ggspectro</span><span class="op">(</span><span class="va">audio</span>, wl <span class="op">=</span> <span class="fl">2048</span>, wn <span class="op">=</span> <span class="st">"hanning"</span>, ovlp <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_raster</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">amplitude</span><span class="op">)</span>, interpolate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_fill_viridis_c</span><span class="op">(</span>name<span class="op">=</span><span class="st">"Amplitude (dB)"</span>, na.value <span class="op">=</span> <span class="st">"#440154"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="fu">guide_colourbar</span><span class="op">(</span>barwidth <span class="op">=</span> <span class="fl">20</span>, 
+                                barheight <span class="op">=</span> <span class="fl">1</span>, 
+                                title.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-spectrogram-plot-ggspectroinclude"></span>
+<img src="Images/audio-spectrogram-plot-ggspectro.png" alt="The spectrogram of the soundtrack of the trailer for *Insidious: Chapter 3* using `seewave::ggspectro()`." width="90%"><p class="caption">
+Figure 4.6: The spectrogram of the soundtrack of the trailer for <em>Insidious: Chapter 3</em> using <code><a href="https://rdrr.io/pkg/seewave/man/ggspectro.html">seewave::ggspectro()</a></code>.
+</p>
+</div>
+<p>Some STFT values still take on a value of <code>-Inf</code> (the STFT matrix is the same as that produced using <code>spectro()</code> when using the same parameters), but by setting <code>na.value = "#440154"</code> these values will take on the minimum value of the amplitude scale when using the viridis palette and so they will not appear as transparent.</p>
+<hr>
+<details><summary style="font-size:16px; font-weight: bold;">
+👈 Click here to learn about the ggplot2 package
+</summary><div class="rmdimportant">
+<h3 style="margin-top: -5px;">
+The ggplot2 package
+</h3>
+<p>
+The ggplot2 package maps aesthetic attributes to a data set to
+produce highly-customisable publication-ready visualisations based on
+Leland Wilkinson’s <em>The Grammar of Graphics</em> <span class="citation"><span class="citation">(<a href="references.html#ref-wilkinson2005tgog" role="doc-biblioref">Wilkinson, 2005</a>)</span></span>. Hadley Wickham’s
+<em>ggplot2: Elegant Graphics for Data Analysis</em> <span class="citation"><span class="citation">(<a href="references.html#ref-wickham2016gegf" role="doc-biblioref">2016</a>)</span></span> presents a detailed
+introduction to the ggplot2 package. The online version is available <a href="https://ggplot2-book.org/index.html">here</a>.
+</p>
+<p>
+ggplot2 accepts data frames <em>only</em>. If the data is not stored
+as a data frame it will need to be converted to a data frame prior to
+plotting.
+</p>
+<p>
+A <code>geom</code> determines the geometry of how data is visualised
+as a line (<code>geom_line</code>), a cloud of points
+(<code>geom_point</code>), a bar (<code>geom_bar</code> or
+<code>geom_col</code>), text (<code>geom_text</code>), or any of the
+many other different ways of visualising data. Plots are built up as
+layers, with the geom listed first after the plot is created as the
+bottom layer. Subsequent geoms will overlay this layer and each other in
+the order they are called. Note that this means higher layers may
+obscure features of lower layers and so it is necessary to consider the
+order in which geoms is plotted to ensure the data is visualised
+effectively.
+</p>
+<p>
+The aesthetics of a geom are set by mapping on to variables in a data
+frame listed in the <code>aes()</code> command, and includes which
+variables from a data frame will be set on the x and y axes, the
+grouping of data, and the variables to be associated with a scale by
+colour, fill, and shape. (Note that ggplot2 works with both English and
+American spellings of ‘colour’).
+</p>
+<p>
+The appearance of a plot can be controlled by formatting the axes,
+applying colour schemes to variables, applying a coordinate system (such
+as Cartesian or polar co-ordinates), splitting a data set into its
+subsets based on a variable (called facets), and applying a theme to
+modify the non-data elements of a plot (such as titles, axis labels,
+plot margins, legends, etc.).
+</p>
+<p>
+In this book we will always construct plots using ggplot2 the same
+way.
+</p>
+<ol style="list-style-type: decimal">
+<li>
+We will create a a plot using the <code>ggplot()</code> function
+with data for the plot typically passed to the function at this
+stage.
+</li>
+<li>
+Geoms are added to the plot in the order that they need to be
+layered. If different geoms require different data, they will be passed
+to their respective geoms at this stage. Aesthetics will typically be
+mapped when geoms are created.
+</li>
+<li>
+Features of the plot are set, including the formatting of axes and
+guides, the coordinates of the plot in the place of the graphic window,
+and the use of facets to visualise subsets as small multiples.
+</li>
+<li>
+Finally, we will select a theme and format the appearance of the
+plot by setting the parameters of the theme. See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">here</a> for
+a gallery of the themes in the ggplot2 package.
+</li>
+</ol>
+<p>
+It is not necessary to plot these features in this order. We could
+create an R object containing a plot (<code>p</code>) using ggplot2 and
+then additional geoms or add or modify the themes later: for example,
+<code>p + theme_dark()</code> will apply the dark theme to the object
+<code>p</code>.
+</p>
+<p>
+There are many R packages extending the functionality of ggplot2,
+adding new geoms to expand the range plots we can produce, adding new
+features to control how data is displayed (e.g., controlling the overlap
+of data labels, adding marginal plots, interactivity, new themes, etc.),
+and combining multiple plots together to make a single figure.
+</p>
+</div>
+</details><hr>
+</div>
+<div id="the-normalised-aggregated-power-envelope" class="section level3" number="4.3.2">
+<h3>
+<span class="header-section-number">4.3.2</span> The normalised aggregated power envelope<a class="anchor" aria-label="anchor" href="#the-normalised-aggregated-power-envelope"><i class="fas fa-link"></i></a>
+</h3>
+<p>A limitation of visualising the soundtrack using the spectrogram is that it can be difficult to characterise the temporal evolution of specific features. Additionally, it is not possible to see relationships between different elements of the soundtrack at different scales.</p>
+<p>The <em>normalised aggregate power envelope</em> (nape) plots the evolution of the power of the soundtrack, making it easier to see the structure of the soundtrack, relationships between various parts of the soundtrack at different scales, and the shape of local features. It is also easier to compare soundtracks using this visualisation than the waveform or the spectrogram.</p>
+<p>To calculate the normalised aggregated power envelope for the <em>Insidious: Chapter 3</em> trailer we use the <code>acoutsat()</code> function in the seewave package, keeping the settings we used to produce the spectrogram. The envelope is simply the sum of the columns of the matrix comprising the STFT that has been <a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">normalised</a> to a unit area <span class="citation">(<a href="references.html#ref-cortopassi2006aarm" role="doc-biblioref">Cortopassi, 2006</a>)</span>.</p>
+<p>To obtain the time contour produced by <code>acoustat()</code>, we use the <code>$</code> <a href="https://r-lang.com/dollar-sign-in-r-with-example/">operator</a> to access an element from the list of results returned by a function. This will return a two column matrix containing the times of the individual spectra comprising the spectrogram and the aggregate of the amplitude values of those spectra. We will set <code>plot = FALSE</code> so that we can draw our own plot of the data using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code>.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">acoustat</span><span class="op">(</span><span class="va">audio</span>, 
+                                     wl <span class="op">=</span> <span class="fl">2048</span>, 
+                                     wn <span class="op">=</span> <span class="st">"hanning"</span>, 
+                                     ovlp <span class="op">=</span> <span class="fl">50</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">time.contour</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">insidious_chapter_3_nape</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">##            time      contour</span>
+<span class="co">## [1,] 0.00000000 0.000000e+00</span>
+<span class="co">## [2,] 0.02322874 0.000000e+00</span>
+<span class="co">## [3,] 0.04645748 0.000000e+00</span>
+<span class="co">## [4,] 0.06968622 0.000000e+00</span>
+<span class="co">## [5,] 0.09291495 0.000000e+00</span>
+<span class="co">## [6,] 0.11614369 4.582695e-09</span></code></pre></div>
+<p><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code> expects data to be <code>data.frame</code> and so we need to convert the object <code>insidious_chapter_3_nape</code>, which is currently of class ‘matrix’ to a data frame using <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>. We will name this object <code>df_insidious_chapter_3_nape</code> to make it clear that it is a data frame.</p>
+<p><span id="class"></span></p>
+<hr>
+<details><summary style="font-size:16px; font-weight: bold;">
+👈 Click here to learn how to check the class of an object
+</summary><div class="rmdimportant">
+<h3 style="margin-top: -5px;">
+The <code>class()</code> function
+</h3>
+<p>
+In R everything is an object and each object belongs to a
+<strong>class</strong> that serves as a blueprint of an object. The
+class of an object determines if and how functions will interact with
+that object, and most functions require objects to belong to a
+particular class.
+</p>
+<p>
+To check the class of an object in R we use the <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>
+function.
+</p>
+<script src="https://gist.github.com/DrNickRedfern/1ee875c5c085e25882d37a87a89bf110.js"></script><p>
+Here we see that <code>insidious_chapter_3_nape</code> is of class
+<code>matrix</code> and class <code>array</code>. This is because in R,
+the <code>matrix</code> class is a subset of the class
+<code>array</code>; specifically, a <code>matrix</code> class object is
+an array with two dimensions.
+</p>
+<p>
+To change the class of an object we prefix the target class to which
+an object is to be coerced with <code>as.</code>. For example, to
+convert a data frame to a matrix we would use <code>as.matrix(x)</code>,
+where <code>x</code> is the name of the data frame to be converted.
+</p>
+<p>
+The <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> function can be used to obtain additional
+information about an object.
+</p>
+</div>
+</details><hr>
+<p>We can save the data frame containing the normalised aggregated power envelope for this trailer to our data folder as a <code>.csv</code> file using the <code>write_csv()</code> function from the readr package, which is part of the tidyverse suite of packages that we loaded earlier. We can then read this file using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> rather than have to repeat the whole analytical process from scratch.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Convert the matrix to a data frame</span>
+<span class="va">df_insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">insidious_chapter_3_nape</span><span class="op">)</span>
+
+<span class="co"># Save as a csv file using readr::write_csv()</span>
+<span class="fu">write_csv</span><span class="op">(</span><span class="va">df_insidious_chapter_3_nape</span>, <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3_nape.csv"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># To read the csv file using readr::read_csv()</span>
+<span class="va">df_insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3_nape.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Now lets plot the normalised aggregated power envelope of the soundtrack of the trailer for <em>Insidious: Chapter 3</em> (Figure <a href="audio.html#fig:audio-nape-plot-napedisplay">4.7</a>).</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the normalised aggregated power envelope</span>
+<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_insidious_chapter_3_nape</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">contour</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"#277F8E"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Time (s)"</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="co"># Add an extra line after the axis title to move it away from the tick labels with \n</span>
+  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Normalised aggregated power\n"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-nape-plot-napedisplay"></span>
+<img src="Images/audio-nape-plot-napedisplay.png" alt="The normalised aggregated power envelope of the soundtrack of the trailer for *Insidious: Chapter 3*." width="90%"><p class="caption">
+Figure 4.7: The normalised aggregated power envelope of the soundtrack of the trailer for <em>Insidious: Chapter 3</em>.
+</p>
+</div>
+</div>
+</div>
+<div id="sound-design-in-trailers-for-the-insidious-franchise" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Sound design in trailers for the <em>Insidious</em> franchise<a class="anchor" aria-label="anchor" href="#sound-design-in-trailers-for-the-insidious-franchise"><i class="fas fa-link"></i></a>
+</h2>
+<div id="structure" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Structure<a class="anchor" aria-label="anchor" href="#structure"><i class="fas fa-link"></i></a>
+</h3>
+<p>In <span class="citation">Redfern (<a href="references.html#ref-redfern2020sihf" role="doc-biblioref">2020c</a>)</span> I showed that trailers for US horror films can typically be divided into three sections:</p>
+<ul>
+<li>
+<em>narrative</em>: establishing character, locations, time-frames, and plot</li>
+<li>
+<em>emotional</em>: creating of monomaniac version of the film characterised by heightened emotional intensity</li>
+<li>
+<em>marketing</em>: during which the key promotional information about a trailer (title, release date, social media information, etc.) is presented to the audience.</li>
+</ul>
+<p>This pattern is clear in the plots of the normalised aggregated power envelopes of the three trailers in Figure <a href="audio.html#fig:audio-structure-plot-napes">4.8</a>. Although these trailers have different running times (<em>Insidious</em>: 102.21s; <em>Insidious: Chapter 2</em>: 140.18s; <em>Insidious: Chapter 3</em>: 122.81s), they are structurally similar and normalising the running time to the range [0-100%] brings out these commonalities.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-structure-plot-napes"></span>
+<img src="Images/audio-structure-plot-napes.png" alt="The normalised aggregated power envelope of the soundtracks of trailers in the *Insidious* franchise" width="90%"><p class="caption">
+Figure 4.8: The normalised aggregated power envelope of the soundtracks of trailers in the <em>Insidious</em> franchise
+</p>
+</div>
+<p>There is an thirty-eight second difference in the running time of the trailers for <em>Insidious</em> and <em>Insidious: Chapter 2</em> but the increase in power in the soundtracks of both trailers occurs approximately ~38% of the way through the trailer as each trailer shifts from its narrative phase into its emotional phase. For the first part of this emotional phase the power of the soundtracks shows no trend in either trailer, but both show a linear increase in power from ~60% to ~78%, at which point both trailers move from their emotional phase and into their marketing phase.</p>
+<p>The trailers for <em>Insidious</em> and <em>Insidious: Chapter 2</em> relate the haunting of the Lambert family, but the third film in the franchise is a prequel set several years before the events of the first two movies and so it must establish its own place within the franchise. Consequently, the trailer for <em>Insidious: Chapter 3</em> devotes a greater proportion of its running time to narrative, blending this narrative function with an increasing level of anxiety before fully giving itself over to the emotional intensity of the trailer. The emotional phase of the trailer in which the power of the soundtrack increases steadily over time looks the same as the corresponding section in the other trailers albeit compressed into a much shorter section and just like the other trailers, this point at which the soundtrack’s power increases linearly occurs 60% of the way through the trailer.</p>
+</div>
+<div id="acoustic-startle-events" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Acoustic startle events<a class="anchor" aria-label="anchor" href="#acoustic-startle-events"><i class="fas fa-link"></i></a>
+</h3>
+<p>Acoustic startle events generate a startle response in the audience through the abrupt onset of a loud sound <span class="citation">(<a href="references.html#ref-sbravatti2019asih" role="doc-biblioref">Sbravatti, 2019</a>)</span>. Different types of affective events have different <a href="https://en.wikipedia.org/wiki/Envelope_(music)">audio envelopes</a> (Figure <a href="audio.html#fig:audio-ase-plot-schemas">4.9</a>): Type-1 events are characterised by step-edge attack, no sustain, and step-edge release creating a jump scare for the audience; Type-3 events by step-edge attack, long sustain, and unspecified release stage, also jolting the audience but maintaining a heightened emotional intensity for a period of time; and Type-5 events by step-edge attack, no sustain, and a long release in which the power of the startle event falls away as characters react to the shock they (and the audience) have just experienced. (Type 2 and Type 4 affective events have a slope attack and so do not generate a startle repsonse; see <span class="citation">Redfern (<a href="references.html#ref-redfern2020sihf" role="doc-biblioref">2020c</a>)</span> for a discussion of the different types of affective events in horror film trailers).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-ase-plot-schemas"></span>
+<img src="Images/audio-ase-plot-schemas.svg" alt="Schematic representations of acoustic startle events." width="90%"><p class="caption">
+Figure 4.9: Schematic representations of acoustic startle events.
+</p>
+</div>
+<p>Plotting the timing and type of acoustic startle events in these trailers (Figure <a href="audio.html#fig:audio-ase-plot-events">4.10</a>) we see that there is a clear pattern in their timing and functions. First, acoustic startle events do not occur during the narrative phase of a trailer. Second, Type-1 events occur during the emotional phase and are classic examples of the basic jump scare in horror cinema <span class="citation">(<a href="references.html#ref-baird2000tsei" role="doc-biblioref">Baird, 2000</a>)</span>. The two Type-1 events in the trailer for <em>Insidious: Chapter 2</em> both make the audience jump, marking turning points in the trailer, first when there is a shift from the narrative stage to the horror stage, and second when the soundtrack begins to increase in power as the emotional content of the trailer intensifies. Interestingly, there are no Type-1 events in the last 20% of any of the trailers. Third, Type-3 and Type-5 events occur later in these trailers and are associated with the marketing functions of the trailers, all occurring in the final fifth of a trailer. The use of acoustic startles in the marketing phase is attentional rather than emotional, and the sustain or slope decay of the envelope of these events exploits the fact that human beings have evolved to enter a state of hypervigilance for three to ten seconds following the sudden redirect of attention following a loud, abrupt, and intrusive sound into our environment sound <span class="citation">(<a href="references.html#ref-dreissen2012esex" role="doc-biblioref">Dreissen et al., 2012</a>)</span>. The attack of the startle event draws our attention to the screen and that attention is sustained while we are told information about the film’s release that we will need to remember if we are to watch the film when it is released.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-ase-plot-events"></span>
+<img src="Images/audio-ase-plot-events.png" alt="The onsets of acoustic startle events in trailers for films in the *Insidious* franchise.." width="90%"><p class="caption">
+Figure 4.10: The onsets of acoustic startle events in trailers for films in the <em>Insidious</em> franchise..
+</p>
+</div>
+<p>The multiple functions of acoustic startle events are illustrated by second acoustic startle event in the trailer for <em>Insidious: Chapter 3</em>. This Type-5 startle event occurring 110.7 seconds presents the audience with an abrupt transition from silence to a loud noise with an abrupt increase in power across the full range of frequencies of the soundtrack, but the slope decay of the envelope means that the power of the soundtrack drops quickly at first but then slows as the soundtrack transitions from the intense, abrasive rapid onset of the acoustic startle to the tune of ‘Tiptoe Through The Tulips’ that plays out over the title cards announcing the title of the film and its upcoming release. Mixing these different sounds into a single event allows the trailer to seamlessly bridge the non-sequitur of the cut away from the action to the title card but also to hold the audience’s attention over time so that they are looking at the screen when marketing information is presented. This startle is frightening – it makes you jump – but its primary function is attentional and serves not to convey narrative information about the film or to create an emotional experience for the viewer in isolation from presenting marketing information to the viewer. It employs sound design to fulfil the trailer’s primary function of selling the movie.</p>
+</div>
+<div id="non-linear-mixing" class="section level3" number="4.4.3">
+<h3>
+<span class="header-section-number">4.4.3</span> Non-linear mixing<a class="anchor" aria-label="anchor" href="#non-linear-mixing"><i class="fas fa-link"></i></a>
+</h3>
+<p>In earlier computational analyses of film audio, I showed that <em>exponential growth and decay</em> (see <a href="audio.html#expbox">Computational film analysis can save your life</a> below) are a key part of the sound design of horror films and trailers <span class="citation">(<a href="references.html#ref-redfern2020qaos" role="doc-biblioref">Redfern, 2020b</a>, <a href="references.html#ref-redfern2021tsot" role="doc-biblioref">2021c</a>)</span>, and the ability to recognise and interpret these features is a key part of applying computational analysis to film audio. Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a> plots the envelope of the final affective event from the <em>Insidious: Chapter 3</em> trailer on linear (Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.A) and logarithmic (Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.B) axes. The log-scaled version shows us what is really happening as the power of the soundtrack decays after startling the audience and reveals that exponential decay is a part of the sound design of the trailer.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-nonlinear-nape-ase"></span>
+<img src="Images/audio-nonlinear-nape-ase.png" alt="The evolution of an affective event in the trailer for *Insidious: Chapter 3* with normalised aggregated power plotted on (A) linear and (B) logarithmic axes." width="90%"><p class="caption">
+Figure 4.11: The evolution of an affective event in the trailer for <em>Insidious: Chapter 3</em> with normalised aggregated power plotted on (A) linear and (B) logarithmic axes.
+</p>
+</div>
+<p>The shape of the decay in Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.B raises an interesting question: how did the sound designer and editor put this part of the soundtrack together? The base level of the log-scaled version of the event appears almost perfectly straight and it would be interesting to discover the extent to which this type of non-linear sound mixing is intentional on the part of the filmmakers. Are filmmakers consciously designing features with exponential rates of growth and decay into soundtracks? If so, are they producing these features by controlling the parameters of an audio envelope by ‘hand’? Or are such features the result of software components (e.g., spline curves, plug-ins, etc.) of digital audio workstations used by filmmakers who are not necessarily aware of the exponential evolution of such an affective event? Adobe Audition, for example, allows users to select several types of fades, including linear, logarithmic, and cosine fades <span class="citation">(<a href="references.html#ref-adobe2021vfac" role="doc-biblioref">Adobe, 2021</a>)</span>. This raises further questions about when such features first appeared in horror film audio. Has non-linear sound mixing always been a part of horror film soundtracks? Or did these features appear with the introduction of digital audio workstations into the practice of film sound? The normalised aggregated power envelope can be thought of as the trace of a set of aesthetic practices and provides a basis for exploring the ways in which filmmakers produce soundtracks.</p>
+<span id="expbox"></span>
+<div class="rmdtip">
+<h3 style="margin-top: -5px; font-weight: bold;">
+Computational film analysis can save your life
+</h3>
+<p>
+In my 2013 article, ‘Film studies and statistical literacy’, I wrote
+that
+</p>
+<blockquote>
+<p>
+… statistics are to be found in every area of research on the cinema
+and that statistical literacy comprises a set of skills and attitudes
+all film scholars ought to possess in order to comprehend and evaluate
+this research;that there is nothing for Film Studies to fear in looking
+beyond the humanities; and that by introducing statistical literacy into
+the curriculum we better prepare students (and lecturers) for work and
+life <span class="citation"><span class="citation">(<a href="references.html#ref-redfern2013fsas" role="doc-biblioref">Redfern, 2013a</a>: 67-68)</span></span>.
+</p>
+</blockquote>
+<p>
+The need to ensure students to acquire statistical literacy has never
+been more apparent than during the coronavirus pandemic that began in
+2019.
+</p>
+<p>
+During the pandemic, the phrase <a href="https://en.wikipedia.org/wiki/Exponential_growth"><em>exponential
+growth</em></a> became a part our everyday vocabularies. However, it has
+long been known that, in general, people have difficulty understanding
+the nature and implications of exponential growth, exhibiting a strong
+and systematic bias towards linear growth that leads them to
+underestimate how processes (such as interest rates, memes, viruses,
+etc.) evolve over time <span class="citation"><span class="citation">(<a href="references.html#ref-levy2016egba" role="doc-biblioref">Levy &amp; Tasoff, 2016</a>)</span></span>.
+</p>
+<p>
+The statistically illiterate do not perceive the phenomenon of
+exponential growth correctly, failing to grasp that exponential growth
+proceeds slowly at first before growing rapidly, while the statistically
+literate interpret the chart below correctly as showing exponential
+growth throughout.
+</p>
+<div align="center" class="inline-figure">
+<img src="Images/audio-nonlinear-box-lit.png" alt="Being able to interpret exponential growth is matter of statistical literacy" width="538">
+</div>
+<p>
+It is much easier to identify phenomena characterised by exponential
+growth if we plot the y-axis on a logarithmic scale, which causes the
+non-linear growth curve to appear as a straight line. It is clear from
+the below chart that the curve describes a phenomenon that grows
+exponentially and that the distinct stages are part of a single
+phenomenon with a single interpretation.
+</p>
+<div align="center" class="inline-figure">
+<img src="Images/audio-nonlinear-box-exp.png" alt="Exponential growth is easier to see when the y-axis is plotted logarithmically" width="324">
+</div>
+<p>
+<span class="citation"><span class="citation">Lammers et al. (<a href="references.html#ref-lammers2020cmoe" role="doc-biblioref">2020</a>)</span></span> found that during the
+coronavirus pandemic people exhibited an <a href="https://www.bbc.com/future/article/20200812-exponential-growth-bias-the-numerical-error-behind-covid-19">exponential-growth
+bias</a>, tending to view the growth of the virus in linear terms and
+thereby underestimate the scale and evolution of the pandemic. They also
+found that correcting misconceptions about exponential growth lead to a
+reduction in exponential-growth bias resulting in increased levels of
+support for virus-mitigation strategies such as social distancing.
+</p>
+<p>
+Faced with a highly-transmissible virus, comprehending the concept of
+exponential growth becomes a matter of life and death.
+</p>
+<p>
+As we have seen, exponential growth and decay is a part of the sound
+design of horror film trailers and being able to recognise and interpret
+these features is a key part of applying computational film analysis to
+audio texts. Teaching the methods used in this chapter and demonstrated
+in my research on sound design in horror cinema <span class="citation"><span class="citation">(<a href="references.html#ref-redfern2020sihf" role="doc-biblioref">Redfern, 2020c</a>, <a href="references.html#ref-redfern2020qaos" role="doc-biblioref">2020b</a>, <a href="references.html#ref-redfern2021tsot" role="doc-biblioref">2021c</a>)</span></span> would have introduced students to the concept
+of exponential growth, allowing them to obtain a level of statistical
+literacy with urgent real-world applications.
+</p>
+<p>
+In 2012, the British Academy reported that
+</p>
+<blockquote>
+<p>
+In higher education, almost all disciplines require quantitative
+capacity, but students are often ill-equipped to cope with those
+demands. They then leave university with skills inadequate to the needs
+of the workplace –- be it in business, public sector or academia <span class="citation"><span class="citation">(<a href="references.html#ref-ba2012scqs" role="doc-biblioref">British Academy, 2012</a>: 2)</span></span>.
+</p>
+</blockquote>
+<p>
+Film educators must address the failure to teach quantitative skills
+as a part of the study of film, ensuring that students graduate with the
+confidence and ability to work with quantitative data and methods, and
+recognise that the consequences of failing to embed statistical literacy
+within film education are not trivial. They may be a matter of life and
+death.
+</p>
+</div>
+</div>
+</div>
+<div id="practical-considerations" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Practical considerations<a class="anchor" aria-label="anchor" href="#practical-considerations"><i class="fas fa-link"></i></a>
+</h2>
+<p>In this section, I address some of the practical considerations for audio analysis relating to the use of mono or stereo tracks, the sampling rate, and the normalisation of audio files.</p>
+<div id="monovstereo" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Mono versus stereo<a class="anchor" aria-label="anchor" href="#monovstereo"><i class="fas fa-link"></i></a>
+</h3>
+<p>To calculate the spectrogram and the normalised aggregated power envelope we converted the stereo soundtrack of the trailers to mono. This inevitably results in some loss of information, but it is easier to work with a single channel of audio and there is little purpose in analysing both the left and right channels of a stereo signal if there is no additional information to be gained. We could analyse the spectrograms and normalised aggregated power envelopes of both channels of the original stereo soundtrack, but this will increase the amount of work involved in analysing the audio without necessarily adding to our understanding of a film’s sound design.</p>
+<p>There will be times when it is desirable to work with stereo audio files, such as when the left and right channels contain directional information that would be lost by mixing and rendering to a mono track, resulting in an analysis that failed to address a key component of the sound design.</p>
+<p>The decision to use mono or stereo soundtracks will depend on the design of the analysis.</p>
+</div>
+<div id="samprate" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Sampling rate<a class="anchor" aria-label="anchor" href="#samprate"><i class="fas fa-link"></i></a>
+</h3>
+<p>To assess the impact of sampling rates on the outcomes of our analysis, we can compare the mono soundtrack of the trailer for <em>Insidious: Chapter 3</em> at sampling rates of 44.1 kHz, 32 kHz, and 22.05 kHz.</p>
+<p>We can <a href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing)">downsample</a> an audio object using the <code><a href="https://rdrr.io/pkg/tuneR/man/downsample.html">tuneR::downsample()</a></code> function. Once we have downsampled the audio files, we can produce the spectrograms and normalised aggregated power envelopes using the same code we employed earlier using <code><a href="https://rdrr.io/pkg/seewave/man/ggspectro.html">seewave::ggspectro()</a></code>.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load the original audio file and convert to mono</span>
+<span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">readWave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">mono</span><span class="op">(</span><span class="va">audio</span>, which <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span>
+
+<span class="co"># Create an object from the original audio to identify</span>
+<span class="co"># that it has a sampling rate of 44100 Hz</span>
+<span class="va">audio_44100</span> <span class="op">&lt;-</span> <span class="va">audio</span>
+
+<span class="co"># Downsample to 32000 Hz</span>
+<span class="co"># Note that tuneR::downsample() expects the sampling rate in Hertz</span>
+<span class="va">audio_32000</span> <span class="op">&lt;-</span> <span class="fu">downsample</span><span class="op">(</span><span class="va">audio</span>, <span class="fl">32000</span><span class="op">)</span>
+
+<span class="co"># Downsample to 22050 Hz</span>
+<span class="va">audio_22050</span> <span class="op">&lt;-</span> <span class="fu">downsample</span><span class="op">(</span><span class="va">audio</span>, <span class="fl">22050</span><span class="op">)</span></code></pre></div>
+<p>Figure <a href="audio.html#fig:audio-sampling-plot-spectograms">4.12</a> plots the spectograms of the three versions of the soundtrack, with the same parameters used in each case (i.e., hanning windows of 2048 samples overlapped by 50%). The range of frequencies that can be plotted is different in each spectogram because the range of maximum frequency that can be represented is equal to half the sampling rate in accordance with the <a href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem">Nyquist-Shannon sampling theorem</a>. Thus for <code>audio_44100</code>, with a sampling rate of 44.1 kHz, the <a href="https://en.wikipedia.org/wiki/Nyquist_frequency">Nyquist frequency</a> is equal to 22.05 kHz; whereas for <code>audio_22050</code>, which has a sampling rate of 22.05 kHz, the Nyquist frequency is 11.025 kHz.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-sampling-plot-spectograms"></span>
+<img src="Images/audio-sampling-plot-spectograms.png" alt="The spectograms of the sound track of the trailer for *Insidious: Chapter 3* at three different sampling rates" width="90%"><p class="caption">
+Figure 4.12: The spectograms of the sound track of the trailer for <em>Insidious: Chapter 3</em> at three different sampling rates
+</p>
+</div>
+<p>Downsampling audio files inevitably results in a loss of information. Downsampling from 44.1 kHz to 32 kHz, we will lose all the information at frequencies above 16 kHz, but this does not appear to be a concern here. We see from Figure <a href="audio.html#fig:audio-sampling-plot-spectograms">4.12</a>.A that there is relatively little information above 16 kHz in the audio we extracted from the original <code>.mp4</code> file and so downsampling to a rate of 32 kHz (Figure <a href="audio.html#fig:audio-sampling-plot-spectograms">4.12</a>.B) means we will not lose much data. This is because despite the normal range of human hearing being 20 Hz to 20 kHz, most people cannot hear sounds above 16 kHz and so shelving sounds above this frequency reduces file sizes without affecting perception of the soundtrack.</p>
+<p>Downsampling to 22.05 kHz (Figure <a href="audio.html#fig:audio-sampling-plot-spectograms">4.12</a>.C) means we will lose even more information, but we are still able to adequately represent the information in the soundtrack. Figure <a href="audio.html#fig:audio-sampling-plot-napes">4.13</a> shows that the normalised aggregated power envelopes at the three different sampling rates are similar. Using a sampling rate lower than 48 kHz or 44.1 kHz would not lead us to overlook or mis-characterise any key features of the soundtrack of this trailer. Halving the sampling rate from 44.1 kHz to 22.05 kHz reduces the number of short-time spectra in the spectrogram by half but when the envelope is plotted the y-axis of is re-scaled and the resolution of the time axis remains sufficiently high that even though there is some loss of temporal precision relative to the original version.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:audio-sampling-plot-napes"></span>
+<img src="Images/audio-sampling-plot-napes.png" alt="The normalised aggregated power envelope of the sound track of the trailer for *Insidious: Chapter 3* at three different sampling rates" width="90%"><p class="caption">
+Figure 4.13: The normalised aggregated power envelope of the sound track of the trailer for <em>Insidious: Chapter 3</em> at three different sampling rates
+</p>
+</div>
+<p>The decision about which sampling rate to use involves a trade-off between the amount of information that will be lost relative to the increase in processing speed gained. Working with trailer soundtracks that are only a couple of minutes in duration there is no reason to reduce the sampling rate of the soundtrack because the computational gains achieved are not significant. Analysing the soundtrack of a 120-minute feature will require substantially more computational resources (e.g., memory, processing time, etc.) and downsampling to a lower sampling rate is one strategy for reducing those demands while still allowing us to represent the soundtrack with a sufficient level of quality for analysis.</p>
+</div>
+<div id="normalisation" class="section level3" number="4.5.3">
+<h3>
+<span class="header-section-number">4.5.3</span> Normalisation<a class="anchor" aria-label="anchor" href="#normalisation"><i class="fas fa-link"></i></a>
+</h3>
+<p>Some of the R functions employed here have default settings that apply peak normalisation to an audio file. <a href="https://en.wikipedia.org/wiki/Audio_normalization#Peak_normalization">Peak normalisation</a> applies a constant amount of gain to a signal to bring the peak amplitude to a target level, which in the examples above is 0.0 dB. The time contour plot for a soundtrack is calculated as the sum of the energy in each spectra of a spectrogram and this will be identical if peak normalisation is used or not because normalisation will rescale the amplitude without altering the dynamic range of a soundtrack as the same amount of gain is applied to the entire signal. Normalising the soundtrack will therefore have no impact on the outcome of the analysis.</p>
+</div>
+</div>
+<div id="summary-2" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> Summary<a class="anchor" aria-label="anchor" href="#summary-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Mark Kerins has argued that studies of sound in the cinema must find ways to go beyond a reliance on methods and vocabulary of musicology to establish ‘a collective vocabulary that moves beyond the classical terms of music to encompass the rich variety and texture of sounds used in the cinema and other audio-visual media’ <span class="citation">(<a href="references.html#ref-kerins2008asos" role="doc-biblioref">Kerins, 2008</a>: 11)</span>.</p>
+<p>The methods demonstrated in this chapter here go some way to addressing Kerins’s call for a vocabulary that allows us to speak about soundtracks in an integrated way, using a graphical approach that adopts methods from bioacoustics. As a vocabulary of film analysis, the graphical methods demonstrated here have descriptive, analytical, and communicative power. The normalised aggregated power envelope makes it easy to visualise the soundtrack of a film, to pick out features of interest, and to share that information. It allows us to achieve an integrated understanding of sound design in the cinema by letting us look at the evolution of the soundtrack in time and to see relationships between audio features at different scales, enabling us to see simultaneously the global structure of a soundtrack and to focus on individual features at a local level. Furthermore, it is a graphical language shared by the sound engineers, mixers, and designers who create film soundtracks: the waveform, Fourier transform, frequency analysers, and spectrogram are features of digital audio workstations that are used in film production. As much audio production now takes place on a computer, it is, to a significant degree, a visual practice and it makes sense for the analysis of film sound to use the same visual vocabulary as those who produce the sounds we analyse.</p>
+
+</div>
+</div>
+<script>
+// Get the modal
+const modal = document.getElementById('myModal');
+const modalImg = document.getElementById("img01");
+const captionText = document.getElementById("caption");
+
+var img = document.querySelectorAll('.zooom');
+    
+for (var i=0; i<img.length; i++){
+    
+    img[i].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    modalImg.alt = this.alt;
+    captionText.innerHTML = this.alt;
+};
+     
+}
+
+// When the user clicks on <span> (x), close the modal
+modal.onclick = function() {
+    img01.className += " out";
+    setTimeout(function() {
+       modal.style.display = "none";
+       img01.className = "modal-content";
+     }, 400);
+    
+ };
+ </script><div class="chapter-nav">
+<div class="prev"><a href="tools.html"><span class="header-section-number">3</span> Tools</a></div>
+<div class="next"><a href="colour.html"><span class="header-section-number">5</span> Analysing film colour</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#audio"><span class="header-section-number">4</span> Analysing film audio</a></li>
+<li><a class="nav-link" href="#a-brief-digital-audio-primer"><span class="header-section-number">4.1</span> A (brief) digital audio primer</a></li>
+<li>
+<a class="nav-link" href="#setting-up-the-project"><span class="header-section-number">4.2</span> Setting up the project</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#create-the-project"><span class="header-section-number">4.2.1</span> Create the project</a></li>
+<li><a class="nav-link" href="#packages-1"><span class="header-section-number">4.2.2</span> Packages</a></li>
+<li><a class="nav-link" href="#data"><span class="header-section-number">4.2.3</span> Data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#visualising-the-soundtrack"><span class="header-section-number">4.3</span> Visualising the soundtrack</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#the-spectrogram"><span class="header-section-number">4.3.1</span> The spectrogram</a></li>
+<li><a class="nav-link" href="#the-normalised-aggregated-power-envelope"><span class="header-section-number">4.3.2</span> The normalised aggregated power envelope</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#sound-design-in-trailers-for-the-insidious-franchise"><span class="header-section-number">4.4</span> Sound design in trailers for the Insidious franchise</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#structure"><span class="header-section-number">4.4.1</span> Structure</a></li>
+<li><a class="nav-link" href="#acoustic-startle-events"><span class="header-section-number">4.4.2</span> Acoustic startle events</a></li>
+<li><a class="nav-link" href="#non-linear-mixing"><span class="header-section-number">4.4.3</span> Non-linear mixing</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#practical-considerations"><span class="header-section-number">4.5</span> Practical considerations</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#monovstereo"><span class="header-section-number">4.5.1</span> Mono versus stereo</a></li>
+<li><a class="nav-link" href="#samprate"><span class="header-section-number">4.5.2</span> Sampling rate</a></li>
+<li><a class="nav-link" href="#normalisation"><span class="header-section-number">4.5.3</span> Normalisation</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#summary-2"><span class="header-section-number">4.6</span> Summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/DrNickRedfern/CFA-with-R/blob/main/04-Audio.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/DrNickRedfern/CFA-with-R/edit/main/04-Audio.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 13 September 2022.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+
+# (APPENDIX) Appendix {-}
+
+# Colophon {.unnumbered} 
+
+## Version {.unnumbered}
+
+This is `r version` of *Computational Film Analysis with R* and was published on `r format(Sys.Date(), '%d %B %Y')`.
+
+### Change log {.unnumbered}
+
+```{r echo = FALSE}
+pacman::p_load(here, dplyr, readr)
+change_log <- read_csv(here("Data", "CFA_change_log.csv"))
+
+knitr::kable(head(change_log))
+```
+
+The full change log for this book is available at [https://github.com/DrNickRedfern/CFA-with-R](https://github.com/DrNickRedfern/CFA-with-R)
+
+## Source {.unnumbered}
+
+The source code for this book is available at [https://github.com/DrNickRedfern/CFA-with-R](https://github.com/DrNickRedfern/CFA-with-R)
+
+## Build {.unnumbered}
+
+This book was built with:
+
+```{r echo = FALSE}
+sessioninfo::session_info(c("tidyverse"))
+```
