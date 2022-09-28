@@ -8,6 +8,8 @@ This book is intended to be a first course in the application of computational m
 
 This book includes interactive content for the user to explore, including embedded video files, interactive plots, tables, and visualisations. Interactive content is identified by :point_up: or :point_left:.
 
+You can access the book at [https://cfa-with-r.netlify.app/](https://cfa-with-r.netlify.app/).
+
 ## About this book
 
 ### Citation
