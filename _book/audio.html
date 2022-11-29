@@ -7,7 +7,7 @@
 <title>4 Analysing film audio | Computational Film Analysis with R</title>
 <meta name="author" content="Nick Redfern">
 <meta name="description" content="In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of...">
-<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="4 Analysing film audio | Computational Film Analysis with R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/images/cover.png">
@@ -18,10 +18,10 @@
 <meta name="twitter:image" content="/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.23/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.25/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.11.3/css/fixedColumns.dataTables.min.css" rel="stylesheet">
 <script src="libs/dt-ext-fixedcolumns-1.11.3/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
@@ -81,7 +81,7 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="index.html">Computational Film Analysis with R</a></li>
 <li><a class="" href="preface.html"><span class="header-section-number">1</span> Preface</a></li>
 <li><a class="" href="CFA.html"><span class="header-section-number">2</span> Computational film analysis</a></li>
 <li><a class="" href="tools.html"><span class="header-section-number">3</span> Tools</a></li>
@@ -293,26 +293,26 @@ Video 4.3: The trailer for <em>Insidious: Chapter 3</em> (2015) ☝️
 </h4>
 <p>Having downloaded the trailers as <code>.mp4</code> files from YouTube and placed them in our Data folder, we need to process them to remove any MPAA rating tag screens and to extract the soundtracks as an audio file. This can be done in a variety of ways, including using editing software to trim the video file and export the audio in the required format. Here we will use the av package, which functions as a wrapper for FFmpeg. We can get a summary of the <code>.mp4</code> file we downloaded from YouTube using <code><a href="https://docs.ropensci.org/av/reference/info.html">av::av_media_info()</a></code>.</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span>, <span class="va">av</span><span class="op">)</span>
-
-<span class="fu">av_media_info</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.mp4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span>, <span class="va">av</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">av_media_info</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.mp4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## $duration</span>
-<span class="co">## [1] 129.7763</span>
-<span class="co">## </span>
-<span class="co">## $video</span>
-<span class="co">##   width height codec frames framerate  format</span>
-<span class="co">## 1  1280    720  h264   3111  23.97602 yuv420p</span>
-<span class="co">## </span>
-<span class="co">## $audio</span>
-<span class="co">##   channels sample_rate codec frames bitrate layout</span>
-<span class="co">## 1        2       44100   aac   5589  125588 stereo</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## $duration</span></span>
+<span><span class="co">## [1] 129.7763</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $video</span></span>
+<span><span class="co">##   width height codec frames framerate  format</span></span>
+<span><span class="co">## 1  1280    720  h264   3111  23.97602 yuv420p</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $audio</span></span>
+<span><span class="co">##   channels sample_rate codec frames bitrate layout</span></span>
+<span><span class="co">## 1        2       44100   aac   5589  125588 stereo</span></span></code></pre></div>
 <p>From the file info we see that this video file has a soundtrack with a sampling rate of 44.1 kHz, which is not the standard sampling rate for film audio but which is typical for YouTube videos. A version of the soundtrack with a sampling rate of 48 kHz can be downloaded from YouTube using <a href="https://youtube-dl.org">youtube-dl</a> as a <code>.webm</code> file, but here we will proceed with the version of the soundtrack that we have to hand. The impact of sampling rates on the analysis is discussed <a href="audio.html#samprate">below</a>.</p>
 <p>To extract the audio from the <code>.mp4</code> file we will use <code><a href="https://docs.ropensci.org/av/reference/encoding.html">av::av_audio_convert()</a></code> to create a <code>.wav</code> file that we will write to our Data folder. At the same time we will trim the first seven seconds of the trailer by setting <code>start_time = 7</code>. This section of the <code>.mp4</code> file comprises the <a href="https://screenrant.com/red-band-trailer-meaning-history/">MPAA green band</a> trailer tag screen followed by a black screen with no accompanying audio. Not all trailers will have a tag screen, while the duration of this screen will vary from trailer to trailer. A common practice is to put an announcement title at the beginning of a trailer, essentially trailing the trailer in the same video (see <a href="https://www.youtube.com/watch?v=iKCw-kqo3cs">here</a> for an example), while some YouTube channels will add additional promotional material after a trailer. It is important therefore to check how much material is to be trimmed from the top and tail of trailer before analysis.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">av_audio_convert</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.mp4"</span><span class="op">)</span>, 
-                 output <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span>, 
-                 start_time <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">av_audio_convert</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.mp4"</span><span class="op">)</span>, </span>
+<span>                 output <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span>, </span>
+<span>                 start_time <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></code></pre></div>
 <p>One consequence of extracting the audio in this way is that the timings of the will be different from the original trailer on YouTube. This needs to be taken into account when associating events in the trailer with features we have identified through analysis.</p>
 </div>
 <div id="loading-and-pre-processing-an-audio-file" class="section level4" number="4.2.3.2">
@@ -321,42 +321,42 @@ Video 4.3: The trailer for <em>Insidious: Chapter 3</em> (2015) ☝️
 </h4>
 <p>To load an audio file into R we use the tuneR package, which can load <code>.wav</code> and <code>.mp3</code> files using the <code><a href="https://rdrr.io/pkg/tuneR/man/readWave.html">tuneR::readWave()</a></code> and <code><a href="https://rdrr.io/pkg/tuneR/man/readMP3.html">tuneR::readMP3()</a></code> functions, respectively. Audio files loaded using tuneR in this way are <code>Wave-class</code> objects with <a href="https://www.r-bloggers.com/2020/10/attributes-in-r/">attributes</a> that can be accessed using the <code>@</code> operator. We can get a summary of the audio file by calling the object <code>audio</code> we created when we loaded the file. This confirms that the duration of the soundtrack is now seven seconds shorter than the original <code>.mp4</code> file.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tuneR</span><span class="op">)</span>
-<span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">readWave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Get a summary of the audio object</span>
-<span class="va">audio</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tuneR</span><span class="op">)</span></span>
+<span><span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">readWave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Get a summary of the audio object</span></span>
+<span><span class="va">audio</span></span></code></pre></div>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Wave Object</span>
-<span class="co">##  Number of Samples:      5415936</span>
-<span class="co">##  Duration (seconds):     122.81</span>
-<span class="co">##  Samplingrate (Hertz):   44100</span>
-<span class="co">##  Channels (Mono/Stereo): Stereo</span>
-<span class="co">##  PCM (integer format):   TRUE</span>
-<span class="co">##  Bit (8/16/24/32/64):    16 </span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## Wave Object</span></span>
+<span><span class="co">##  Number of Samples:      5415936</span></span>
+<span><span class="co">##  Duration (seconds):     122.81</span></span>
+<span><span class="co">##  Samplingrate (Hertz):   44100</span></span>
+<span><span class="co">##  Channels (Mono/Stereo): Stereo</span></span>
+<span><span class="co">##  PCM (integer format):   TRUE</span></span>
+<span><span class="co">##  Bit (8/16/24/32/64):    16 </span></span></code></pre></div>
 <p>At this stage, the audio we are working with is stereo. Moving forward, it will be easier to work with a mono audio object as we will have a single audio object to work with (see <a href="audio.html#monovstereo">below</a> for a discussion of using mono versus stereo). To convert a soundtrack from stereo to mono, we use the <code><a href="https://rdrr.io/pkg/tuneR/man/MonoStereo.html">tuneR::mono()</a></code> function, which lets us extract either the left or right channel or average the two channels. We will choose this latter option and set <code>which = "both"</code>. To check <code>audio</code> is now a mono <code>Wave</code> object we can access the <code>stereo</code> attribute, which now returns the value <code>FALSE</code>.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">mono</span><span class="op">(</span><span class="va">audio</span>, which <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span>
-
-<span class="co"># Check that audio is no longer a stereo object</span>
-<span class="va">audio</span><span class="op">@</span><span class="va">stereo</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">mono</span><span class="op">(</span><span class="va">audio</span>, which <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check that audio is no longer a stereo object</span></span>
+<span><span class="va">audio</span><span class="op">@</span><span class="va">stereo</span></span></code></pre></div>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## [1] FALSE</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## [1] FALSE</span></span></code></pre></div>
 <p>We can plot the audio file simply by calling R’s <code><a href="https://rdrr.io/r/base/plot.html">base::plot()</a></code> function directly on the wave object <code>audio</code>. We can also pass other arguments to change the plot’s appearance to be consistent with the style of plots produced by the ggplot2 package.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Set the parameters of the plot</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">0.4</span>, <span class="fl">0</span><span class="op">)</span>,  <span class="co"># Set the position of the axis labels</span>
-    tcl <span class="op">=</span> <span class="op">-</span><span class="fl">0.25</span>,           <span class="co"># Set the length of the tick marks</span>
-    cex.axis <span class="op">=</span> <span class="fl">0.85</span>,       <span class="co"># Set the size of the axis labels</span>
-    col.axis <span class="op">=</span> <span class="st">"#444444"</span>,  <span class="co"># Set the colour of the axis</span>
-    mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>   <span class="co"># Set the margins of the plot space: bottom, left, top, right</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">audio</span>, bty <span class="op">=</span> <span class="st">"n"</span>,  xaxt <span class="op">=</span> <span class="st">"n"</span>, yaxt <span class="op">=</span> <span class="st">"n"</span>, 
-     col <span class="op">=</span> <span class="st">"#277F8E"</span>, xlab <span class="op">=</span> <span class="st">"Time (s)"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="st">"plot"</span>, bty <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"#444444"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">0</span>, lwd.ticks <span class="op">=</span> <span class="fl">2</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">0.2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">0</span>, lwd.ticks <span class="op">=</span> <span class="fl">2</span>, las <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="st">"Amplitude"</span>, side <span class="op">=</span> <span class="fl">2</span>, line <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Set the parameters of the plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">0.4</span>, <span class="fl">0</span><span class="op">)</span>,  <span class="co"># Set the position of the axis labels</span></span>
+<span>    tcl <span class="op">=</span> <span class="op">-</span><span class="fl">0.25</span>,           <span class="co"># Set the length of the tick marks</span></span>
+<span>    cex.axis <span class="op">=</span> <span class="fl">0.85</span>,       <span class="co"># Set the size of the axis labels</span></span>
+<span>    col.axis <span class="op">=</span> <span class="st">"#444444"</span>,  <span class="co"># Set the colour of the axis</span></span>
+<span>    mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>   <span class="co"># Set the margins of the plot space: bottom, left, top, right</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">audio</span>, bty <span class="op">=</span> <span class="st">"n"</span>,  xaxt <span class="op">=</span> <span class="st">"n"</span>, yaxt <span class="op">=</span> <span class="st">"n"</span>, </span>
+<span>     col <span class="op">=</span> <span class="st">"#277F8E"</span>, xlab <span class="op">=</span> <span class="st">"Time (s)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/box.html">box</a></span><span class="op">(</span><span class="st">"plot"</span>, bty <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"#444444"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">0</span>, lwd.ticks <span class="op">=</span> <span class="fl">2</span>, mgp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">0.2</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">0</span>, lwd.ticks <span class="op">=</span> <span class="fl">2</span>, las <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html">mtext</a></span><span class="op">(</span><span class="st">"Amplitude"</span>, side <span class="op">=</span> <span class="fl">2</span>, line <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-load-plot-waveform"></span>
 <img src="Images/audio-load-plot-waveform.png" alt="The mono waveform of the soundtrack of the *Insidious: Chapter 3* trailer after trimming." width="90%"><p class="caption">
@@ -389,22 +389,22 @@ Figure 4.4: Segments of two sounds with the notes E4 (329.63 Hz) and B4 (493.88 
 <p>The temporal resolution of the STFT is equal to the window length (in this example, 2048) divided by the sampling rate: 2048/48000 = 0.0426 seconds per window. The frequency resolution is equal to the sampling rate divided by the window length: 48000/2048 = 23.44 Hz per band. It is clear that by reducing the window size we could improve the temporal resolution but only at the expense of poorer frequency resolution; and that increasing the window length will improve frequency resolution at the expense of temporal resolution. This is because time and frequency are a <a href="https://en.wikipedia.org/wiki/Conjugate_variables">conjugate variables</a> and are subject to an <a href="https://en.wikipedia.org/wiki/Uncertainty_principle">uncertainty principle</a>: it is not possible to localize both time and frequency with absolute precision. There exists a trade-off between time and frequency resolution that needs to be addressed during the design of the analysis in order to ensure the resulting spectrogram is a meaningful representation of a signal relative to what we want to discover about a film’s sound design.</p>
 <p>There are two ways of producing a spectrogram using the seewave package. The <code>spectro()</code> function uses R’s base plotting functions, whereas the <code>ggspectro()</code> function uses ggplot2. Each has its advantages. Using <code>spectro()</code> it is easier to plot the frequency axis of the spectrogram on a log scale in order to see more easily what is happening at lower frequencies. A limitation of this approach is that calculating the STFT this way introduces some matrix entries with a value of <code>-Inf</code> whenever the soundtrack encounters silence and these values will be transparent in the spectrogram. This can be avoided by exporting the audio directly from editing software or by processing the audio file using an audio editor (e.g., <a href="https://www.audacityteam.org">Audacity</a> or <a href="https://www.wavosaur.com">Wavosaur</a>) and then loading the file plotting the spectrogram using the same code demonstrated here.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">seewave</span>, <span class="va">viridis</span><span class="op">)</span>
-
-<span class="fu">spectro</span><span class="op">(</span><span class="va">audio</span>,
-        f <span class="op">=</span> <span class="va">audio</span><span class="op">@</span><span class="va">samp.rate</span>,           <span class="co"># the sampling rate</span>
-        wl <span class="op">=</span> <span class="fl">2048</span>,                     <span class="co"># window length in samples</span>
-        wn <span class="op">=</span> <span class="st">"hanning"</span>,                <span class="co"># the shape of the window</span>
-        ovlp <span class="op">=</span> <span class="fl">50</span>,                     <span class="co"># overlap of the windows</span>
-        norm <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># amplitude is normalised to 0.0 dB</span>
-        fastdisp <span class="op">=</span> <span class="cn">TRUE</span>,               <span class="co"># draws the plot quicker</span>
-        flog <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># plot frequencies on a log scale</span>
-        collevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">200</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,  <span class="co"># the range of the amplitude scale</span>
-        palette <span class="op">=</span> <span class="va">viridis</span>,             <span class="co"># colour palette selection</span>
-        axisX <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>                 <span class="co"># suppress the x-axis</span>
-
-<span class="co"># Label the x-axis every 20 seconds from 0 to 120 seconds</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">seewave</span>, <span class="va">viridis</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">spectro</span><span class="op">(</span><span class="va">audio</span>,</span>
+<span>        f <span class="op">=</span> <span class="va">audio</span><span class="op">@</span><span class="va">samp.rate</span>,           <span class="co"># the sampling rate</span></span>
+<span>        wl <span class="op">=</span> <span class="fl">2048</span>,                     <span class="co"># window length in samples</span></span>
+<span>        wn <span class="op">=</span> <span class="st">"hanning"</span>,                <span class="co"># the shape of the window</span></span>
+<span>        ovlp <span class="op">=</span> <span class="fl">50</span>,                     <span class="co"># overlap of the windows</span></span>
+<span>        norm <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># amplitude is normalised to 0.0 dB</span></span>
+<span>        fastdisp <span class="op">=</span> <span class="cn">TRUE</span>,               <span class="co"># draws the plot quicker</span></span>
+<span>        flog <span class="op">=</span> <span class="cn">TRUE</span>,                   <span class="co"># plot frequencies on a log scale</span></span>
+<span>        collevels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">200</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,  <span class="co"># the range of the amplitude scale</span></span>
+<span>        palette <span class="op">=</span> <span class="va">viridis</span>,             <span class="co"># colour palette selection</span></span>
+<span>        axisX <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>                 <span class="co"># suppress the x-axis</span></span>
+<span></span>
+<span><span class="co"># Label the x-axis every 20 seconds from 0 to 120 seconds</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-spectrogram-plot-spectroinclude"></span>
 <img src="Images/audio-spectrogram-plot-spectro.png" alt="The spectrogram of the soundtrack of the trailer for *Insidious: Chapter 3* using `seewave::spectro()`. The frequency axis is plotted on a log-scale." width="90%"><p class="caption">
@@ -413,18 +413,18 @@ Figure 4.5: The spectrogram of the soundtrack of the trailer for <em>Insidious: 
 </div>
 <p>Using <code>ggspectro()</code> we can take advantage of ggplot2’s wide range of commands to customise the appearance of a plot that, as a <code>ggplot()</code> object, can be combined with other plots to create single figures. The <code>ggspectro()</code> function replaces the <code>ggplot()</code> function when creating a plot with ggplot2, but all other ggplot2 commands remain the same. The seewave <a href="https://www.rdocumentation.org/packages/seewave/versions/2.2.0/topics/ggspectro">documentation</a> for <code>ggspectro()</code> includes examples that rely on the <code>geom_tile()</code> function to draw the spectrogram, but <code>geom_raster()</code> is quicker and uses less memory to produce a better quality image.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
-
-<span class="fu">ggspectro</span><span class="op">(</span><span class="va">audio</span>, wl <span class="op">=</span> <span class="fl">2048</span>, wn <span class="op">=</span> <span class="st">"hanning"</span>, ovlp <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">geom_raster</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">amplitude</span><span class="op">)</span>, interpolate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_fill_viridis_c</span><span class="op">(</span>name<span class="op">=</span><span class="st">"Amplitude (dB)"</span>, na.value <span class="op">=</span> <span class="st">"#440154"</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="fu">guide_colourbar</span><span class="op">(</span>barwidth <span class="op">=</span> <span class="fl">20</span>, 
-                                barheight <span class="op">=</span> <span class="fl">1</span>, 
-                                title.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggspectro</span><span class="op">(</span><span class="va">audio</span>, wl <span class="op">=</span> <span class="fl">2048</span>, wn <span class="op">=</span> <span class="st">"hanning"</span>, ovlp <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">geom_raster</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">amplitude</span><span class="op">)</span>, interpolate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_viridis_c</span><span class="op">(</span>name<span class="op">=</span><span class="st">"Amplitude (dB)"</span>, na.value <span class="op">=</span> <span class="st">"#440154"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="fu">guide_colourbar</span><span class="op">(</span>barwidth <span class="op">=</span> <span class="fl">20</span>, </span>
+<span>                                barheight <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>                                title.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-spectrogram-plot-ggspectroinclude"></span>
 <img src="Images/audio-spectrogram-plot-ggspectro.png" alt="The spectrogram of the soundtrack of the trailer for *Insidious: Chapter 3* using `seewave::ggspectro()`." width="90%"><p class="caption">
@@ -533,20 +533,20 @@ and combining multiple plots together to make a single figure.
 <p>To calculate the normalised aggregated power envelope for the <em>Insidious: Chapter 3</em> trailer we use the <code>acoutsat()</code> function in the seewave package, keeping the settings we used to produce the spectrogram. The envelope is simply the sum of the columns of the matrix comprising the STFT that has been <a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">normalised</a> to a unit area <span class="citation">(<a href="references.html#ref-cortopassi2006aarm" role="doc-biblioref">Cortopassi, 2006</a>)</span>.</p>
 <p>To obtain the time contour produced by <code>acoustat()</code>, we use the <code>$</code> <a href="https://r-lang.com/dollar-sign-in-r-with-example/">operator</a> to access an element from the list of results returned by a function. This will return a two column matrix containing the times of the individual spectra comprising the spectrogram and the aggregate of the amplitude values of those spectra. We will set <code>plot = FALSE</code> so that we can draw our own plot of the data using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code>.</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">acoustat</span><span class="op">(</span><span class="va">audio</span>, 
-                                     wl <span class="op">=</span> <span class="fl">2048</span>, 
-                                     wn <span class="op">=</span> <span class="st">"hanning"</span>, 
-                                     ovlp <span class="op">=</span> <span class="fl">50</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">time.contour</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">insidious_chapter_3_nape</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">acoustat</span><span class="op">(</span><span class="va">audio</span>, </span>
+<span>                                     wl <span class="op">=</span> <span class="fl">2048</span>, </span>
+<span>                                     wn <span class="op">=</span> <span class="st">"hanning"</span>, </span>
+<span>                                     ovlp <span class="op">=</span> <span class="fl">50</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">time.contour</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">insidious_chapter_3_nape</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">##            time      contour</span>
-<span class="co">## [1,] 0.00000000 0.000000e+00</span>
-<span class="co">## [2,] 0.02322874 0.000000e+00</span>
-<span class="co">## [3,] 0.04645748 0.000000e+00</span>
-<span class="co">## [4,] 0.06968622 0.000000e+00</span>
-<span class="co">## [5,] 0.09291495 0.000000e+00</span>
-<span class="co">## [6,] 0.11614369 4.582695e-09</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">##            time      contour</span></span>
+<span><span class="co">## [1,] 0.00000000 0.000000e+00</span></span>
+<span><span class="co">## [2,] 0.02322874 0.000000e+00</span></span>
+<span><span class="co">## [3,] 0.04645748 0.000000e+00</span></span>
+<span><span class="co">## [4,] 0.06968622 0.000000e+00</span></span>
+<span><span class="co">## [5,] 0.09291495 0.000000e+00</span></span>
+<span><span class="co">## [6,] 0.11614369 4.582695e-09</span></span></code></pre></div>
 <p><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code> expects data to be <code>data.frame</code> and so we need to convert the object <code>insidious_chapter_3_nape</code>, which is currently of class ‘matrix’ to a data frame using <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>. We will name this object <code>df_insidious_chapter_3_nape</code> to make it clear that it is a data frame.</p>
 <p><span id="class"></span></p>
 <hr>
@@ -588,23 +588,23 @@ information about an object.
 </details><hr>
 <p>We can save the data frame containing the normalised aggregated power envelope for this trailer to our data folder as a <code>.csv</code> file using the <code>write_csv()</code> function from the readr package, which is part of the tidyverse suite of packages that we loaded earlier. We can then read this file using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> rather than have to repeat the whole analytical process from scratch.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Convert the matrix to a data frame</span>
-<span class="va">df_insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">insidious_chapter_3_nape</span><span class="op">)</span>
-
-<span class="co"># Save as a csv file using readr::write_csv()</span>
-<span class="fu">write_csv</span><span class="op">(</span><span class="va">df_insidious_chapter_3_nape</span>, <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3_nape.csv"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># To read the csv file using readr::read_csv()</span>
-<span class="va">df_insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3_nape.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Convert the matrix to a data frame</span></span>
+<span><span class="va">df_insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">insidious_chapter_3_nape</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save as a csv file using readr::write_csv()</span></span>
+<span><span class="fu">write_csv</span><span class="op">(</span><span class="va">df_insidious_chapter_3_nape</span>, <span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3_nape.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># To read the csv file using readr::read_csv()</span></span>
+<span><span class="va">df_insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3_nape.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Now lets plot the normalised aggregated power envelope of the soundtrack of the trailer for <em>Insidious: Chapter 3</em> (Figure <a href="audio.html#fig:audio-nape-plot-napedisplay">4.7</a>).</p>
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Plot the normalised aggregated power envelope</span>
-<span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_insidious_chapter_3_nape</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">contour</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"#277F8E"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Time (s)"</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="co"># Add an extra line after the axis title to move it away from the tick labels with \n</span>
-  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Normalised aggregated power\n"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Plot the normalised aggregated power envelope</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_insidious_chapter_3_nape</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">contour</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"#277F8E"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Time (s)"</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">120</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="co"># Add an extra line after the axis title to move it away from the tick labels with \n</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Normalised aggregated power\n"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_classic</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-nape-plot-napedisplay"></span>
 <img src="Images/audio-nape-plot-napedisplay.png" alt="The normalised aggregated power envelope of the soundtrack of the trailer for *Insidious: Chapter 3*." width="90%"><p class="caption">
@@ -791,20 +791,20 @@ death.
 <p>To assess the impact of sampling rates on the outcomes of our analysis, we can compare the mono soundtrack of the trailer for <em>Insidious: Chapter 3</em> at sampling rates of 44.1 kHz, 32 kHz, and 22.05 kHz.</p>
 <p>We can <a href="https://en.wikipedia.org/wiki/Downsampling_(signal_processing)">downsample</a> an audio object using the <code><a href="https://rdrr.io/pkg/tuneR/man/downsample.html">tuneR::downsample()</a></code> function. Once we have downsampled the audio files, we can produce the spectrograms and normalised aggregated power envelopes using the same code we employed earlier using <code><a href="https://rdrr.io/pkg/seewave/man/ggspectro.html">seewave::ggspectro()</a></code>.</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load the original audio file and convert to mono</span>
-<span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">readWave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">mono</span><span class="op">(</span><span class="va">audio</span>, which <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span>
-
-<span class="co"># Create an object from the original audio to identify</span>
-<span class="co"># that it has a sampling rate of 44100 Hz</span>
-<span class="va">audio_44100</span> <span class="op">&lt;-</span> <span class="va">audio</span>
-
-<span class="co"># Downsample to 32000 Hz</span>
-<span class="co"># Note that tuneR::downsample() expects the sampling rate in Hertz</span>
-<span class="va">audio_32000</span> <span class="op">&lt;-</span> <span class="fu">downsample</span><span class="op">(</span><span class="va">audio</span>, <span class="fl">32000</span><span class="op">)</span>
-
-<span class="co"># Downsample to 22050 Hz</span>
-<span class="va">audio_22050</span> <span class="op">&lt;-</span> <span class="fu">downsample</span><span class="op">(</span><span class="va">audio</span>, <span class="fl">22050</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Load the original audio file and convert to mono</span></span>
+<span><span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">readWave</span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"insidious_chapter_3.wav"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">audio</span> <span class="op">&lt;-</span> <span class="fu">mono</span><span class="op">(</span><span class="va">audio</span>, which <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create an object from the original audio to identify</span></span>
+<span><span class="co"># that it has a sampling rate of 44100 Hz</span></span>
+<span><span class="va">audio_44100</span> <span class="op">&lt;-</span> <span class="va">audio</span></span>
+<span></span>
+<span><span class="co"># Downsample to 32000 Hz</span></span>
+<span><span class="co"># Note that tuneR::downsample() expects the sampling rate in Hertz</span></span>
+<span><span class="va">audio_32000</span> <span class="op">&lt;-</span> <span class="fu">downsample</span><span class="op">(</span><span class="va">audio</span>, <span class="fl">32000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Downsample to 22050 Hz</span></span>
+<span><span class="va">audio_22050</span> <span class="op">&lt;-</span> <span class="fu">downsample</span><span class="op">(</span><span class="va">audio</span>, <span class="fl">22050</span><span class="op">)</span></span></code></pre></div>
 <p>Figure <a href="audio.html#fig:audio-sampling-plot-spectograms">4.12</a> plots the spectograms of the three versions of the soundtrack, with the same parameters used in each case (i.e., hanning windows of 2048 samples overlapped by 50%). The range of frequencies that can be plotted is different in each spectogram because the range of maximum frequency that can be represented is equal to half the sampling rate in accordance with the <a href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem">Nyquist-Shannon sampling theorem</a>. Thus for <code>audio_44100</code>, with a sampling rate of 44.1 kHz, the <a href="https://en.wikipedia.org/wiki/Nyquist_frequency">Nyquist frequency</a> is equal to 22.05 kHz; whereas for <code>audio_22050</code>, which has a sampling rate of 22.05 kHz, the Nyquist frequency is 11.025 kHz.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-sampling-plot-spectograms"></span>
@@ -919,7 +919,7 @@ modal.onclick = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 13 September 2022.</p>
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 29 November 2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -932,7 +932,7 @@ modal.onclick = function() {
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -29,17 +29,17 @@ description: "An introduction to computational analysis of film form and film st
 ```{r, echo = FALSE}
 options(Encoding = "UTF-8")
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-version <- "version 0.9.000"
+version <- "version 0.9.004"
 year <- 2022
 ```
 
-# Welcome {.unnumbered}
+# Computational Film Analysis with R {.unnumbered}
 
 <br>
 
 ::: row
 ::: col-md-6
-**This is the website for *Computational Film Analysis with R*.** <br> <br> This book is intended to be a first course in the application of computational methods to questions of form and style in the cinema using the R programming language. It aimed at those who have no previous experience of computational film analysis and no prior knowledge of statistics, data science or programming with R is required or assumed. Each chapter discusses the underlying methodological concepts of a range of approaches for analysing sound, colour, editing, shot types, and lexical texts of motion pictures in depth and demonstrates their implementation in R so that after reading this book researchers will be able to design and execute their own computational film analysis research projects. <br> <br> This book includes **interactive content** for the user to explore, including embedded video files, interactive plots, tables, and visualisations. Interactive content is identified by `r emo::ji("point_up")` or `r emo::ji("point_left")`.
+**Welcome to *Computational Film Analysis with R*.** <br> <br> This online, interactive book is intended to be a first course in the application of computational methods to questions of form and style in the cinema using the R programming language. It aimed at those who have no previous experience of computational film analysis and no prior knowledge of statistics, data science or programming with R is required or assumed. Each chapter discusses the underlying methodological concepts of a range of approaches for analysing sound, colour, editing, shot types, and lexical texts of motion pictures in depth and demonstrates their implementation in R so that after reading this book researchers will be able to design and execute their own computational film analysis research projects. <br> <br> This book includes **interactive content** for the user to explore, including embedded video files, interactive plots, tables, and visualisations. Interactive content is identified by `r emo::ji("point_up")` or `r emo::ji("point_left")`.
 :::
 
 ::: col-md-6

@@ -7,7 +7,7 @@
 <title>3 Tools | Computational Film Analysis with R</title>
 <meta name="author" content="Nick Redfern">
 <meta name="description" content="This chapter presents a brief overview of the three tools we will use to analyse films computationally – R, RStudio, and FFmpeg. This chapter is intended only to provide enough knowledge about...">
-<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="3 Tools | Computational Film Analysis with R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/images/cover.png">
@@ -18,10 +18,10 @@
 <meta name="twitter:image" content="/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.23/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.25/datatables.js"></script><link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.11.3/css/fixedColumns.dataTables.min.css" rel="stylesheet">
 <script src="libs/dt-ext-fixedcolumns-1.11.3/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
@@ -81,7 +81,7 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Welcome</a></li>
+<li><a class="" href="index.html">Computational Film Analysis with R</a></li>
 <li><a class="" href="preface.html"><span class="header-section-number">1</span> Preface</a></li>
 <li><a class="" href="CFA.html"><span class="header-section-number">2</span> Computational film analysis</a></li>
 <li><a class="active" href="tools.html"><span class="header-section-number">3</span> Tools</a></li>
@@ -137,19 +137,19 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <p>In this section, I cover some basic concepts required to make sense of code written in R. Other key concepts (such as control flow, vectorisation, and accessing elements) will be introduced in the contexts in which they are applied to make their meaning and use clear.</p>
 <p>R can be used simply as a calculator to perform mathematical operations, entering values at the command prompt (<code>&gt;</code>) in the console, and pressing <kbd>Enter</kbd>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>In the above case, R prints the answer but does not store the result for later use. To store the answer, we need to assign the output of a command to an object using the <em>assignment operator</em> <code>&lt;-</code>, which combines a less than sign (<code>&lt;</code>) with a dash (<code>-</code>) and is used to name objects, assign values to variables, to evaluate expressions, or apply functions and pass the value to an object.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Store the result of a sum in the variable answer</span>
-<span class="va">answer</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">5</span>
-
-<span class="co"># Call the variable by typing the name of the object</span>
-<span class="va">answer</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Store the result of a sum in the variable answer</span></span>
+<span><span class="va">answer</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">5</span></span>
+<span></span>
+<span><span class="co"># Call the variable by typing the name of the object</span></span>
+<span><span class="va">answer</span></span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Use the object answer for another sum</span>
-<span class="va">answer</span> <span class="op">+</span> <span class="fl">5</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Use the object answer for another sum</span></span>
+<span><span class="va">answer</span> <span class="op">+</span> <span class="fl">5</span></span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <p>The <em>names</em> of objects are case‑sensitive: for example, the objects <code>answer</code> and <code>ANSWER</code> are different objects. Names can contain letters, numbers, underscores, and periods, but should start with a letter. (Names can start with a period followed by a letter, but this is to be avoided in general). Names cannot start with a number or an underscore. Names assigned to objects can be formed in several ways:</p>
 <ul>
@@ -168,15 +168,15 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <p>There is no right or wrong choice, but <em>consistency is a source of sanity when coding</em>. I prefer using the underscore method because names written using this format are easier to read. Finally, names cannot use any of the <a href="https://www.datamentor.io/r-programming/reserved-words/">reserved words</a> used by R (e.g., <code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>, etc.).</p>
 <p><em>Objects</em> in R include <a href="https://data-flair.training/blogs/data-structures-in-r/">data structures</a> (such as lists, vectors, matrices, data frames, etc.), variables, functions, and packages. The <a href="https://www.statmethods.net/interface/workspace.html">workspace</a> comprises the collection of objects currently active in an R session. The workspace and the objects it contains will be permanently lost when a session is closed unless saved as a <code>.RData</code> file. We can save either the whole workspace or individual objects in the workspace.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Save the workspace and the objects it contains</span>
-<span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span><span class="st">"TodaysWork.RData"</span><span class="op">)</span>
-
-<span class="co"># Save the object answer in a .RData file</span>
-<span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">answer</span>, file <span class="op">=</span> <span class="st">"answer.RData"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Save the workspace and the objects it contains</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save.image</a></span><span class="op">(</span><span class="st">"TodaysWork.RData"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save the object answer in a .RData file</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">answer</span>, file <span class="op">=</span> <span class="st">"answer.RData"</span><span class="op">)</span> </span></code></pre></div>
 <p>To restore a workspace and/or objects to an active R session, use the <code><a href="https://rdrr.io/r/base/load.html">load()</a></code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load saved objects into an R session</span>
-<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"answer.RData"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Load saved objects into an R session</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"answer.RData"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="comments" class="section level3" number="3.1.3">
 <h3>
@@ -184,9 +184,9 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 </h3>
 <p>In R, <em>comments</em> are human readable descriptions of the purpose of a piece of code and begin with a hashmark (<code>#</code>). Anything after <code>#</code> on a line of code is not run.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Comments can be on a single line</span>
-<span class="co"># or multiple lines</span>
-<span class="va">answer</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">5</span>  <span class="co"># Inline comments can also be added to a line of code</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Comments can be on a single line</span></span>
+<span><span class="co"># or multiple lines</span></span>
+<span><span class="va">answer</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">+</span> <span class="fl">5</span>  <span class="co"># Inline comments can also be added to a line of code</span></span></code></pre></div>
 <p>Comments do not excuse poorly written code and meaningful names should be used whenever possible; but they are essential to producing good code:</p>
 <ul>
 <li>Comments make code <em>navigable</em>: a long script is easy to use if you can find your way around it and comments make valuable signposts.</li>
@@ -212,18 +212,18 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <span id="cb10-3"><a href="tools.html#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>As an object in the workspace a function should have a name that is short but informative – we should have a sense of what a function does from its name. As noted above, arguments are the inputs of a function to which we want to apply operations. Those operations are implemented in the function statements wrapped by the curly braces. For example, to create a function to add two numbers together and return their sum, we create a function named <code>addition()</code> that takes two arguments (a and b) and adds them together.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># A simple function to add two numbers together</span>
-<span class="va">addition</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">a</span> <span class="op">+</span> <span class="va">b</span>
-<span class="op">}</span>
-
-<span class="co"># Use addition() to add 2 and 3</span>
-<span class="fu">addition</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># A simple function to add two numbers together</span></span>
+<span><span class="va">addition</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Use addition() to add 2 and 3</span></span>
+<span><span class="fu">addition</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Functions can take other functions as their arguments and can be nested: for example, <code>addition(addition(2, 3), addition(4,2))</code> is a perfectly valid (if ugly) application of the above <code>addition()</code> function and will return the correct result of <code>11</code>.</p>
 <p>If you find yourself repeatedly using the same piece of code in a project or across a set of projects it makes sense to put it into a function and then call that function when needed rather than clutter your project through repetition. Functions can be stored in files with the extension <code>.R</code>: for example, we could save the <code>addition()</code> function in the file <code>addition.R</code>. This creates a script file that can be loaded whenever we wish to apply the function, making code <em>reusable</em> across projects, <em>shareable</em> with other users, and <em>easier to maintain</em> because you only need to manage one chunk of code rather than several instances of the same code in a project. The <code><a href="https://rdrr.io/r/base/source.html">source()</a></code> function loads the functions stored in a <code>.R</code> script into the workspace.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"addition.R"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"addition.R"</span><span class="op">)</span></span></code></pre></div>
 <p>A script may contain multiple functions, <em>all</em> of which will be called into the workspace when the file is sourced. However, as scripts containing multiple functions become larger and more complicated it is preferable to have a single script for each function and to store and use those functions as a package.</p>
 </div>
 <div id="packages" class="section level3" number="3.1.5">
@@ -239,12 +239,12 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 </h4>
 <p>The <a href="http://trinker.github.io/pacman/vignettes/Introduction_to_pacman.html">pacman</a> package is an R package management tool comprising a useful set of functions to streamline the process of install packages and loading them into the workspace. To install pacman we use the base <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> command.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Note the quote marks around the package name</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Note the quote marks around the package name</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span> </span></code></pre></div>
 <p>Using the <code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">pacman::p_load()</a></code> function, it is now possible to load multiple packages with a single command, separating the package names with commas. To install but <em>not</em> load a package, we use <code><a href="https://rdrr.io/pkg/pacman/man/p_install.html">pacman::p_install()</a></code>. For example, to load the tuneR and seewave packages we will use in Chapter <a href="audio.html#audio">4</a> we use the following code:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Quote marks are not needed using p_load()</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tuner</span>, <span class="va">seewave</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Quote marks are not needed using p_load()</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tuner</span>, <span class="va">seewave</span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="https://rdrr.io/pkg/pacman/man/p_load.html">pacman::p_load()</a></code> will automatically install any packages not already installed on your computer (NB: an internet connection is required). Packages can be unloaded once they are no longer needed using <code><a href="https://rdrr.io/pkg/pacman/man/p_unload.html">pacman::p_unload()</a></code> and can be updated using <code><a href="https://rdrr.io/pkg/pacman/man/p_update.html">pacman::p_update()</a></code>.</p>
 </div>
 <div id="tidyverse" class="section level4" number="3.1.5.2">
@@ -258,7 +258,7 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <li>
 <a href="https://readr.tidyverse.org">readr</a>: read and parse data files (<code>.csv</code>, <code>.tsv</code>) into R’s workspace. Loading a file using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> will automatically load the data into a data frame (see <a href="tools.html#df">below</a>). To read Excel files use the <a href="https://readxl.tidyverse.org">readxl</a> package. To work with googlesheets use <a href="https://googlesheets4.tidyverse.org">googlesheets4</a>.</li>
 <li>
-<a href="https://dplyr.tidyverse.org">dplyr</a>: manipulate data in tabular format. The functions <code>select()</code>, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, <code>arrange()</code>, <code>mutate()</code>, <code>summarise()</code>, and <code><a href="https://rdrr.io/r/grDevices/plotmath.html">group()</a></code> are the ones you will use most when analysing data.</li>
+<a href="https://dplyr.tidyverse.org">dplyr</a>: manipulate data in tabular format. The functions <code>select()</code>, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, <code>arrange()</code>, <code>mutate()</code>, <code>summarise()</code>, and <code>group()</code> are the ones you will use most when analysing data.</li>
 <li>
 <a href="https://tidyr.tidyverse.org">tidyr</a>: reshape and tidy data frames based on the concept of <em>tidy data</em>.</li>
 <li>
@@ -275,11 +275,11 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <p>The tidyverse has a selection of <a href="https://www.rstudio.com/resources/cheatsheets/">cheat sheets</a> to help you use the packages efficiently.</p>
 <p>Loading the tidyverse package will load all the packages in the suite, though each package in the suite can be loaded individually if desired. For example, if you have already prepared your data and want to create a plot then you can load just the ggplot2 package by calling that package only.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load the full suite of packages in the tidyverse</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span>
-
-<span class="co"># Load ggplot2 only</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Load the full suite of packages in the tidyverse</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load ggplot2 only</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span></code></pre></div>
 <p>A key concept underpinning the tidyverse is <em>tidy data</em> <span class="citation">(<a href="references.html#ref-wickham2014tdxx" role="doc-biblioref">Wickham, 2014</a>)</span>. In tidy data</p>
 <ul>
 <li>every column is variable.</li>
@@ -293,8 +293,8 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <li>each cell is the value of a variable for a frame.</li>
 </ul>
 <p>Table <a href="tools.html#tab:tools-tidyverse-table-tidy">3.1</a> illustrates the arrangement of this data in tidy data format.</p>
-<div id="htmlwidget-882558e171ac90734bf5" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-882558e171ac90734bf5">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[101,102,103,104,105,106,107,108,109,110],["image_000101","image_000102","image_000103","image_000104","image_000105","image_000106","image_000107","image_000108","image_000109","image_000110"],["50.5","51.0","51.5","52.0","52.5","53.0","53.5","54.0","54.5","55.0"],["22.79","22.70","22.78","22.78","22.78","22.78","12.96","12.97","12.97","12.97"],["20.92","20.86","20.91","20.90","20.90","20.89","10.88","10.89","10.93","10.96"],["-32.15","-32.07","-32.12","-32.12","-32.12","-32.12","-18.87","-18.88","-18.91","-18.93"],["38.36","38.25","38.33","38.33","38.32","38.31","21.78","21.80","21.84","21.87"],["303.06","303.05","303.05","303.05","303.05","303.05","299.97","299.98","300.03","300.06"],["85.98","86.00","85.96","85.96","85.96","85.95","85.95","85.94","85.99","86.01"],["56.81","56.61","56.81","56.80","56.80","56.80","33.45","33.49","33.51","33.55"],["45.30","45.15","45.31","45.30","45.31","45.31","29.46","29.49","29.46","29.46"],["102.73","102.40","102.69","102.68","102.68","102.68","59.68","59.73","59.77","59.81"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>frame<\/th>\n      <th>frame_id<\/th>\n      <th>time<\/th>\n      <th>L<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>H<\/th>\n      <th>S<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"scrollCollapse":true,"paging":false,"autoWidth":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":0},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"className":"dt-center","targets":1}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'10pt'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'10pt'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'10pt'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'10pt'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
+<div id="htmlwidget-1409362cb683f8f3649d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1409362cb683f8f3649d">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[101,102,103,104,105,106,107,108,109,110],["image_000101","image_000102","image_000103","image_000104","image_000105","image_000106","image_000107","image_000108","image_000109","image_000110"],["50.5","51.0","51.5","52.0","52.5","53.0","53.5","54.0","54.5","55.0"],["22.79","22.70","22.78","22.78","22.78","22.78","12.96","12.97","12.97","12.97"],["20.92","20.86","20.91","20.90","20.90","20.89","10.88","10.89","10.93","10.96"],["-32.15","-32.07","-32.12","-32.12","-32.12","-32.12","-18.87","-18.88","-18.91","-18.93"],["38.36","38.25","38.33","38.33","38.32","38.31","21.78","21.80","21.84","21.87"],["303.06","303.05","303.05","303.05","303.05","303.05","299.97","299.98","300.03","300.06"],["85.98","86.00","85.96","85.96","85.96","85.95","85.95","85.94","85.99","86.01"],["56.81","56.61","56.81","56.80","56.80","56.80","33.45","33.49","33.51","33.55"],["45.30","45.15","45.31","45.30","45.31","45.31","29.46","29.49","29.46","29.46"],["102.73","102.40","102.69","102.68","102.68","102.68","59.68","59.73","59.77","59.81"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>frame<\/th>\n      <th>frame_id<\/th>\n      <th>time<\/th>\n      <th>L<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>H<\/th>\n      <th>S<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"scrollCollapse":true,"paging":false,"autoWidth":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":0},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"className":"dt-center","targets":1}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'10pt'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'10pt'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'10pt'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'10pt'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
 <caption>
 <span id="tab:tools-tidyverse-table-tidy">Table 3.1: </span>Colour data for frames fom a film arranged in tidy format. ☝
 </caption>
@@ -309,35 +309,35 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <p>The pipe operator <code>%&gt;%</code> from the <a href="https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr</a> and <a href="https://dplyr.tidyverse.org">dplyr</a> packages makes it easy to chain together commands.</p>
 <p>Use of the pipe operator makes code easier to read and edit because there is no need for nested function calls. Commands flow left-to-right and top-to-bottom rather than inside-out, while the need for intermediary variables cluttering the workspace and using up memory is reduced (though not eliminated – long chains of piped commands can become unwieldy to troubleshoot). For example, the three code chunks below perform the same operations of (1) taking the <a href="https://r-lang.com/r-exp-function-with-example/">exponent</a> of each value in the vector <code>num</code>, (2) summing the exponents, (3) taking the logarithm of that sum, and (4) then rounding the result to one decimal place and (5) storing the result in the object <code>num_output</code>; but one is logically simpler and more efficient than the others.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Set the seed of R's random number generator for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> 
-<span class="co"># Create a vector of 10 random numbers from a uniform distribution</span>
-<span class="va">num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
-
-<span class="co"># Example 1: using nested functions</span>
-<span class="va">num_output_ex1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>
-
-<span class="va">num_output_ex1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Set the seed of R's random number generator for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> </span>
+<span><span class="co"># Create a vector of 10 random numbers from a uniform distribution</span></span>
+<span><span class="va">num</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Example 1: using nested functions</span></span>
+<span><span class="va">num_output_ex1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">num_output_ex1</span></span></code></pre></div>
 <pre><code>## [1] 2.9</code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Example 2: using intermediary variables</span>
-<span class="va">num_exponents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span>
-<span class="va">num_exponents_sum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">num_exponents</span><span class="op">)</span>
-<span class="va">num_exponents_sum_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">num_exponents_sum</span><span class="op">)</span>
-<span class="va">num_output_ex2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">num_exponents_sum_log</span>, <span class="fl">1</span><span class="op">)</span>
-
-<span class="va">num_output_ex2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Example 2: using intermediary variables</span></span>
+<span><span class="va">num_exponents</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">num</span><span class="op">)</span></span>
+<span><span class="va">num_exponents_sum</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">num_exponents</span><span class="op">)</span></span>
+<span><span class="va">num_exponents_sum_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">num_exponents_sum</span><span class="op">)</span></span>
+<span><span class="va">num_output_ex2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">num_exponents_sum_log</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">num_output_ex2</span></span></code></pre></div>
 <pre><code>## [1] 2.9</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Example 3: using the pipe operator</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span> <span class="co"># call the dplyr package to use the pipe operator</span>
-<span class="va">num_output_ex3</span> <span class="op">&lt;-</span> <span class="va">num</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-
-<span class="va">num_output_ex3</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Example 3: using the pipe operator</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span> <span class="co"># call the dplyr package to use the pipe operator</span></span>
+<span><span class="va">num_output_ex3</span> <span class="op">&lt;-</span> <span class="va">num</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">num_output_ex3</span></span></code></pre></div>
 <pre><code>## [1] 2.9</code></pre>
 <p>R has other pipe operators to perform the same task, but we will only use <code>%&gt;%</code> in this book because it is the operator used most widely.</p>
 </div>
@@ -349,26 +349,26 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <p>A data frame is a two-dimensional data structure – a table – that can store <em>different</em> types of data, including numerical data, logical values (i.e., <code>TRUE</code> and <code>FALSE</code>), or text. Other R data structures, such as a vector or a matrix, can only store a single type of data. This makes data frames a highly flexible data structure.</p>
 <p>To get the structure of a data frame we can use dplyr’s <code>glimpse()</code> function. For example, to see the structure of the Early Hitchcock editing data set we will use in chapters <a href="editingI.html#editingI">6</a> and <a href="editingII.html#editingII">7</a>, we load the <code>.csv</code> file containing the shot length data using <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> to create a data frame <code>df_hitchcock</code> and call <code>dplyr::glimpse(df_hitchcock)</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df_hitchcock</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"early_Hitchcock.csv"</span><span class="op">)</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co"># Inspect the data set</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">df_hitchcock</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"early_Hitchcock.csv"</span><span class="op">)</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Inspect the data set</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 1,056
 ## Columns: 9
-## $ `The Ring (1927)`         &lt;dbl&gt; 4.04, 8.46, 5.58, 6.00, 1.71, 5.04, 5.13, 1.~
-## $ `The Farmers Wife (1928)` &lt;dbl&gt; 5.79, 17.13, 8.67, 5.08, 4.50, 11.08, 2.75, ~
-## $ `Champagne (1928)`        &lt;dbl&gt; 19.21, 16.96, 3.42, 14.71, 2.67, 2.79, 1.58,~
-## $ `The Manxman (1929)`      &lt;dbl&gt; 7.8, 25.1, 7.5, 3.1, 3.2, 2.2, 2.0, 8.4, 7.6~
-## $ `Blackmail (1929)`        &lt;dbl&gt; 6.88, 4.67, 2.96, 1.75, 2.67, 6.21, 7.25, 5.~
-## $ `Murder (1930)`           &lt;dbl&gt; 6.0, 2.9, 2.3, 1.4, 36.0, 4.5, 6.4, 3.1, 19.~
-## $ `The Skin Game (1931)`    &lt;dbl&gt; 19.38, 5.71, 105.17, 1.40, 3.00, 9.30, 2.80,~
-## $ `Rich and Strange (1931)` &lt;dbl&gt; 36.9, 9.3, 3.8, 4.4, 2.5, 2.3, 2.0, 3.4, 7.0~
-## $ `Number Seventeen (1932)` &lt;dbl&gt; 43.8, 3.3, 77.7, 7.5, 4.5, 3.4, 4.0, 2.4, 8.~</code></pre>
+## $ `The Ring (1927)`         &lt;dbl&gt; 4.04, 8.46, 5.58, 6.00, 1.71, 5.04, 5.13, 1.…
+## $ `The Farmers Wife (1928)` &lt;dbl&gt; 5.79, 17.13, 8.67, 5.08, 4.50, 11.08, 2.75, …
+## $ `Champagne (1928)`        &lt;dbl&gt; 19.21, 16.96, 3.42, 14.71, 2.67, 2.79, 1.58,…
+## $ `The Manxman (1929)`      &lt;dbl&gt; 7.8, 25.1, 7.5, 3.1, 3.2, 2.2, 2.0, 8.4, 7.6…
+## $ `Blackmail (1929)`        &lt;dbl&gt; 6.88, 4.67, 2.96, 1.75, 2.67, 6.21, 7.25, 5.…
+## $ `Murder (1930)`           &lt;dbl&gt; 6.0, 2.9, 2.3, 1.4, 36.0, 4.5, 6.4, 3.1, 19.…
+## $ `The Skin Game (1931)`    &lt;dbl&gt; 19.38, 5.71, 105.17, 1.40, 3.00, 9.30, 2.80,…
+## $ `Rich and Strange (1931)` &lt;dbl&gt; 36.9, 9.3, 3.8, 4.4, 2.5, 2.3, 2.0, 3.4, 7.0…
+## $ `Number Seventeen (1932)` &lt;dbl&gt; 43.8, 3.3, 77.7, 7.5, 4.5, 3.4, 4.0, 2.4, 8.…</code></pre>
 <p>The output tells us that the object <code>df_hitchcock</code> has 1056 rows and 9 columns. Then we get a list of the columns in the data set listing their names, indicating their type as <code>&lt;dbl&gt;</code> (which is short for <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format%20and%20is%20used%20to%20represent%20numbers%20with%20decimal%20points">double-precision floating-point format</a>), and showing the first few values in each column of the data frame. The <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function also let’s us see the top few rows of the <code>df_hitchcock</code> data frame, which makes it easy to grasp the structure of a data frame in the tidy format.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 9
-##   The Ring (19~1 The F~2 Champ~3 The M~4 Black~5 Murde~6 The S~7 Rich ~8 Numbe~9
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 × 9
+##   The Ring (19…¹ The F…² Champ…³ The M…⁴ Black…⁵ Murde…⁶ The S…⁷ Rich …⁸ Numbe…⁹
 ##            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
 ## 1           4.04    5.79   19.2      7.8    6.88     6     19.4     36.9    43.8
 ## 2           8.46   17.1    17.0     25.1    4.67     2.9    5.71     9.3     3.3
@@ -376,18 +376,17 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 ## 4           6       5.08   14.7      3.1    1.75     1.4    1.4      4.4     7.5
 ## 5           1.71    4.5     2.67     3.2    2.67    36      3        2.5     4.5
 ## 6           5.04   11.1     2.79     2.2    6.21     4.5    9.3      2.3     3.4
-## # ... with abbreviated variable names 1: `The Ring (1927)`,
-## #   2: `The Farmers Wife (1928)`, 3: `Champagne (1928)`,
-## #   4: `The Manxman (1929)`, 5: `Blackmail (1929)`, 6: `Murder (1930)`,
-## #   7: `The Skin Game (1931)`, 8: `Rich and Strange (1931)`,
-## #   9: `Number Seventeen (1932)`</code></pre>
+## # … with abbreviated variable names ¹​`The Ring (1927)`,
+## #   ²​`The Farmers Wife (1928)`, ³​`Champagne (1928)`, ⁴​`The Manxman (1929)`,
+## #   ⁵​`Blackmail (1929)`, ⁶​`Murder (1930)`, ⁷​`The Skin Game (1931)`,
+## #   ⁸​`Rich and Strange (1931)`, ⁹​`Number Seventeen (1932)`</code></pre>
 <p>We can access the individual columns of a data frame using the <code>$</code> operator. To see the first few rows of the <code>Blackmail (1929)</code> column only in the <code>df_hitchcock</code> data frame, we use <code>head(df_hitchcock$`Blackmail (1929)`)</code>. Note that we need backticks (<code>`</code>) around the column name because it includes a space.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">$</span><span class="va">`Blackmail (1929)`</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">$</span><span class="va">`Blackmail (1929)`</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 6.88 4.67 2.96 1.75 2.67 6.21</code></pre>
 <p>The columns in a data frame <em>must</em> have equal numbers of rows and so R will populate any empty cells with <code>NA</code> to ensure that all columns are the same length. We can get a complete summary of a data frame using the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function. For columns storing numeric data, this will return a summary of each column in a data frame including the <a href="https://en.wikipedia.org/wiki/Five-number_summary">five-number summary</a>, the mean value, and the number of <code>NA</code> values in a column.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  The Ring (1927)  The Farmers Wife (1928) Champagne (1928) The Manxman (1929)
 ##  Min.   : 0.040   Min.   : 0.250          Min.   : 0.040   Min.   : 0.600    
 ##  1st Qu.: 2.170   1st Qu.: 2.290          1st Qu.: 2.290   1st Qu.: 2.600    
@@ -414,17 +413,17 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 ##  NA's   :401</code></pre>
 <p><code>NA</code> values will need to be removed before using the data in a column using the <code><a href="https://rdrr.io/r/stats/na.fail.html">na.omit()</a></code> function. Applying this process to the shot length data for <em>Blackmail</em> (1929), we see that the <code>Blackmail (1929)</code> column in the <code>df_hitchcock</code> data frame has 1056 values. However, we see from the above summary that 618 of these are <code>NA</code> values. After omitting the <code>NA</code> values we see that there are actually 438 shots in the film for which we have data.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Check the length of the column storing the Blackmail </span>
-<span class="co"># shot length data in the df_hitchcock data frame</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">$</span><span class="va">`Blackmail (1929)`</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Check the length of the column storing the Blackmail </span></span>
+<span><span class="co"># shot length data in the df_hitchcock data frame</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">$</span><span class="va">`Blackmail (1929)`</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 1056</code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Create a new object storing the Blackmail shot length </span>
-<span class="co"># data having removed NA values</span>
-<span class="va">blackmail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">$</span><span class="va">`Blackmail (1929)`</span><span class="op">)</span>
-
-<span class="co"># Check the length of the new object blackmail</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">blackmail</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Create a new object storing the Blackmail shot length </span></span>
+<span><span class="co"># data having removed NA values</span></span>
+<span><span class="va">blackmail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">df_hitchcock</span><span class="op">$</span><span class="va">`Blackmail (1929)`</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Check the length of the new object blackmail</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">blackmail</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 438</code></pre>
 <p>We will designate data frames in the workspace with the prefix <code>df_</code> so that we are always aware what type of object we are working with. We will occasionally use other data structures, such as a matrix, but whenever possible we will ensure our data is structured as a data frame that is as tidy as possible.</p>
 </div>
@@ -467,7 +466,7 @@ Figure 3.2: My customised layout of the RStudio interface. Text in the Source pa
 <p>A key advantage of using RStudio is that it simplifies the process of managing projects.</p>
 <p>The <em>working directory</em> is the folder where R looks for data to import and scripts to source, and is the destination for any outputs created. A widespread practice is to set the working directory with an absolute path explicitly at the head of a script using the <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> function.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"C:/Users/Nick/Documents"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"C:/Users/Nick/Documents"</span><span class="op">)</span></span></code></pre></div>
 <p>This is <em>not</em> advisable. Setting the working directory in this way makes code easy to break and hard to share. An absolute path to a working directory works only as long the directory structure of the computer running the script does not change. If the script file containing the code is moved, the directory structure changes over time, or if code is shared to be run on a different machine, then the path to the working directory is no longer valid. Every <code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code> command in every script in a project must be changed to make new valid paths to the working directory, which is tedious and unnecessary.</p>
 <p>A better approach is to employ a robust workflow using projects in RStudio and the here package.</p>
 <p>By starting a new project in RStudio (<code>File &gt; New Project…</code>) the working directory for that project is set to the project folder, which can be created when starting a new project in RStudio or associated with an existing folder. An <code>.Rproj</code> file, which stores the settings for that project, is linked to the project folder. Opening an existing project in RStudio (<code>File &gt; Open Project</code>) starts a new R session and automatically sets the working directory for that session to the project folder and loads any <code>.RData</code> and <code>.RHistory</code> files, plus any other project settings.</p>
@@ -484,14 +483,14 @@ Figure 3.3: A basic structure for an R project.
 </h4>
 <p>The <a href="https://here.r-lib.org/index.html">here</a> package makes working with relative paths easy to manage. <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code> gets the file path to the project folder of the current project (which it determines by the presence of the <code>.Rproj</code> file) and lets us create paths relative to that folder. For example, to read a <code>.csv</code> file from the Data folder in the project folder we wrap the file information in a <code>here()</code> command within the call to read the file (<code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code>) and list the folders within the project folder (“Data”) and the files (“data.csv”) in order.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install the tidyverse (which includes the readr package) and </span>
-<span class="co"># here packages if you have not already done so</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span>, <span class="va">tidyverse</span><span class="op">)</span>
-
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"data.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Install the tidyverse (which includes the readr package) and </span></span>
+<span><span class="co"># here packages if you have not already done so</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span>, <span class="va">tidyverse</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"data.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Similarly, to write a data frame to a <code>.csv</code> file in the <code>Outputs &gt; Data</code> folder we build a path by listing the folders and file name in order.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"Outputs"</span>, <span class="st">"Data"</span>, <span class="st">"data_output.csv"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"Outputs"</span>, <span class="st">"Data"</span>, <span class="st">"data_output.csv"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>An advantage of using the here package is that we no longer need to worry about how to enter paths on different platforms. On MacOs and Linux, paths are written using single forward slashes to separate folders (<kbd>/</kbd>), while on Windows machines paths to files use single backlashes (e.g., <code>C:\Users\Nick\Documents</code>). However, because backslashes are used to escape characters in strings, R will not recognise the path on a Windows machine as a path and so it is necessary to edit the location of a folder to use either double backslashes (<code>C:\\Users\\Nick\\Documents</code>) or single forward slashes (<code>C:/Users/Nick/Documents</code>). This is tedious and another way in which code can be broken. This problem is easily eliminated by using the here package, which does not require us to enter back- or forward slashes.</p>
 </div>
 <div id="a-script-for-the-folder-structure-of-a-project" class="section level4" number="3.2.2.2">
@@ -500,25 +499,25 @@ Figure 3.3: A basic structure for an R project.
 </h4>
 <p>Once we have created our project folder and associated it with an <code>.Rproj</code> file we can create a function called <code>project_folders()</code> using the here package and the <code><a href="https://rdrr.io/r/base/files2.html">dir.create()</a></code> function that will create the basic folder structure we need for a project.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">project_folders</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>  <span class="co"># no arguments are required</span>
-  
-  <span class="co"># Load the here package</span>
-  <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span><span class="op">)</span>
-  
-  <span class="co"># Name the folders and sub-folders for the project</span>
-  <span class="va">folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Scripts"</span>, <span class="st">"Outputs"</span><span class="op">)</span>
-  <span class="va">Outputs_sub_folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Plots"</span><span class="op">)</span>
-  
-  <span class="co"># Loop over the folders to create them in the project directory</span>
-  <span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">folders</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">}</span>
-  
-  <span class="co"># Loop over the sub-folders to create them in the Outputs directory</span>
-  <span class="kw">for</span> <span class="op">(</span><span class="va">s</span> <span class="kw">in</span> <span class="va">Outputs_sub_folders</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Outputs"</span>, <span class="va">s</span><span class="op">)</span><span class="op">)</span><span class="op">}</span>
-  
-<span class="op">}</span>
-
-<span class="co"># To run the function</span>
-<span class="fu">project_folders</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">project_folders</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>  <span class="co"># no arguments are required</span></span>
+<span>  </span>
+<span>  <span class="co"># Load the here package</span></span>
+<span>  <span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">here</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Name the folders and sub-folders for the project</span></span>
+<span>  <span class="va">folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Scripts"</span>, <span class="st">"Outputs"</span><span class="op">)</span></span>
+<span>  <span class="va">Outputs_sub_folders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Data"</span>, <span class="st">"Plots"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># Loop over the folders to create them in the project directory</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">folders</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="co"># Loop over the sub-folders to create them in the Outputs directory</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">s</span> <span class="kw">in</span> <span class="va">Outputs_sub_folders</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"Outputs"</span>, <span class="va">s</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># To run the function</span></span>
+<span><span class="fu">project_folders</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>A <code>for</code> loop repeats a specific piece of code a set number of times, iterating over the values in a sequence. For example, in the above code the function <code><a href="https://rdrr.io/r/base/files2.html">dir.create()</a></code> is applied once for every item (<code>f</code>) in the list <code>folders</code>. Using the here package we can specify in which folder the sub-folders will be created and run another loop to create sub-folders within the Outputs directory. <code>for</code> loops save time by removing the need to repeatedly execute the same piece of code but they are often one of the slowest ways of executing code in R. However, in this book we will use <code>for</code> loops so we can see what the code we are using does at each step – our aim is understanding rather than speed. Once you feel you understand the code, you can experiment with putting the content of a loop into a function and then using R’s <a href="https://www.learnbyexample.org/r-apply-functions/">family of apply functions</a>, such as <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> and <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, to run code efficiently.</p>
 <p>We can save the <code>project_folders()</code> function as a script – let’s call it <code>project_folders.R</code> – that we can source and run at the beginning a new project. Make sure you make a note of where you save this script, as creating the folder structure will be one of the first tasks in every chapter in this book: we simply copy the script to the project folder, source the function using <code>source("project_folders.R")</code> and run the function.</p>
 </div>
@@ -529,7 +528,7 @@ Figure 3.3: A basic structure for an R project.
 </h3>
 <p>Help on packages and functions can be accessed directly within RStudio. Vignettes describing packages and illustrating how to use their functions can be accessed using <code><a href="https://rdrr.io/r/utils/browseVignettes.html">browseVignettes()</a></code>. For example, to see the vignettes for the seewave package we use</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html">browseVignettes</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"seewave"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html">browseVignettes</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"seewave"</span><span class="op">)</span></span></code></pre></div>
 <p>This will open a list of vignettes in a web browser (NB: an internet connection is required). Not all R packages have vignettes, though many do. To get <code>help</code> with a function from any package currently loaded in the workspace, type help followed by the name of the function in parentheses. For example, to get help with the <code>spectro()</code> function in the seewave package use . This will open the documentation for that function in the help tab of RStudio.</p>
 <p>RStudio also has a Tutorial tab for learning about how to use R and which requires the <a href="https://rstudio.github.io/learnr/">learnr</a> package.</p>
 </div>
@@ -615,7 +614,7 @@ have now set up on your PC.
 </details><hr>
 <p>FFmpeg can be used via the <a href="https://en.wikipedia.org/wiki/Command-line_interface">command line</a> or it can be called by passing system commands from R to the operating system. To streamline our workflow, we will work within a single environment and enter FFmpeg commands via R using the av package to simplify code when possible. For example, to convert a <code>.webm</code> file to an <code>.mp4</code> file without re-encoding the data using FFmpeg within R we pass the following command to the system:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"ffmpeg -i input_video.webm output_video.mp4"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"ffmpeg -i input_video.webm output_video.mp4"</span><span class="op">)</span></span></code></pre></div>
 <p>Breaking this down:</p>
 <ul>
 <li>the <code><a href="https://rdrr.io/r/base/system.html">system()</a></code> function passes a command to the OS as a string – note the use of quote marks around the command.</li>
@@ -628,10 +627,10 @@ have now set up on your PC.
 </ul>
 <p>This process can be simplified using the av package for R, which provides an R wrapper for common FFmpeg operations. To convert a .webm file to .mp4 using <code><a href="https://docs.ropensci.org/av/reference/encoding.html">av::av_video_convert()</a></code>, we enter</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load the av package</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">av</span><span class="op">)</span>
-
-<span class="fu">av</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/av/reference/encoding.html">av_video_convert</a></span><span class="op">(</span><span class="st">"input_video.webm"</span>, output <span class="op">=</span> <span class="st">"output_video.mp4"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Load the av package</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">av</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">av</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/av/reference/encoding.html">av_video_convert</a></span><span class="op">(</span><span class="st">"input_video.webm"</span>, output <span class="op">=</span> <span class="st">"output_video.mp4"</span><span class="op">)</span></span></code></pre></div>
 <p>This command performs the exact same conversion as the FFmpeg code at the command line but is more readable.</p>
 <div class="rmdtip">
 <p>
@@ -720,7 +719,7 @@ modal.onclick = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 13 September 2022.</p>
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 29 November 2022.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
@@ -733,7 +732,7 @@ modal.onclick = function() {
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
