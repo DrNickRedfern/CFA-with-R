@@ -15,6 +15,8 @@ This book includes interactive content for the user to explore, including embedd
 
 You can access the book at [https://cfa-with-r.netlify.app/](https://cfa-with-r.netlify.app/).
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2e768e89-55df-4f25-86ce-bb45ba640727/deploy-status)](https://app.netlify.com/sites/cfa-with-r/deploys)
+
 ## About this book
 
 ### Citation
