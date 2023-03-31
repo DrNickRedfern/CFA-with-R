@@ -22,7 +22,7 @@ You can access the book at [https://cfa-with-r.netlify.app/](https://cfa-with-r.
 ### Citation
 To cite this book please use:
 
-Redfern, N. (2022) *Computational Film Analysis with R* (version 0.9.000). [https://doi.org/10.5281/zenodo.7074521](https://doi.org/10.5281/zenodo.7074521).
+Redfern, N. (2022) *Computational Film Analysis with R* (version 0.9.004). [https://doi.org/10.5281/zenodo.7074521](https://doi.org/10.5281/zenodo.7074521).
 
 <a href="https://doi.org/10.5281/zenodo.7074521"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7074521.svg" alt="DOI"></a>
 
