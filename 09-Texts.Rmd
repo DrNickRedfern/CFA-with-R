@@ -628,8 +628,8 @@ The function also returns a simplified macro shape plot of the discrete cosine t
 R's `edit()` function launches the script editor (see Figure \@ref(fig:texts-edit-image-edits)) that lets us edit the `simple_plot()` function to create a new function called `sp` by adding a lines of code to collect the data objects we identified above and return the data frame we desire. The code for the new `sp()` function can be read [below](#spcode). Clicking `Save` in the script editor window will add the new `sp()` function to the workspace.
 
 ```{r texts-edit-code-edits, eval=FALSE}
-# Load the syzuhet package
-pacman::p_load(syzuhet)
+# Load the syuzhet package
+pacman::p_load(syuzhet)
 
 # Open the editor to create a new function call sp
 sp <- edit(simple_plot)
@@ -639,7 +639,7 @@ sp <- edit(simple_plot)
 knitr::include_graphics("Images/texts-edit-image-edit.png")
 ```
 
-Double-clicking on the function name in the Environment tab RStudio's *Environment* pane will open the function in the Source pane. We can save the `sp()` as an R script in the Code folder of our project. To save the function as an R script in RStudio, go to `File > Save As...` and save the file in the project's Code folder as `sp.R`. We can then source the file whenever we need to.
+Double-clicking on the function name in the Environment tab RStudio's *Environment* pane will open the function in the Source pane. We can save the `sp()` as an R script in the Code folder of our project. To save the function as an R script in RStudio, go to `File > Save As...` and save the file in the project's Scripts folder as `sp.R`. We can then source the file whenever we need to.
 
 Note that our new `sp()` function still uses other functions from the syuzhet package and so it will still be necessary to load this package in order for `sp()` to function correctly.
 
@@ -677,7 +677,7 @@ Using our new `sp()` function, we can gather the data we want as a data frame. T
 # Remember to load the syuzhet package when using sp()
 pacman::p_load(syuzhet)
 
-# Source the sp() function from the Code folder
+# Source the sp() function from the Scripts folder
 source(here("Code", "sp.R"))
 
 # Get the sentiments for each sentence
@@ -704,8 +704,8 @@ Using this data frame we can now create our own plot of the data, allows us to c
 
 ```{r texts-edit-plot-ggplot, out.width="90%", fig.align='center', fig.cap="A ggplot2 style version of the output of the `sp()` function for sentiments in *Annabelle: Creation*."}
 ggplot(data = l_annabelle_2[[1]]) +
-  geom_hline(yintercept = 0, linetype = "dashed", colour = "gray", size = 1) +
-  geom_line(aes(x = Sentence, y = DCT), colour = "#277F8E", size = 1) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "gray", linewidth = 1) +
+  geom_line(aes(x = Sentence, y = DCT), colour = "#277F8E", linewidth = 1) +
   scale_x_continuous(expand = c(0.01, 1)) +
   labs(x = "Narrative time", y = "Scaled sentiment") +
   theme_light() +
