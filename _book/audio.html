@@ -7,7 +7,7 @@
 <title>4 Analysing film audio | Computational Film Analysis with R</title>
 <meta name="author" content="Nick Redfern">
 <meta name="description" content="In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of...">
-<meta name="generator" content="bookdown 0.33 with bs4_book()">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
 <meta property="og:title" content="4 Analysing film audio | Computational Film Analysis with R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/images/cover.png">
@@ -18,14 +18,14 @@
 <meta name="twitter:image" content="/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.12.1/css/fixedColumns.dataTables.min.css" rel="stylesheet">
-<script src="libs/dt-ext-fixedcolumns-1.12.1/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.28/datatables.js"></script><link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.13.4/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-fixedcolumns-1.13.4/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.2/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-1C2QQ81L3X"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -94,6 +94,7 @@
 <li><a class="" href="references.html"><span class="header-section-number">10</span> References</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="colophon.html">Colophon</a></li>
+<li><a class="" href="reader-statistics.html">Reader statistics</a></li>
 </ul>
 
         <div class="book-extra">
@@ -111,7 +112,7 @@
 <p>In the cinema, the different elements of film audio – dialogue, music, sound effects, ambient noises, and silence – are organised into a soundtrack that contributes to viewers’ experiences of motion pictures in multiple ways. Soundtracks convey narrative information and emotions; define the mood of a film; shape the pace of action and the tempo of a film; contribute to the realism (or hyperrealism) of a movie; establish location and historical period; carrying thematic content across a film; and organise viewers’ direct experience of a film by smoothing out cuts between shots and enabling transitions between scenes, locations, and different times. Sound adds to the visual content of a scene, often drawing attention to what is important on the screen and can modify how we perceive what we are witnessing on the screen. Audio content is therefore a rich source of information about narrative structure, action, and emotion in motion pictures.</p>
 <p>Timmy Chih-Ting Chen describes <a href="https://en.wikipedia.org/wiki/Sound_design">sound design</a> as an analytic concept that</p>
 <blockquote>
-<p>helps us describe the aesthetic and stylistic construction of all elements of the soundtrack, attending to the sound mix comprising music, voice, sound effects, ambience, and silence in relation to the visual track. As the sonic counterpart to visual design, sound design draws audience’s attention to the neglected aural dimension of cinematic style <span class="citation">(<a href="references.html#ref-chen2016sdxx" role="doc-biblioref">T. C.-T. Chen, 2016</a>: 34)</span>.</p>
+<p>helps us describe the aesthetic and stylistic construction of all elements of the soundtrack, attending to the sound mix comprising music, voice, sound effects, ambience, and silence in relation to the visual track. As the sonic counterpart to visual design, sound design draws audience’s attention to the neglected aural dimension of cinematic style <span class="citation">(<a href="references.html#ref-chen2016sdxx">T. C.-T. Chen, 2016</a>: 34)</span>.</p>
 </blockquote>
 <p>Computational analyses of film style have largely ignored the role of sound but there is a wide range of audio analysis tools that are freely available and that could be applied to understanding sound design in the cinema. In this chapter we will cover some methods for analysing sound in the cinema with R.</p>
 <div id="a-brief-digital-audio-primer" class="section level2" number="4.1">
@@ -175,7 +176,7 @@ av
 Perform operations on video files
 </td>
 <td style="text-align:left;">
-<span class="citation">Ooms (<a href="references.html#ref-R-av" role="doc-biblioref">2022</a>)</span>
+<span class="citation">Ooms (<a href="references.html#ref-R-av">2022</a>)</span>
 </td>
 </tr>
 <tr>
@@ -186,7 +187,7 @@ here
 Use relative paths to access data and save outputs
 </td>
 <td style="text-align:left;">
-<span class="citation">K. Müller (<a href="references.html#ref-R-here" role="doc-biblioref">2020</a>)</span>
+<span class="citation">K. Müller (<a href="references.html#ref-R-here">2020</a>)</span>
 </td>
 </tr>
 <tr>
@@ -197,7 +198,7 @@ pacman
 Installs and loads R packages
 </td>
 <td style="text-align:left;">
-<span class="citation">T. Rinker &amp; Kurkiewicz (<a href="references.html#ref-R-pacman" role="doc-biblioref">2019</a>)</span>
+<span class="citation">T. Rinker &amp; Kurkiewicz (<a href="references.html#ref-R-pacman">2019</a>)</span>
 </td>
 </tr>
 <tr>
@@ -208,7 +209,7 @@ seewave
 Analyse audio files
 </td>
 <td style="text-align:left;">
-<span class="citation">Sueur et al. (<a href="references.html#ref-R-seewave" role="doc-biblioref">2022</a>)</span>
+<span class="citation">Sueur et al. (<a href="references.html#ref-R-seewave">2022</a>)</span>
 </td>
 </tr>
 <tr>
@@ -219,7 +220,7 @@ tidyverse
 Data wrangling and visualisation
 </td>
 <td style="text-align:left;">
-<span class="citation">Wickham et al. (<a href="references.html#ref-wickham2019wttt" role="doc-biblioref">2019</a>)</span>
+<span class="citation">Wickham et al. (<a href="references.html#ref-wickham2019wttt">2019</a>)</span>
 </td>
 </tr>
 <tr>
@@ -230,7 +231,7 @@ tuneR
 Import and process audio files
 </td>
 <td style="text-align:left;">
-<span class="citation">Ligges (<a href="references.html#ref-R-tuneR" role="doc-biblioref">2021</a>)</span>
+<span class="citation">Ligges (<a href="references.html#ref-R-tuneR">2021</a>)</span>
 </td>
 </tr>
 <tr>
@@ -241,12 +242,12 @@ viridis
 Accessible colour palettes
 </td>
 <td style="text-align:left;">
-<span class="citation">Garnier (<a href="references.html#ref-R-viridis" role="doc-biblioref">2021</a>)</span>
+<span class="citation">Garnier (<a href="references.html#ref-R-viridis">2021</a>)</span>
 </td>
 </tr>
 </tbody>
 </table></div>
-<p>There are other packages that we could use to analyse audio files in R, including soundgen <span class="citation">(<a href="references.html#ref-anikin2019saos" role="doc-biblioref">Anikin, 2019</a>)</span> and warbleR <span class="citation">(<a href="references.html#ref-arayasalas2017warp" role="doc-biblioref">Araya‐Salas &amp; Smith‐Vidaurre, 2017</a>)</span>. Some of the functions in these packages make use of the seewave package, while adding new methods for acoustic analysis. warbleR is designed for working with multiple files and could be useful when working with data sets comprising a large number of audio files.</p>
+<p>There are other packages that we could use to analyse audio files in R, including soundgen <span class="citation">(<a href="references.html#ref-anikin2019saos">Anikin, 2019</a>)</span> and warbleR <span class="citation">(<a href="references.html#ref-arayasalas2017warp">Araya‐Salas &amp; Smith‐Vidaurre, 2017</a>)</span>. Some of the functions in these packages make use of the seewave package, while adding new methods for acoustic analysis. warbleR is designed for working with multiple files and could be useful when working with data sets comprising a large number of audio files.</p>
 </div>
 <div id="data" class="section level3" number="4.2.3">
 <h3>
@@ -375,7 +376,7 @@ Figure 4.3: The mono waveform of the soundtrack of the <em>Insidious: Chapter 3<
 <h3>
 <span class="header-section-number">4.3.1</span> The spectrogram<a class="anchor" aria-label="anchor" href="#the-spectrogram"><i class="fas fa-link"></i></a>
 </h3>
-<p>The next stage applies the <em>short-time Fourier transform</em> (<a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">STFT</a>) to the mono wave file to produce a 2D time-frequency representation of the signal called a <em>spectrogram</em>. See <span class="citation">Goodwin (<a href="references.html#ref-goodwin2008tssm" role="doc-biblioref">2008</a>)</span> and <span class="citation">M. Müller (<a href="references.html#ref-muller2015fomp" role="doc-biblioref">2015</a>: 40-57)</span> for detailed discussions of these methods and their mathematical underpinnings.</p>
+<p>The next stage applies the <em>short-time Fourier transform</em> (<a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">STFT</a>) to the mono wave file to produce a 2D time-frequency representation of the signal called a <em>spectrogram</em>. See <span class="citation">Goodwin (<a href="references.html#ref-goodwin2008tssm">2008</a>)</span> and <span class="citation">M. Müller (<a href="references.html#ref-muller2015fomp">2015</a>: 40-57)</span> for detailed discussions of these methods and their mathematical underpinnings.</p>
 <p>Any audio signal can be represented as the sum of a series of <a href="https://en.wikipedia.org/wiki/Sine_wave">sine waves</a>. The <a href="https://en.wikipedia.org/wiki/Fourier_transform"><em>Fourier transform</em></a> is a mathematical function that decomposes a signal into its component sine waves at different frequencies, with the amplitude of each sine wave representing the amount of <a href="https://en.wikipedia.org/wiki/Sound_power">power</a> or <a href="https://en.wikipedia.org/wiki/Sound_energy">energy</a> present in the signal at that frequency. By analogy, the Fourier transform is to sound as a prism is to light, splitting the signal to reveal the spectrum of frequencies that make up a sound wave. This can be done no matter how complex the audio signal in which we are interested. A limitation of the Fourier transform is that assumes a signal is <a href="https://en.wikipedia.org/wiki/Stationary_process">stationary</a> –- that is, it assumes the statistical properties of a signal do not alter with time. Applying the Fourier transform to the soundtrack of a trailer will give us a spectrum representing the overall frequency content of the soundtrack averaged over the duration of the entire signal time but it will not tell us anything about how the soundtrack evolves over time. The STFT overcomes this limitation by dividing the signal into a series of <a href="https://www.audiolabs-erlangen.de/resources/MIR/FMP/C2/C2_STFT-Window.html">windows</a> and calculating the Fourier transform for each window. The result is a Fourier transform of the signal localised in time that depends on the <a href="https://en.wikipedia.org/wiki/Window_function">shape</a> (rectangle, Hanning, etc.), size (the number of samples within a window, which should be a power of 2), and the overlap of the windows of successive local Fourier transforms. In this example, the successive Fourier transforms are overlapped by 50% to produce a smoother spectrogram that more accurately reflects the structure of the continuous audio signal.</p>
 <p>Calculating the STFT of a signal will give us a <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">matrix</a>, in which columns are the time windows, the rows are the frequency bands, and the cell values are the amplitude of the signal in that time window for that band of frequencies. The STFT is visualised as a <a href="https://en.wikipedia.org/wiki/Spectrogram">spectrogram</a>. The spectrogram describes how the magnitudes of the individual frequencies (shown on the y-axis) comprising a signal vary over time (which is represented on the x-axis), with the amplitude of a signal in a time-frequency window indicated by colour.</p>
 <p>Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a> displays segments of two signals of one-second in duration with frequency components at 329.63 Hz and 493.88 Hz corresponding to the notes E4 and B4, respectively. The waveform of Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.A is a superposition of both frequencies, with both notes present throughout the duration of the signal. The waveform in Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.B has the same frequency components, but they are not present at the same time: this waveform shifts frequency from E4 to B4 after 0.5 seconds. Figures <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.C and D show the spectra of these waves with amplitude peaks at their component frequencies. From this example it is evident that a Fourier transform cannot distinguish between stationary and non-stationary signals; that is, it cannot see the difference between a stationary signal in which the statistical properties of the signal are consistent over time (Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.A) and a non-stationary signal with components at the same frequencies but whose statistical properties vary with time (Figure <a href="audio.html#fig:audio-spectrogram-plot-demo">4.4</a>.B).</p>
@@ -442,8 +443,8 @@ The ggplot2 package
 <p>
 The ggplot2 package maps aesthetic attributes to a data set to
 produce highly-customisable publication-ready visualisations based on
-Leland Wilkinson’s <em>The Grammar of Graphics</em> <span class="citation"><span class="citation">(<a href="references.html#ref-wilkinson2005tgog" role="doc-biblioref">Wilkinson, 2005</a>)</span></span>. Hadley Wickham’s
-<em>ggplot2: Elegant Graphics for Data Analysis</em> <span class="citation"><span class="citation">(<a href="references.html#ref-wickham2016gegf" role="doc-biblioref">2016</a>)</span></span> presents a detailed
+Leland Wilkinson’s <em>The Grammar of Graphics</em> <span class="citation"><span class="citation">(<a href="references.html#ref-wilkinson2005tgog">Wilkinson, 2005</a>)</span></span>. Hadley Wickham’s
+<em>ggplot2: Elegant Graphics for Data Analysis</em> <span class="citation"><span class="citation">(<a href="references.html#ref-wickham2016gegf">2016</a>)</span></span> presents a detailed
 introduction to the ggplot2 package. The online version is available <a href="https://ggplot2-book.org/index.html">here</a>.
 </p>
 <p>
@@ -530,7 +531,7 @@ and combining multiple plots together to make a single figure.
 </h3>
 <p>A limitation of visualising the soundtrack using the spectrogram is that it can be difficult to characterise the temporal evolution of specific features. Additionally, it is not possible to see relationships between different elements of the soundtrack at different scales.</p>
 <p>The <em>normalised aggregate power envelope</em> (nape) plots the evolution of the power of the soundtrack, making it easier to see the structure of the soundtrack, relationships between various parts of the soundtrack at different scales, and the shape of local features. It is also easier to compare soundtracks using this visualisation than the waveform or the spectrogram.</p>
-<p>To calculate the normalised aggregated power envelope for the <em>Insidious: Chapter 3</em> trailer we use the <code>acoutsat()</code> function in the seewave package, keeping the settings we used to produce the spectrogram. The envelope is simply the sum of the columns of the matrix comprising the STFT that has been <a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">normalised</a> to a unit area <span class="citation">(<a href="references.html#ref-cortopassi2006aarm" role="doc-biblioref">Cortopassi, 2006</a>)</span>.</p>
+<p>To calculate the normalised aggregated power envelope for the <em>Insidious: Chapter 3</em> trailer we use the <code>acoutsat()</code> function in the seewave package, keeping the settings we used to produce the spectrogram. The envelope is simply the sum of the columns of the matrix comprising the STFT that has been <a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">normalised</a> to a unit area <span class="citation">(<a href="references.html#ref-cortopassi2006aarm">Cortopassi, 2006</a>)</span>.</p>
 <p>To obtain the time contour produced by <code>acoustat()</code>, we use the <code>$</code> <a href="https://r-lang.com/dollar-sign-in-r-with-example/">operator</a> to access an element from the list of results returned by a function. This will return a two column matrix containing the times of the individual spectra comprising the spectrogram and the aggregate of the amplitude values of those spectra. We will set <code>plot = FALSE</code> so that we can draw our own plot of the data using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code>.</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">insidious_chapter_3_nape</span> <span class="op">&lt;-</span> <span class="fu">acoustat</span><span class="op">(</span><span class="va">audio</span>, </span>
@@ -621,7 +622,7 @@ Figure 4.7: The normalised aggregated power envelope of the soundtrack of the tr
 <h3>
 <span class="header-section-number">4.4.1</span> Structure<a class="anchor" aria-label="anchor" href="#structure"><i class="fas fa-link"></i></a>
 </h3>
-<p>In <span class="citation">Redfern (<a href="references.html#ref-redfern2020sihf" role="doc-biblioref">2020c</a>)</span> I showed that trailers for US horror films can typically be divided into three sections:</p>
+<p>In <span class="citation">Redfern (<a href="references.html#ref-redfern2020sihf">2020c</a>)</span> I showed that trailers for US horror films can typically be divided into three sections:</p>
 <ul>
 <li>
 <em>narrative</em>: establishing character, locations, time-frames, and plot</li>
@@ -644,14 +645,14 @@ Figure 4.8: The normalised aggregated power envelope of the soundtracks of trail
 <h3>
 <span class="header-section-number">4.4.2</span> Acoustic startle events<a class="anchor" aria-label="anchor" href="#acoustic-startle-events"><i class="fas fa-link"></i></a>
 </h3>
-<p>Acoustic startle events generate a startle response in the audience through the abrupt onset of a loud sound <span class="citation">(<a href="references.html#ref-sbravatti2019asih" role="doc-biblioref">Sbravatti, 2019</a>)</span>. Different types of affective events have different <a href="https://en.wikipedia.org/wiki/Envelope_(music)">audio envelopes</a> (Figure <a href="audio.html#fig:audio-ase-plot-schemas">4.9</a>): Type-1 events are characterised by step-edge attack, no sustain, and step-edge release creating a jump scare for the audience; Type-3 events by step-edge attack, long sustain, and unspecified release stage, also jolting the audience but maintaining a heightened emotional intensity for a period of time; and Type-5 events by step-edge attack, no sustain, and a long release in which the power of the startle event falls away as characters react to the shock they (and the audience) have just experienced. (Type 2 and Type 4 affective events have a slope attack and so do not generate a startle repsonse; see <span class="citation">Redfern (<a href="references.html#ref-redfern2020sihf" role="doc-biblioref">2020c</a>)</span> for a discussion of the different types of affective events in horror film trailers).</p>
+<p>Acoustic startle events generate a startle response in the audience through the abrupt onset of a loud sound <span class="citation">(<a href="references.html#ref-sbravatti2019asih">Sbravatti, 2019</a>)</span>. Different types of affective events have different <a href="https://en.wikipedia.org/wiki/Envelope_(music)">audio envelopes</a> (Figure <a href="audio.html#fig:audio-ase-plot-schemas">4.9</a>): Type-1 events are characterised by step-edge attack, no sustain, and step-edge release creating a jump scare for the audience; Type-3 events by step-edge attack, long sustain, and unspecified release stage, also jolting the audience but maintaining a heightened emotional intensity for a period of time; and Type-5 events by step-edge attack, no sustain, and a long release in which the power of the startle event falls away as characters react to the shock they (and the audience) have just experienced. (Type 2 and Type 4 affective events have a slope attack and so do not generate a startle repsonse; see <span class="citation">Redfern (<a href="references.html#ref-redfern2020sihf">2020c</a>)</span> for a discussion of the different types of affective events in horror film trailers).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-ase-plot-schemas"></span>
 <img src="Images/audio-ase-plot-schemas.svg" alt="Schematic representations of acoustic startle events." width="90%"><p class="caption">
 Figure 4.9: Schematic representations of acoustic startle events.
 </p>
 </div>
-<p>Plotting the timing and type of acoustic startle events in these trailers (Figure <a href="audio.html#fig:audio-ase-plot-events">4.10</a>) we see that there is a clear pattern in their timing and functions. First, acoustic startle events do not occur during the narrative phase of a trailer. Second, Type-1 events occur during the emotional phase and are classic examples of the basic jump scare in horror cinema <span class="citation">(<a href="references.html#ref-baird2000tsei" role="doc-biblioref">Baird, 2000</a>)</span>. The two Type-1 events in the trailer for <em>Insidious: Chapter 2</em> both make the audience jump, marking turning points in the trailer, first when there is a shift from the narrative stage to the horror stage, and second when the soundtrack begins to increase in power as the emotional content of the trailer intensifies. Interestingly, there are no Type-1 events in the last 20% of any of the trailers. Third, Type-3 and Type-5 events occur later in these trailers and are associated with the marketing functions of the trailers, all occurring in the final fifth of a trailer. The use of acoustic startles in the marketing phase is attentional rather than emotional, and the sustain or slope decay of the envelope of these events exploits the fact that human beings have evolved to enter a state of hypervigilance for three to ten seconds following the sudden redirect of attention following a loud, abrupt, and intrusive sound into our environment sound <span class="citation">(<a href="references.html#ref-dreissen2012esex" role="doc-biblioref">Dreissen et al., 2012</a>)</span>. The attack of the startle event draws our attention to the screen and that attention is sustained while we are told information about the film’s release that we will need to remember if we are to watch the film when it is released.</p>
+<p>Plotting the timing and type of acoustic startle events in these trailers (Figure <a href="audio.html#fig:audio-ase-plot-events">4.10</a>) we see that there is a clear pattern in their timing and functions. First, acoustic startle events do not occur during the narrative phase of a trailer. Second, Type-1 events occur during the emotional phase and are classic examples of the basic jump scare in horror cinema <span class="citation">(<a href="references.html#ref-baird2000tsei">Baird, 2000</a>)</span>. The two Type-1 events in the trailer for <em>Insidious: Chapter 2</em> both make the audience jump, marking turning points in the trailer, first when there is a shift from the narrative stage to the horror stage, and second when the soundtrack begins to increase in power as the emotional content of the trailer intensifies. Interestingly, there are no Type-1 events in the last 20% of any of the trailers. Third, Type-3 and Type-5 events occur later in these trailers and are associated with the marketing functions of the trailers, all occurring in the final fifth of a trailer. The use of acoustic startles in the marketing phase is attentional rather than emotional, and the sustain or slope decay of the envelope of these events exploits the fact that human beings have evolved to enter a state of hypervigilance for three to ten seconds following the sudden redirect of attention following a loud, abrupt, and intrusive sound into our environment sound <span class="citation">(<a href="references.html#ref-dreissen2012esex">Dreissen et al., 2012</a>)</span>. The attack of the startle event draws our attention to the screen and that attention is sustained while we are told information about the film’s release that we will need to remember if we are to watch the film when it is released.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-ase-plot-events"></span>
 <img src="Images/audio-ase-plot-events.png" alt="The onsets of acoustic startle events in trailers for films in the *Insidious* franchise.." width="90%"><p class="caption">
@@ -664,14 +665,14 @@ Figure 4.10: The onsets of acoustic startle events in trailers for films in the 
 <h3>
 <span class="header-section-number">4.4.3</span> Non-linear mixing<a class="anchor" aria-label="anchor" href="#non-linear-mixing"><i class="fas fa-link"></i></a>
 </h3>
-<p>In earlier computational analyses of film audio, I showed that <em>exponential growth and decay</em> (see <a href="audio.html#expbox">Computational film analysis can save your life</a> below) are a key part of the sound design of horror films and trailers <span class="citation">(<a href="references.html#ref-redfern2020qaos" role="doc-biblioref">Redfern, 2020b</a>, <a href="references.html#ref-redfern2021tsot" role="doc-biblioref">2021c</a>)</span>, and the ability to recognise and interpret these features is a key part of applying computational analysis to film audio. Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a> plots the envelope of the final affective event from the <em>Insidious: Chapter 3</em> trailer on linear (Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.A) and logarithmic (Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.B) axes. The log-scaled version shows us what is really happening as the power of the soundtrack decays after startling the audience and reveals that exponential decay is a part of the sound design of the trailer.</p>
+<p>In earlier computational analyses of film audio, I showed that <em>exponential growth and decay</em> (see <a href="audio.html#expbox">Computational film analysis can save your life</a> below) are a key part of the sound design of horror films and trailers <span class="citation">(<a href="references.html#ref-redfern2020qaos">Redfern, 2020b</a>, <a href="references.html#ref-redfern2021tsot">2021c</a>)</span>, and the ability to recognise and interpret these features is a key part of applying computational analysis to film audio. Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a> plots the envelope of the final affective event from the <em>Insidious: Chapter 3</em> trailer on linear (Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.A) and logarithmic (Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.B) axes. The log-scaled version shows us what is really happening as the power of the soundtrack decays after startling the audience and reveals that exponential decay is a part of the sound design of the trailer.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:audio-nonlinear-nape-ase"></span>
 <img src="Images/audio-nonlinear-nape-ase.png" alt="The evolution of an affective event in the trailer for *Insidious: Chapter 3* with normalised aggregated power plotted on (A) linear and (B) logarithmic axes." width="90%"><p class="caption">
 Figure 4.11: The evolution of an affective event in the trailer for <em>Insidious: Chapter 3</em> with normalised aggregated power plotted on (A) linear and (B) logarithmic axes.
 </p>
 </div>
-<p>The shape of the decay in Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.B raises an interesting question: how did the sound designer and editor put this part of the soundtrack together? The base level of the log-scaled version of the event appears almost perfectly straight and it would be interesting to discover the extent to which this type of non-linear sound mixing is intentional on the part of the filmmakers. Are filmmakers consciously designing features with exponential rates of growth and decay into soundtracks? If so, are they producing these features by controlling the parameters of an audio envelope by ‘hand’? Or are such features the result of software components (e.g., spline curves, plug-ins, etc.) of digital audio workstations used by filmmakers who are not necessarily aware of the exponential evolution of such an affective event? Adobe Audition, for example, allows users to select several types of fades, including linear, logarithmic, and cosine fades <span class="citation">(<a href="references.html#ref-adobe2021vfac" role="doc-biblioref">Adobe, 2021</a>)</span>. This raises further questions about when such features first appeared in horror film audio. Has non-linear sound mixing always been a part of horror film soundtracks? Or did these features appear with the introduction of digital audio workstations into the practice of film sound? The normalised aggregated power envelope can be thought of as the trace of a set of aesthetic practices and provides a basis for exploring the ways in which filmmakers produce soundtracks.</p>
+<p>The shape of the decay in Figure <a href="audio.html#fig:audio-nonlinear-nape-ase">4.11</a>.B raises an interesting question: how did the sound designer and editor put this part of the soundtrack together? The base level of the log-scaled version of the event appears almost perfectly straight and it would be interesting to discover the extent to which this type of non-linear sound mixing is intentional on the part of the filmmakers. Are filmmakers consciously designing features with exponential rates of growth and decay into soundtracks? If so, are they producing these features by controlling the parameters of an audio envelope by ‘hand’? Or are such features the result of software components (e.g., spline curves, plug-ins, etc.) of digital audio workstations used by filmmakers who are not necessarily aware of the exponential evolution of such an affective event? Adobe Audition, for example, allows users to select several types of fades, including linear, logarithmic, and cosine fades <span class="citation">(<a href="references.html#ref-adobe2021vfac">Adobe, 2021</a>)</span>. This raises further questions about when such features first appeared in horror film audio. Has non-linear sound mixing always been a part of horror film soundtracks? Or did these features appear with the introduction of digital audio workstations into the practice of film sound? The normalised aggregated power envelope can be thought of as the trace of a set of aesthetic practices and provides a basis for exploring the ways in which filmmakers produce soundtracks.</p>
 <span id="expbox"></span>
 <div class="rmdtip">
 <h3 style="margin-top: -5px; font-weight: bold;">
@@ -689,7 +690,7 @@ all film scholars ought to possess in order to comprehend and evaluate
 this research;that there is nothing for Film Studies to fear in looking
 beyond the humanities; and that by introducing statistical literacy into
 the curriculum we better prepare students (and lecturers) for work and
-life <span class="citation"><span class="citation">(<a href="references.html#ref-redfern2013fsas" role="doc-biblioref">Redfern, 2013a</a>: 67-68)</span></span>.
+life <span class="citation"><span class="citation">(<a href="references.html#ref-redfern2013fsas">Redfern, 2013a</a>: 67-68)</span></span>.
 </p>
 </blockquote>
 <p>
@@ -704,7 +705,7 @@ long been known that, in general, people have difficulty understanding
 the nature and implications of exponential growth, exhibiting a strong
 and systematic bias towards linear growth that leads them to
 underestimate how processes (such as interest rates, memes, viruses,
-etc.) evolve over time <span class="citation"><span class="citation">(<a href="references.html#ref-levy2016egba" role="doc-biblioref">Levy &amp; Tasoff, 2016</a>)</span></span>.
+etc.) evolve over time <span class="citation"><span class="citation">(<a href="references.html#ref-levy2016egba">Levy &amp; Tasoff, 2016</a>)</span></span>.
 </p>
 <p>
 The statistically illiterate do not perceive the phenomenon of
@@ -728,7 +729,7 @@ phenomenon with a single interpretation.
 <img src="Images/audio-nonlinear-box-exp.png" alt="Exponential growth is easier to see when the y-axis is plotted logarithmically" width="324">
 </div>
 <p>
-<span class="citation"><span class="citation">Lammers et al. (<a href="references.html#ref-lammers2020cmoe" role="doc-biblioref">2020</a>)</span></span> found that during the
+<span class="citation"><span class="citation">Lammers et al. (<a href="references.html#ref-lammers2020cmoe">2020</a>)</span></span> found that during the
 coronavirus pandemic people exhibited an <a href="https://www.bbc.com/future/article/20200812-exponential-growth-bias-the-numerical-error-behind-covid-19">exponential-growth
 bias</a>, tending to view the growth of the virus in linear terms and
 thereby underestimate the scale and evolution of the pandemic. They also
@@ -745,7 +746,7 @@ As we have seen, exponential growth and decay is a part of the sound
 design of horror film trailers and being able to recognise and interpret
 these features is a key part of applying computational film analysis to
 audio texts. Teaching the methods used in this chapter and demonstrated
-in my research on sound design in horror cinema <span class="citation"><span class="citation">(<a href="references.html#ref-redfern2020sihf" role="doc-biblioref">Redfern, 2020c</a>, <a href="references.html#ref-redfern2020qaos" role="doc-biblioref">2020b</a>, <a href="references.html#ref-redfern2021tsot" role="doc-biblioref">2021c</a>)</span></span> would have introduced students to the concept
+in my research on sound design in horror cinema <span class="citation"><span class="citation">(<a href="references.html#ref-redfern2020sihf">Redfern, 2020c</a>, <a href="references.html#ref-redfern2020qaos">2020b</a>, <a href="references.html#ref-redfern2021tsot">2021c</a>)</span></span> would have introduced students to the concept
 of exponential growth, allowing them to obtain a level of statistical
 literacy with urgent real-world applications.
 </p>
@@ -757,7 +758,7 @@ In 2012, the British Academy reported that
 In higher education, almost all disciplines require quantitative
 capacity, but students are often ill-equipped to cope with those
 demands. They then leave university with skills inadequate to the needs
-of the workplace –- be it in business, public sector or academia <span class="citation"><span class="citation">(<a href="references.html#ref-ba2012scqs" role="doc-biblioref">British Academy, 2012</a>: 2)</span></span>.
+of the workplace –- be it in business, public sector or academia <span class="citation"><span class="citation">(<a href="references.html#ref-ba2012scqs">British Academy, 2012</a>: 2)</span></span>.
 </p>
 </blockquote>
 <p>
@@ -833,7 +834,7 @@ Figure 4.13: The normalised aggregated power envelope of the sound track of the 
 <h2>
 <span class="header-section-number">4.6</span> Summary<a class="anchor" aria-label="anchor" href="#summary-2"><i class="fas fa-link"></i></a>
 </h2>
-<p>Mark Kerins has argued that studies of sound in the cinema must find ways to go beyond a reliance on methods and vocabulary of musicology to establish ‘a collective vocabulary that moves beyond the classical terms of music to encompass the rich variety and texture of sounds used in the cinema and other audio-visual media’ <span class="citation">(<a href="references.html#ref-kerins2008asos" role="doc-biblioref">Kerins, 2008</a>: 11)</span>.</p>
+<p>Mark Kerins has argued that studies of sound in the cinema must find ways to go beyond a reliance on methods and vocabulary of musicology to establish ‘a collective vocabulary that moves beyond the classical terms of music to encompass the rich variety and texture of sounds used in the cinema and other audio-visual media’ <span class="citation">(<a href="references.html#ref-kerins2008asos">Kerins, 2008</a>: 11)</span>.</p>
 <p>The methods demonstrated in this chapter here go some way to addressing Kerins’s call for a vocabulary that allows us to speak about soundtracks in an integrated way, using a graphical approach that adopts methods from bioacoustics. As a vocabulary of film analysis, the graphical methods demonstrated here have descriptive, analytical, and communicative power. The normalised aggregated power envelope makes it easy to visualise the soundtrack of a film, to pick out features of interest, and to share that information. It allows us to achieve an integrated understanding of sound design in the cinema by letting us look at the evolution of the soundtrack in time and to see relationships between audio features at different scales, enabling us to see simultaneously the global structure of a soundtrack and to focus on individual features at a local level. Furthermore, it is a graphical language shared by the sound engineers, mixers, and designers who create film soundtracks: the waveform, Fourier transform, frequency analysers, and spectrogram are features of digital audio workstations that are used in film production. As much audio production now takes place on a computer, it is, to a significant degree, a visual practice and it makes sense for the analysis of film sound to use the same visual vocabulary as those who produce the sounds we analyse.</p>
 
 </div>
@@ -919,7 +920,7 @@ modal.onclick = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 26 May 2023.</p>
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 24 November 2023.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

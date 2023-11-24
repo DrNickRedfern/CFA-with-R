@@ -7,7 +7,7 @@
 <title>Computational Film Analysis with R</title>
 <meta name="author" content="Nick Redfern">
 <meta name="description" content="An introduction to computational analysis of film form and film style with R">
-<meta name="generator" content="bookdown 0.33 with bs4_book()">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
 <meta property="og:title" content="Computational Film Analysis with R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/images/cover.png">
@@ -18,14 +18,14 @@
 <meta name="twitter:image" content="/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.12.1/css/fixedColumns.dataTables.min.css" rel="stylesheet">
-<script src="libs/dt-ext-fixedcolumns-1.12.1/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.28/datatables.js"></script><link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.13.4/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-fixedcolumns-1.13.4/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.2/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-1C2QQ81L3X"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -94,6 +94,7 @@
 <li><a class="" href="references.html"><span class="header-section-number">10</span> References</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="colophon.html">Colophon</a></li>
+<li><a class="" href="reader-statistics.html">Reader statistics</a></li>
 </ul>
 
         <div class="book-extra">
@@ -123,7 +124,7 @@
 <div id="about-the-author" class="section level2 unnumbered">
 <h2>About the author<a class="anchor" aria-label="anchor" href="#about-the-author"><i class="fas fa-link"></i></a>
 </h2>
-<p>My name is Nick Redfern and I have been teaching and researching about film since 2001. I have taught film, media, and television studies at Manchester Metropolitan University, the University of Central Lancashire, and Leeds Trinity University. My work on computational film analysis has been published in the <em>Journal of Japanese and Korean Cinema</em>, <em>Statistica</em>, the <em>Journal of Data Science</em>, <em>Post Script</em>, <em>Digital Scholarship in the Humanities</em>, <em>Umanistica Digitale</em>, <em>Sound, Music, and the Moving Image</em>, and <em>Acta Universitatis Sapientiae, Film and Media Studies</em>.. You can read more about computational film analysis on my blog <a href="https://computationalfilmanalysis.wordpress.com" class="uri">https://computationalfilmanalysis.wordpress.com</a>.</p>
+<p>My name is Nick Redfern and I have been teaching and researching about film since 2001. I have taught film, media, and television studies at Manchester Metropolitan University, the University of Central Lancashire, and Leeds Trinity University. My work on computational film analysis has been published in the <em>Journal of Japanese and Korean Cinema</em>, <em>Statistica</em>, the <em>Journal of Data Science</em>, <em>Post Script</em>, <em>Digital Scholarship in the Humanities</em>, <em>Umanistica Digitale</em>, <em>Sound, Music, and the Moving Image</em>, <em>Humanities Bulletin</em>, <em>Acta Universitatis Sapientiae, Film and Media Studies</em>, and <em>Art and Perception</em>. You can read more about computational film analysis on my blog <a href="https://computationalfilmanalysis.wordpress.com" class="uri">https://computationalfilmanalysis.wordpress.com</a>.</p>
 <p><a href="https://orcid.org/0000-0002-7821-2404"> <img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID logo" width="16" height="16"> https://orcid.org/0000-0002-7821-2404</a></p>
 </div>
 <div id="about-this-book" class="section level2 unnumbered">
@@ -134,9 +135,10 @@
 </h3>
 <p>To cite this book please use:</p>
 <ul>
-<li>Redfern, Nick (2022) <em>Computational Film Analysis with R</em> (version 0.9.004). <a href="https://doi.org/10.5281/zenodo.7074521">https://doi.org/10.5281/zenodo.7074521</a>.</li>
+<li>Redfern, Nick (2022) <em>Computational Film Analysis with R</em> (version 0.9.010). <a href="https://doi.org/10.5281/zenodo.7074521">https://doi.org/10.5281/zenodo.7074521</a>.</li>
 </ul>
 <p><a href="https://doi.org/10.5281/zenodo.7074521"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7074521.svg" alt="DOI"></a></p>
+<p>Original date of Publication: 13 September 2022</p>
 </div>
 <div id="license" class="section level3 unnumbered">
 <h3>License<a class="anchor" aria-label="anchor" href="#license"><i class="fas fa-link"></i></a>
@@ -251,7 +253,7 @@ modal.onclick = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 26 May 2023.</p>
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 24 November 2023.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -7,7 +7,7 @@
 <title>3 Tools | Computational Film Analysis with R</title>
 <meta name="author" content="Nick Redfern">
 <meta name="description" content="This chapter presents a brief overview of the three tools we will use to analyse films computationally – R, RStudio, and FFmpeg. This chapter is intended only to provide enough knowledge about...">
-<meta name="generator" content="bookdown 0.33 with bs4_book()">
+<meta name="generator" content="bookdown 0.35 with bs4_book()">
 <meta property="og:title" content="3 Tools | Computational Film Analysis with R">
 <meta property="og:type" content="book">
 <meta property="og:image" content="/images/cover.png">
@@ -18,14 +18,14 @@
 <meta name="twitter:image" content="/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.2/transition.js"></script><script src="libs/bs3compat-0.4.2/tabs.js"></script><script src="libs/bs3compat-0.4.2/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.5.1/transition.js"></script><script src="libs/bs3compat-0.5.1/tabs.js"></script><script src="libs/bs3compat-0.5.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="libs/datatables-binding-0.27/datatables.js"></script><link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.12.1/css/fixedColumns.dataTables.min.css" rel="stylesheet">
-<script src="libs/dt-ext-fixedcolumns-1.12.1/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.1/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="libs/datatables-binding-0.28/datatables.js"></script><link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="libs/dt-ext-fixedcolumns-1.13.4/css/fixedColumns.dataTables.min.css" rel="stylesheet">
+<script src="libs/dt-ext-fixedcolumns-1.13.4/js/dataTables.fixedColumns.min.js"></script><link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script src="libs/plotly-binding-4.10.2/plotly.js"></script><script src="libs/typedarray-0.1/typedarray.min.js"></script><link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-1C2QQ81L3X"></script><script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -94,6 +94,7 @@
 <li><a class="" href="references.html"><span class="header-section-number">10</span> References</a></li>
 <li class="book-part">Appendix</li>
 <li><a class="" href="colophon.html">Colophon</a></li>
+<li><a class="" href="reader-statistics.html">Reader statistics</a></li>
 </ul>
 
         <div class="book-extra">
@@ -110,7 +111,7 @@
 </h1>
 <p><br>
 This chapter presents a brief overview of the three tools we will use to analyse films computationally – R, RStudio, and FFmpeg. This chapter is intended only to provide enough knowledge about these tools so that when we come to apply them in subsequent chapters we can focus on analysing films and learning key methods in an applicable framework rather than overloading the reader with information without context.</p>
-<p>There are numerous other excellent guides to using these technologies that provide comprehensive tuition for the reader who wants to delve deeper. The website <a href="http://www.r%E2%80%91tutor.com">R Tutorial</a> is a good place to start if you have never used R before, and <a href="https://www.r-bloggers.com">R-Bloggers</a> has excellent bite size tutorials. Hadley Wickham and Garrett Grolemund’s <em>R for Data Science</em> <span class="citation">(<a href="references.html#ref-wickham2017r4ds" role="doc-biblioref">Wickham &amp; Grolemund, 2017</a>)</span> provides a comprehensive overview of the <code>tidyverse</code> suite of packages (of which we will make extensive use in this book) and good practice when using R; it can be accessed online at <a href="https://r4ds.had.co.nz">https://r4ds.had.co.nz</a>.</p>
+<p>There are numerous other excellent guides to using these technologies that provide comprehensive tuition for the reader who wants to delve deeper. The website <a href="http://www.r%E2%80%91tutor.com">R Tutorial</a> is a good place to start if you have never used R before, and <a href="https://www.r-bloggers.com">R-Bloggers</a> has excellent bite size tutorials. Hadley Wickham and Garrett Grolemund’s <em>R for Data Science</em> <span class="citation">(<a href="references.html#ref-wickham2017r4ds">Wickham &amp; Grolemund, 2017</a>)</span> provides a comprehensive overview of the <code>tidyverse</code> suite of packages (of which we will make extensive use in this book) and good practice when using R; it can be accessed online at <a href="https://r4ds.had.co.nz">https://r4ds.had.co.nz</a>.</p>
 <div id="r" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> R<a class="anchor" aria-label="anchor" href="#r"><i class="fas fa-link"></i></a>
@@ -207,9 +208,9 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 </ul>
 <p>Arguments are optional and some functions may have no arguments: for example, to get the current working directory we do not need to add any arguments to the call <code><a href="https://rdrr.io/r/base/getwd.html">getwd()</a></code>, but we do need the parentheses. Arguments may have <em>default</em> values that will be used if we do not explicitly specify that argument: for example, a function that returns a plot may have the default argument <code>plot = TRUE</code> and will automatically return a plot by default unless we set <code>plot = FALSE</code>. To get a list of the arguments for a function we can use <code>args(function_name)</code>.</p>
 <p>Part of the flexibility of R is that it allows users to create their own functions as objects in the workspace using the <code>function()</code> function. All functions have the same basic form, comprising a function name, a set of arguments, and a function body.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tools.html#cb10-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_1, arg_2, …){</span>
-<span id="cb10-2"><a href="tools.html#cb10-2" aria-hidden="true" tabindex="-1"></a>    function_statements</span>
-<span id="cb10-3"><a href="tools.html#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tools.html#cb10-1" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_1, arg_2, …){</span>
+<span id="cb10-2"><a href="tools.html#cb10-2" tabindex="-1"></a>    function_statements</span>
+<span id="cb10-3"><a href="tools.html#cb10-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>As an object in the workspace a function should have a name that is short but informative – we should have a sense of what a function does from its name. As noted above, arguments are the inputs of a function to which we want to apply operations. Those operations are implemented in the function statements wrapped by the curly braces. For example, to create a function to add two numbers together and return their sum, we create a function named <code>addition()</code> that takes two arguments (a and b) and adds them together.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># A simple function to add two numbers together</span></span>
@@ -251,7 +252,7 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <h4>
 <span class="header-section-number">3.1.5.2</span> tidyverse<a class="anchor" aria-label="anchor" href="#tidyverse"><i class="fas fa-link"></i></a>
 </h4>
-<p>The most common call we will make using pacman is to load the <a href="https://www.tidyverse.org">tidyverse</a> package (<span class="citation">Wickham et al. (<a href="references.html#ref-wickham2019wttt" role="doc-biblioref">2019</a>)</span>).</p>
+<p>The most common call we will make using pacman is to load the <a href="https://www.tidyverse.org">tidyverse</a> package (<span class="citation">Wickham et al. (<a href="references.html#ref-wickham2019wttt">2019</a>)</span>).</p>
 <p>The tidyverse package is not really a package; it suite of packages for data science that share a common approach to processing and visualising data, and which are designed to have a single workflow that streamlines the analytical process. Almost all the general tasks of data analysis – data inspection and summarisation, <a href="https://en.wikipedia.org/wiki/Data_wrangling">data wrangling</a>, <a href="https://en.wikipedia.org/wiki/Data_cleansing">data cleaning</a>, and <a href="https://en.wikipedia.org/wiki/Data_and_information_visualization">data visualisation</a> – can be done using the tidyverse suite.</p>
 <p>Installing the tidyverse package will install the following individual packages:</p>
 <ul>
@@ -280,7 +281,7 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <span></span>
 <span><span class="co"># Load ggplot2 only</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span></code></pre></div>
-<p>A key concept underpinning the tidyverse is <em>tidy data</em> <span class="citation">(<a href="references.html#ref-wickham2014tdxx" role="doc-biblioref">Wickham, 2014</a>)</span>. In tidy data</p>
+<p>A key concept underpinning the tidyverse is <em>tidy data</em> <span class="citation">(<a href="references.html#ref-wickham2014tdxx">Wickham, 2014</a>)</span>. In tidy data</p>
 <ul>
 <li>every column is variable.</li>
 <li>every row is an observation.</li>
@@ -293,8 +294,8 @@ Figure 3.1: The R environment and console. Code is entered at the command prompt
 <li>each cell is the value of a variable for a frame.</li>
 </ul>
 <p>Table <a href="tools.html#tab:tools-tidyverse-table-tidy">3.1</a> illustrates the arrangement of this data in tidy data format.</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4ca0cf5a8986594b445d" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4ca0cf5a8986594b445d">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[101,102,103,104,105,106,107,108,109,110],["image_000101","image_000102","image_000103","image_000104","image_000105","image_000106","image_000107","image_000108","image_000109","image_000110"],["50.5","51.0","51.5","52.0","52.5","53.0","53.5","54.0","54.5","55.0"],["22.79","22.70","22.78","22.78","22.78","22.78","12.96","12.97","12.97","12.97"],["20.92","20.86","20.91","20.90","20.90","20.89","10.88","10.89","10.93","10.96"],["-32.15","-32.07","-32.12","-32.12","-32.12","-32.12","-18.87","-18.88","-18.91","-18.93"],["38.36","38.25","38.33","38.33","38.32","38.31","21.78","21.80","21.84","21.87"],["303.06","303.05","303.05","303.05","303.05","303.05","299.97","299.98","300.03","300.06"],["85.98","86.00","85.96","85.96","85.96","85.95","85.95","85.94","85.99","86.01"],["56.81","56.61","56.81","56.80","56.80","56.80","33.45","33.49","33.51","33.55"],["45.30","45.15","45.31","45.30","45.31","45.31","29.46","29.49","29.46","29.46"],["102.73","102.40","102.69","102.68","102.68","102.68","59.68","59.73","59.77","59.81"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>frame<\/th>\n      <th>frame_id<\/th>\n      <th>time<\/th>\n      <th>L<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>H<\/th>\n      <th>S<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"scrollCollapse":true,"paging":false,"autoWidth":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":0},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"className":"dt-center","targets":1}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'10pt'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'10pt'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'10pt'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'10pt'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-4aa381fa6af224140f4f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4aa381fa6af224140f4f">{"x":{"filter":"none","vertical":false,"extensions":["FixedColumns"],"data":[[101,102,103,104,105,106,107,108,109,110],["image_000101","image_000102","image_000103","image_000104","image_000105","image_000106","image_000107","image_000108","image_000109","image_000110"],["50.5","51.0","51.5","52.0","52.5","53.0","53.5","54.0","54.5","55.0"],["22.79","22.70","22.78","22.78","22.78","22.78","12.96","12.97","12.97","12.97"],["20.92","20.86","20.91","20.90","20.90","20.89","10.88","10.89","10.93","10.96"],["-32.15","-32.07","-32.12","-32.12","-32.12","-32.12","-18.87","-18.88","-18.91","-18.93"],["38.36","38.25","38.33","38.33","38.32","38.31","21.78","21.80","21.84","21.87"],["303.06","303.05","303.05","303.05","303.05","303.05","299.97","299.98","300.03","300.06"],["85.98","86.00","85.96","85.96","85.96","85.95","85.95","85.94","85.99","86.01"],["56.81","56.61","56.81","56.80","56.80","56.80","33.45","33.49","33.51","33.55"],["45.30","45.15","45.31","45.30","45.31","45.31","29.46","29.49","29.46","29.46"],["102.73","102.40","102.69","102.68","102.68","102.68","59.68","59.73","59.77","59.81"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>frame<\/th>\n      <th>frame_id<\/th>\n      <th>time<\/th>\n      <th>L<\/th>\n      <th>A<\/th>\n      <th>B<\/th>\n      <th>C<\/th>\n      <th>H<\/th>\n      <th>S<\/th>\n      <th>r<\/th>\n      <th>g<\/th>\n      <th>b<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"scrollCollapse":true,"paging":false,"autoWidth":true,"fixedColumns":true,"columnDefs":[{"className":"dt-right","targets":0},{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"className":"dt-center","targets":1}],"initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'font-size': '12pt'});\n}","order":[],"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[0]; $(this.api().cell(row, 0).node()).css({'font-size':'10pt'});\nvar value=data[1]; $(this.api().cell(row, 1).node()).css({'font-size':'10pt'});\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'font-size':'10pt'});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'font-size':'10pt'});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'font-size':'10pt'});\nvar value=data[5]; $(this.api().cell(row, 5).node()).css({'font-size':'10pt'});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'font-size':'10pt'});\nvar value=data[7]; $(this.api().cell(row, 7).node()).css({'font-size':'10pt'});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'font-size':'10pt'});\nvar value=data[9]; $(this.api().cell(row, 9).node()).css({'font-size':'10pt'});\nvar value=data[10]; $(this.api().cell(row, 10).node()).css({'font-size':'10pt'});\nvar value=data[11]; $(this.api().cell(row, 11).node()).css({'font-size':'10pt'});\n}"}},"evals":["options.initComplete","options.rowCallback"],"jsHooks":[]}</script><div class="inline-table"><table width="100%" class="table table-sm">
 <caption>
 <span id="tab:tools-tidyverse-table-tidy">Table 3.1: </span>Colour data for frames fom a film arranged in tidy format. ☝
 </caption>
@@ -633,7 +634,7 @@ have now set up on your PC.
 <p>This command performs the exact same conversion as the FFmpeg code at the command line but is more readable.</p>
 <div class="rmdtip">
 <p>
-<em>Programming Historian</em> has a <a href="https://doi.org/10.46430/phen0077">comprehensive guide</a> <span class="citation"><span class="citation">(<a href="references.html#ref-rodriguez2018itat" role="doc-biblioref">Rodriguez, 2018</a>)</span></span> to using FFmpeg for those
+<em>Programming Historian</em> has a <a href="https://doi.org/10.46430/phen0077">comprehensive guide</a> <span class="citation"><span class="citation">(<a href="references.html#ref-rodriguez2018itat">Rodriguez, 2018</a>)</span></span> to using FFmpeg for those
 who would like to learn more.
 </p>
 </div>
@@ -718,7 +719,7 @@ modal.onclick = function() {
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 26 May 2023.</p>
+    <p>"<strong>Computational Film Analysis with R</strong>" was written by Nick Redfern. It was last built on 24 November 2023.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

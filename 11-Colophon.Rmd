@@ -29,3 +29,10 @@ This book was built with:
 ```{r echo = FALSE}
 sessioninfo::session_info(c("tidyverse"))
 ```
+
+# Reader statistics {.unnumbered} 
+
+On this page you can access the readership statistics for this book from its original on 13 September 2022 to the day. Data is updated every 12 hours. View the data in full screen mode by clicking on the full screen icon (&#x26F6;) at the bottom of the page.
+
+<iframe width="700" height="2188" src="https://lookerstudio.google.com/embed/reporting/986c81fb-3dcd-4fdd-bc93-2eaae7dd79b1/page/kIV1C" frameborder="0" style="border:0" allowfullscreen></iframe>
+

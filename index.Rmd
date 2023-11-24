@@ -29,7 +29,7 @@ description: "An introduction to computational analysis of film form and film st
 ```{r, echo = FALSE}
 options(Encoding = "UTF-8")
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
-version <- "version 0.9.004"
+version <- "version 0.9.010"
 year <- 2022
 ```
 
@@ -53,7 +53,7 @@ year <- 2022
 
 ## About the author {.unnumbered}
 
-My name is Nick Redfern and I have been teaching and researching about film since 2001. I have taught film, media, and television studies at Manchester Metropolitan University, the University of Central Lancashire, and Leeds Trinity University. My work on computational film analysis has been published in the *Journal of Japanese and Korean Cinema*, *Statistica*, the *Journal of Data Science*, *Post Script*, *Digital Scholarship in the Humanities*, *Umanistica Digitale*, *Sound, Music, and the Moving Image*, and *Acta Universitatis Sapientiae, Film and Media Studies*.. You can read more about computational film analysis on my blog <https://computationalfilmanalysis.wordpress.com>.
+My name is Nick Redfern and I have been teaching and researching about film since 2001. I have taught film, media, and television studies at Manchester Metropolitan University, the University of Central Lancashire, and Leeds Trinity University. My work on computational film analysis has been published in the *Journal of Japanese and Korean Cinema*, *Statistica*, the *Journal of Data Science*, *Post Script*, *Digital Scholarship in the Humanities*, *Umanistica Digitale*, *Sound, Music, and the Moving Image*, *Humanities Bulletin*, *Acta Universitatis Sapientiae, Film and Media Studies*, and *Art and Perception*. You can read more about computational film analysis on my blog <https://computationalfilmanalysis.wordpress.com>.
 
 <a href="https://orcid.org/0000-0002-7821-2404"> <img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID logo" width="16" height="16"/> https://orcid.org/0000-0002-7821-2404</a>
 
@@ -66,6 +66,8 @@ To cite this book please use:
 - Redfern, Nick (`r year`) *Computational Film Analysis with R* (`r version`). [https://doi.org/10.5281/zenodo.7074521](https://doi.org/10.5281/zenodo.7074521).
 
 <a href="https://doi.org/10.5281/zenodo.7074521"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7074521.svg" alt="DOI"></a>
+
+Original date of Publication: 13 September 2022
 
 ### License {.unnumbered}
 
